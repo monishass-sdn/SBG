@@ -1,0 +1,440 @@
+<div class="main-page">
+  <app-sidemenu></app-sidemenu>
+
+  <div class="contents-page ">
+    <app-header></app-header>
+
+      <div class="headingz">
+        <!-- Change all boat url  for add boat Done By Alagesan on 25.06.2021	-->
+          <h4><a routerLink="/all-boats/"><i class="far fa-arrow-alt-circle-left"></i> </a> Boat Details</h4>
+      </div>
+      
+      <div class="page contents fix-page">
+            
+          <div class="container">  
+            <div class="headingz">
+                <h4><a ></a>Add Boat </h4>
+            </div>
+  
+            <div id="content" class="tab-content" role="tablist">
+                <div id="pane-A" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="tab-A">
+                                     
+                  <div class="col-md-12 add-boat-type"  style="float: none;">                         
+                    <!-- Button boat type modal -->
+                      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#boat-type" style="float: right; ">
+                      BOAT TYPE 
+                      </button>
+
+                      <button type="button" data-toggle="modal" data-target="#boat-type" style="display: none;" id="pop-up-btn" class="addb-rs btn common-btn violet-btn" >Submit</button>
+
+                      <!-- Modal -->
+                      <div class="modal fade" id="boat-type" tabindex="-1" role="dialog" aria-labelledby="boat-typeModalLabel" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title" id="exampleModalLabel">ADD BOAT TYPE</h5>
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                         <span aria-hidden="true">&times;</span>
+                                      </button>
+                                  </div>
+
+                                  <form   [formGroup]="form"  novalidate>
+
+                                        <div class="modal-body">
+                                            <div class="form-group col-md-12">
+                                                <label>Boat Type Name</label>
+                                                <input type="text" class="form-control" formControlName="Boat_Type" [ngClass]="{ 'is-invalid': submitted && f.Boat_Type.errors }">
+                                            </div>
+
+                                            <div class="form-group col-md-12">
+                                                <label>Description</label>
+                                                  <textarea class="form-control" rows="3" formControlName="Type_Description" [ngClass]="{ 'is-invalid': submitted && f.Type_Description.errors }"> </textarea>
+                                            </div>                                          
+                                        </div>
+                                        <div class="modal-footer text-center">
+                                          <button type="button" (click)=addBoatType() id="id-button-Add-boat" class="btn btn-primary">ADD</button>
+                                          
+                                          <button type="button" data-dismiss="modal" class="btn btn-danger">CANCEL</button>
+                                        
+                                        </div>
+
+
+                                  </form>
+
+                                  
+                                  
+
+                              </div>
+                          </div>
+                      </div>    
+                  </div>
+                    
+                  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+                    <p style="color: white">Please Wait. </p>  
+                  </ngx-spinner>
+
+                  <form [formGroup]="boatform"  novalidate>
+
+                      <div class="sbg-form row" style="margin-top: 50px;">
+                              <div class="col-md-7">   
+                                  <div class="form-row">
+                                    <!-- Swap the form fields  for add boat Done By Alagesan on 25.06.2021	-->
+                                    <div class="form-group col-md-6">
+                                      <label>Boat Name</label>
+                                      <input type="text" class="form-control" formControlName="Boat_Name" [ngClass]="{ 'is-invalid': boatSubmitted && bf.Boat_Name.errors }">
+                                      </div>
+
+                                    <div class="form-group col-md-6">
+
+                                      <label>Select boat type</label> 
+                                      <ng-multiselect-dropdown
+                                      [placeholder]="'Select'" 
+                                      [ngClass]="{ 'boat-search': boatSubmitted && bf.Boattype_id.errors }"
+                                      [settings]="dropdownSettings"
+                                      [data]="boatTypes"
+                                      (onDeSelect)="onDeSelect($event)"                                    
+                                      (onSelect)="getBoatTypeId($event)"
+                                      class="singleselect_drop"
+                                    >
+                                    </ng-multiselect-dropdown>
+
+                                    </div>
+
+                                 </div>
+
+                                <div class="form-group">
+                                <label>Description</label>
+                                <textarea class="form-control" rows="4" placeholder="Enter here" formControlName="Boat_Description"> </textarea>
+                                </div>
+                                      
+                                <div class="form-row">
+                                <div class="form-group col-md-6">
+
+                                  <label>Pre- Launch Date </label>
+                                 
+                                  <input id="Lates_datepicker-prelaunch-date" type="text" class="form-control" data-zdp_readonly_element="true" formControlName="PreLaunch_Date" [ngClass]="{ 'is-invalid': boatSubmitted && bf.PreLaunch_Date.errors }" >
+
+                                </div>
+                                <div class="form-group col-md-6">
+
+                                  <label>Anniversary / Launch Date </label>
+                                  <input id="Lates_datepicker-launch-date" type="text" class="form-control" data-zdp_readonly_element="true" formControlName="Launch_Date" [ngClass]="{ 'is-invalid': boatSubmitted && bf.Launch_Date.errors }">
+                                            
+
+
+                                </div>
+
+                                </div>  
+
+                                <div class="form-row">                         
+                                  <div class="form-group col-md-12">
+                                      <label>Boat Number</label>
+                                      <input type="text" class="form-control" formControlName="Boat_Number" [ngClass]="{ 'is-invalid': boatSubmitted && bf.Boat_Number.errors }">
+                                      </div>
+                                </div>
+                                      
+                                <div class="form-row">                         
+                    <div class="form-group col-md-12">
+                    <label>Status</label>
+                    <select class="form-control" formControlName="Boat_Status" [ngClass]="{ 'is-invalid': boatSubmitted && bf.Boat_Status.errors }">
+                      <option value="" selected disabled>-- Select --</option>
+                      <option value="Enable">Enable</option>
+                      <option value="Disable">Disable</option>
+                      <option value="Archive">Archive</option> 
+                      </select> 
+                    </div>
+                                </div>                      
+                                      
+                                <div class="col-md-12">
+                                      <div class="form-row">
+                                      <span class="season-text">Season </span>
+                                      <div class="form-group col-md-3">
+                                      <span class="summer-text">Summer  </span>
+                                      
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                      <label>From  </label>
+                                      <input id="Latest_Summer_From_Date" type="text" class="form-control" data-zdp_readonly_element="true" formControlName="SummerSeason_SDate" [ngClass]="{ 'is-invalid': boatSubmitted && bf.SummerSeason_SDate.errors }">
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                      <label>To  </label>
+                                      <input id="Latest_Summer_To_Date" type="text" class="form-control" data-zdp_readonly_element="true" formControlName="SummerSeason_EDate" [ngClass]="{ 'is-invalid': boatSubmitted && bf.SummerSeason_EDate.errors }">
+                                      </div>
+                                      
+                                      <div class="form-group col-md-3">
+                                      <span class="summer-text">Winter</span>
+                                      </div>
+                                      <div class="form-group col-md-4">
+                                      <label>From  </label>
+                                      <input id="Latest_Winter_From_Date" type="text" class="form-control" data-zdp_readonly_element="true" formControlName="WinterSeason_SDate" [ngClass]="{ 'is-invalid': boatSubmitted && bf.WinterSeason_SDate.errors }"></div>
+                                      <div class="form-group col-md-4">
+                                      <label>To  </label>
+                                      <input id="Latest_Winter_To_Date" type="text" class="form-control" data-zdp_readonly_element="true" formControlName="WinterSeason_EDate" [ngClass]="{ 'is-invalid': boatSubmitted && bf.WinterSeason_EDate.errors }"></div>
+                                      
+                                      </div>  
+                                </div>  
+                               </div>  
+                                
+                               <div class="col-md-5">
+                                      <div class="form-row" style="margin-top: 30px;">
+                                          
+                                      <div class="form-group col-md-12">    
+                                        <form action="upload_file.php" id="img-upload-form" method="post" enctype="multipart/form-data" [formGroup]="imageForms"  novalidate>
+                                          <!-- <span>Total selected images <span id="tottalImages_Count" style="color: brown;"></span></span> -->
+                                          <div class="quote-imgs-thumbs quote-imgs-thumbs--hidden" id="img_preview" aria-live="polite"></div>
+                                            
+                                          
+                                          <!-- ........................................ -->
+                                          <div class="form-group col-md-12 outerUps"> 
+                                        
+                                            <!-- <form action="upload_file.php" id="img-upload-form" method="post" enctype="multipart/form-data" [formGroup]="imageForms"  novalidate> -->
+                                              <div class="row overScrls" id="div-binding-multiple-images">
+                                              
+                                            </div>
+                        
+                                            
+                                              </div> 
+
+                                              <div class="custom-file" style=" margin: 10px 0 7px!important;">
+                                                                  
+                                                <input class="show-for-sr" type="file" id="customFile" name="upload_imgs[]"  (change)="onFileChange($event, 'BACK')" multiple/>
+                        
+                                                <label class="custom-file-label" for="customFile" formControlName="Boat_Image_span" [ngClass]="{ 'cls-facility': boatSubmitted && bf.Boat_Image_span.errors }">Choose file</label>
+                                              </div>
+
+
+
+                                          <!-- ........................................ -->
+
+
+                                          <!-- <p>
+                                          <label for="upload_imgs" class="button hollow">Select Your Images +</label>
+                                          <input class="show-for-sr" type="file" id="upload_imgs" name="upload_imgs[]" formControlName="image" (change)="onFileChange($event, 'BACK')" multiple/>
+                                          </p>                             -->
+                                              
+
+                                        </form>
+                                    </div>  
+                                          
+                                      
+                      <div class="form-group col-md-12">
+                      <label>Owner Rule Book :</label>
+                      
+                      <span style="color: red;padding-left: 5px;" id="spn-id-fileName"></span>
+                      
+                      
+                      <div class="custom-file mb-3">
+                        <input type="file" class="custom-file-input form-control" id="id_singlefile" name="filename" (focusout)="singleImage($event, 'BACK')">
+                        <label class="custom-file-label" for="customFile" formControlName="Boat_HandBook_span" [ngClass]="{ 'cls-facility': boatSubmitted && bf.Boat_HandBook_span.errors }">Choose file</label>
+                      </div>
+
+
+                      <label>Owner Manual :</label>
+                      
+                      <span style="color: red;padding-left: 5px;" id="spn-id-fileName2"></span>
+                      
+                      
+                      <div class="custom-file mb-3">
+                        <input type="file" class="custom-file-input form-control" id="id_singlefile2" name="filename" (focusout)="singleImage2($event, 'BACK')">
+                        <label class="custom-file-label" for="customFile" formControlName="Boat_HandBook_span2" [ngClass]="{ 'cls-facility': boatSubmitted && bf.Boat_HandBook_span2.errors }">Choose file</label>
+                      </div>
+
+
+
+
+
+
+
+
+
+                        <div class="form-row">
+
+
+                    <div class="form-group col-md-6">
+                    <label>Total owners allowed</label>
+
+                    <input type="number" class="form-control" value="1" min="1" max="100" step="1" formControlName="Owners_Allowed" [ngClass]="{ 'is-invalid': boatSubmitted && bf.Owners_Allowed.errors }"/>
+                    </div>
+                    <div class="form-group col-md-6">
+                    <label>Location of boat</label>
+                    <select class="form-control" formControlName="Location_Id" (change)="getLoctionTypeId($event.target.value)" [ngClass]="{ 'is-invalid': boatSubmitted && bf.Location_Id.errors }">
+                      <option value="" selected disabled>-- Select --</option>
+                      <option *ngFor="let loc of loctions; let i = index;" value="{{loc._id}}">{{loc.Boat_Location}}</option>
+                    
+                      </select> 
+                    </div>
+
+                    </div>
+                                      
+                    <div class="form-group">
+                    <label>Facilities</label>
+                    <textarea style="border-color: crimson;" class="form-control" rows="4" placeholder="Enter here" formControlName="Boat_Facility" [ngClass]="{ 'cls-facility': boatSubmitted && bf.Boat_Facility.errors }"> </textarea>
+                    <!-- <input type="text" class="form-control"  formControlName="Boat_Facility" [ngClass]="{ 'is-invalid': boatSubmitted && bf.Boat_Facility.errors  }"/> -->
+
+
+                    </div>
+
+                    </div>
+                      
+                    </div>
+                                  
+                                  
+
+                               </div>  
+                                
+                      </div>
+
+
+
+                    <div class="col-md-12">
+
+                      <button class="nexttab btn btn-primary save-bottom" (click)=addBoat()>SAVE</button>
+
+                    </div> 
+
+
+
+
+
+
+
+                  </form>
+                                          
+                </div>   
+                
+                
+            </div>
+
+          </div>
+      </div>
+  
+  </div>
+
+
+
+
+
+<button style="display:none" type="button" id="error-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+            
+              
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Boat Type</h4>
+      </div>
+      <div class="modal-body">
+        <p>Boat Type Added Successful!!!.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="locationReaload()" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+<button style="display:none" type="button" id="saveBoatModel" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalSaveBoat">Open Modal</button>
+            
+              
+<div class="modal fade" id="myModalSaveBoat" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)=goToViewPage() data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Boat</h4>
+      </div>
+      <div class="modal-body">
+        <p>{{getBoatAndSeason}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)=goToViewPage() data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<!--Upload boat image max size exceeded message for add boat Done By Alagesan  on 15.06.2021 -->
+
+<button style="display:none" type="button" id="imageBoatModel" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalImageBoat">Open Modal</button>
+            
+              
+<div class="modal fade" id="myModalImageBoat" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content" style="Width:120%">
+      <div class="modal-header">
+        <button type="button" class="close"  data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Boat Image</h4>
+      </div>
+      <div class="modal-body">
+        <p>{{imageResponse}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<!--Upload boat image max size exceeded message for add boat Done By Alagesan  on 15.06.2021 -->
+
+<button style="display:none" type="button" id="btn-CommenMessage-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Footer-Success-Modal">Open Modal</button>
+             
+<div class="modal fade" id="Footer-Success-Modal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p id="p-message-content">{{commenMessages}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default"  data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+<button style="display:none" type="button" id="btn-CommenMessage-save-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#CommenSave-Success-Modal">Open Modal</button>
+              
+<div class="modal fade" id="CommenSave-Success-Modal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="h4-message-save-type">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p id="p-message-save-content">{{commenMessages}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)=locationReload() data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+
+<div class="dash-footer">
+  <app-footer-adminsession></app-footer-adminsession>   
+  </div>

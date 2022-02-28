@@ -1,0 +1,45 @@
+.summer {
+    margin: 0px;
+    padding: 7px;
+    }
+
+    .modal{
+        pointer-events: none !important;
+      } 
+
+
+    .winter {
+        margin: 0px;
+        padding: 6px;
+        }
+        :host /deep/ .boat-search .multiselect-dropdown {
+               
+            border: 1px solid #f30a0a !important; 
+     
+        }
+
+        .cls-facility{
+            /* border-color: red !important; */
+            
+             border: 1px solid red !important;
+
+        }
+
+        .is-invalid {
+            border: 1px solid red !important
+        
+          }
+
+          .mobile-sidebar{
+            left: 0px !important;
+            transition: 0.5s;
+        }
+
+
+        .modal-footer{
+            display: flex;
+            justify-content: center;
+        }
+        .modal-footer button.btn {
+            margin: 5px;
+        }
