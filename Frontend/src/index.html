@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Smart Boating Bookings</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1"> 
+  
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;800&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/assets/css/my-dashstyle.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap4.min.css" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap4.min.css" />
+  <link rel="stylesheet" href="/assets/css/zebra_datepicker.css">
+
+  <link rel="stylesheet" href="/assets/css/upload-image.css">
+  
+    <!-- Custom CSS --> 
+
+    <link rel="stylesheet" href="/assets/css/calendar-style.css">
+    <link rel="stylesheet" href="/assets/css/calendar-style-2.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/pb.calendar.css"/> 
+
+    <!-- ...................calender................ -->
+
+    <link rel="stylesheet" href="/assets/calender/dist/simple-calendar.css">
+    <link rel="stylesheet" href="/assets/calender/dist/demo.css">
+    
+    
+   
+
+ <style>
+
+/* ............Loader style................ */
+
+.loader img {
+    width: 80px;
+    margin: 0 auto;
+    /* margin-top: 40%; */
+}
+
+.loader {
+    background: #000000bf;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 9999;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-top: 18%;
+    text-align: center;
+}
+
+
+
+
+
+
+/* ........................................ */
+
+
+.container {
+  position: relative;
+}
+
+
+.mySlides {
+  display: none;
+}
+
+
+.cursor {
+  cursor: pointer;
+}
+
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+
+.caption-container {
+  text-align: center;
+  background-color: #222;
+  padding: 2px 16px;
+  color: white;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+.column {
+  float: left;
+  width: 16.66%;
+}
+
+
+.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+}
+
+
+/* drop down....... */
+
+.singleselect_drop .multiselect-item-checkbox {
+    padding: 0px !important;
+    }
+    .singleselect_drop input[type=checkbox]+div:before {
+    display: none !important;
+    }
+    
+    .singleselect_drop input[type=checkbox]+div:after {
+    display: none !important;
+    }
+    
+    .singleselect_drop input[type=checkbox]+div {
+    padding: 6px 10px !important;
+    }
+    
+    .singleselect_drop input[type=checkbox]:checked+div {
+    background-color: #337ab7 !important;
+    color: #fff !important;
+    }
+
+    .no-clear.ng-select .ng-clear-wrapper {
+  display: none;
+    }
+
+  .ng-select.disable-clear-all .ng-clear-wrapper {
+  display: none;
+}
+
+
+
+
+ </style>
+
+ <!-- ....................Sheduler....start....css............. -->
+
+ <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.css">
+ <link rel="stylesheet" type="text/css" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css">
+
+ <link href="/assets/Sheduler/dist/tui-calendar.css" rel="stylesheet" />
+ <link href="/assets/Sheduler/css/default.css" rel="stylesheet" />
+ <link href="/assets/Sheduler/css/icons.css" rel="stylesheet" />
+
+ <!-- ...................Sheduler.....End.....CSS............. -->
+
+
+
+ <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+     
+    <!-- font awesome js -->
+   <script src="https://kit.fontawesome.com/c026154490.js" crossorigin="anonymous"></script>
+   <script src="/assets/js/bootstrap.min.js"></script>
+   <script src="/assets/js/calendar.js"></script>
+   <script src="/assets/js/bootstrap-input-spinner.js"></script>
+   <script src="/assets/js/zebra_datepicker.min.js"></script>      
+   <script src="/assets/js/examples.js"></script>     
+   <script type="text/javascript" src="/assets/js/pb.calendar.js"></script>
+   <script
+   src="https://cdn.jsdelivr.net/npm/zebra_pin@latest/dist/zebra_pin.min.js"></script> 
+
+<!-- for a specific version -->
+<script
+   src="https://cdn.jsdelivr.net/npm/zebra_pin@2.0.0/dist/zebra_pin.min.js"></script> 
+   <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+   <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
+   <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+   <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap4.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.min.js" integrity="sha384-F13mJAeqdsVJS5kJv7MZ4PzYmJ+yXXZkt/gEnamJGTXZFzYgAcVtNg5wBDrRgLg9" crossorigin="anonymous"></script>
+
+
+<!-- ...........................Sheduler.....Script........start......... -->
+
+
+    <script src="https://uicdn.toast.com/tui.code-snippet/v1.5.2/tui-code-snippet.min.js"></script>
+    <script src="https://uicdn.toast.com/tui.time-picker/v2.0.3/tui-time-picker.min.js"></script>
+    <script src="https://uicdn.toast.com/tui.date-picker/v4.0.3/tui-date-picker.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chance/1.0.13/chance.min.js"></script>
+   
+    <script src="/assets/Sheduler/dist/tui-calendar.js"></script>
+    <script src="/assets/Sheduler/js/data/calendars.js"></script>
+   
+
+    <!-- user Defind script............ -->
+
+   
+    
+    <script src="/assets/Sheduler/js/data/ShedulerMain_Start.js"></script>
+
+    <script src="/assets/Sheduler/js/data/shedulerEvents.js"></script>
+
+    <script src="/assets/Sheduler/js/data/sheduler_over_Write.js"></script>
+
+    
+   
+   
+
+     
+
+<!-- ............................Sheduler.........Script.....End......... -->
+
+
+<!-- ........................................calende.................... -->
+
+<script src="/assets/calender/dist/jquery.simple-calendar.js"></script>
+
+<!-- ..........................Moment.................. -->
+<!-- <script src="/assets/moment/datetime-moment.js"></script>
+<script src="/assets/moment/moment.min.js"></script> -->
+<script src="/assets/moment/moment_new.min.js"></script>
+<script src="/assets/moment/moment-timezone-with-data-1970-2030.js"></script>
+<script src="/assets/moment/datetime-moment.js"></script>
+
+
+<script>
+
+$(document).ready(function() {
+   $.fn.dataTable.moment( 'DD-MM-YYYY' );
+   $('#GetAllBoatsDatesOverview_Table').DataTable(); 
+});
+
+</script>
+
+
+<!-- ................................End............... -->
+
+
+
+
+<script>
+
+
+
+try
+{
+ var slideIndex = 1;
+ showSlides(slideIndex);
+}
+catch{
+
+}
+ // Next/previous controls
+ function plusSlides(n) {
+   try
+   {
+   showSlides(slideIndex += n);
+   }
+   catch{
+
+   }
+ }
+
+ // Thumbnail image controls
+ function currentSlide(n) {
+   try
+   {
+   showSlides(slideIndex = n);
+   }
+   catch{
+     
+   }
+ }
+
+ function showSlides(n) {
+
+  try
+  {
+
+   var i;
+   var slides = document.getElementsByClassName("mySlides");
+   var dots = document.getElementsByClassName("demo");
+   var captionText = document.getElementById("caption");
+   if (n > slides.length) {slideIndex = 1}
+   if (n < 1) {slideIndex = slides.length}
+   for (i = 0; i < slides.length; i++) {
+     slides[i].style.display = "none";
+   }
+   for (i = 0; i < dots.length; i++) {
+     dots[i].className = dots[i].className.replace(" active", "");
+   }
+   slides[slideIndex-1].style.display = "block";
+   dots[slideIndex-1].className += " active";
+   captionText.innerHTML = dots[slideIndex-1].alt;
+  }
+  catch{
+
+  }
+ }
+
+
+ 
+
+//  ........................calender..............
+
+
+
+
+
+// .....................end...............
+</script>
+   
+<script>
+
+$(document).ajaxStop(function(data) {
+  
+  
+});
+
+$(document).ready(function(){
+
+var Disabledates = [
+       '* 6 2012',
+       '* 7 2021',
+       '* 8 2021',
+     ]     
+
+  var current_yyyymm_ = moment().format("YYYYMM");
+
+	$("#pb-calendar").pb_calendar({
+		schedule_list : function(callback_, yyyymm_){
+			var temp_schedule_list_ = {};
+            
+     
+           temp_schedule_list_[current_yyyymm_+"02"] = [
+				{'ID' : 1, style : "green"}
+				
+			];
+            
+             temp_schedule_list_[current_yyyymm_+"03"] = [
+				{'ID' : 2, style : "green"}
+				
+			];
+            
+              temp_schedule_list_[current_yyyymm_+"04"] = [
+				{'ID' : 3, style : "green"}
+				
+			];
+            
+            
+            
+            
+
+			temp_schedule_list_[current_yyyymm_+"10"] = [
+				{'ID' : 4, style : "green"}
+			];
+            
+            temp_schedule_list_[current_yyyymm_+"11"] = [
+				{'ID' : 5, style : "green"}
+			];
+            
+             temp_schedule_list_[current_yyyymm_+"12"] = [
+				{'ID' : 6, style : "green"}
+			];
+
+			
+            
+            
+            temp_schedule_list_[current_yyyymm_+"06"] = [
+				{'ID' : 7, style : "green"},
+               
+				
+			];
+            
+             temp_schedule_list_[current_yyyymm_+"07"] = [
+				{'ID' : 8, style : "green"},
+               
+				
+			];
+            
+
+            
+                temp_schedule_list_[current_yyyymm_+"20"] = [
+				{'ID' : 1, style : "green"}
+				
+			];
+            
+             temp_schedule_list_[current_yyyymm_+"23"] = [
+				{'ID' : 2, style : "blue"}
+				
+			];
+            
+              temp_schedule_list_[current_yyyymm_+"24"] = [
+				{'ID' : 3, style : "blue"}
+				
+			];
+            
+			
+           
+            
+			callback_(temp_schedule_list_);
+		},
+		schedule_dot_item_render : function(dot_item_el_, schedule_data_){
+			dot_item_el_.addClass(schedule_data_['style'], true);
+			return dot_item_el_;
+		}
+	});
+
+
+});
+
+</script>
+
+
+<script>
+
+remove_close_drpdown();
+  function remove_close_drpdown() {
+    setInterval(() => {
+     
+      $(".selected-item").children("a").remove();
+     
+   },10)
+ }
+
+ function myFunction_BrowserChek() { 
+        if((navigator.userAgent.indexOf("Opera") || navigator.userAgent.indexOf('OPR')) != -1 ){
+            //alert('Opera');
+            sessionStorage.setItem("browserType","Opera");
+        }
+        else if(navigator.userAgent.indexOf("Chrome") != -1 ){
+            //alert('Chrome');
+            sessionStorage.setItem("browserType","Chrome");
+        }
+        else if(navigator.userAgent.indexOf("Safari") != -1){
+            //alert('Safari');
+            sessionStorage.setItem("browserType","Safari");
+        }
+        else if(navigator.userAgent.indexOf("Firefox") != -1 ){
+             //alert('Firefox');
+             sessionStorage.setItem("browserType","Firefox");
+        }
+        else if((navigator.userAgent.indexOf("MSIE") != -1 ) || (!!document.documentMode == true )){
+               //alert('IE');
+               sessionStorage.setItem("browserType","IE"); 
+        }  
+        else{
+               //alert('unknown');
+               sessionStorage.setItem("browserType","unknown");
+        }
+    }
+
+
+
+
+</script>
+
+
+
+
+</head>
+<body onload="myFunction_BrowserChek()">
+
+  <!-- loadre.................... -->
+
+  <div class="loader" id="shown-loader-commen" style="display:none;">
+    <img src="/assets/images/loading-buffering_gf.gif">
+   
+  </div>
+
+
+
+
+  <!-- ....................... -->
+
+
+
+  <app-root></app-root>
+
+  <!-- ....Dont delete this code this is A SHEDULER template -->
+  <div class="code-html" style="display: none;">
+    <div id="menu">
+        <span id="menu-navi">
+            <button type="button" class="btn btn-default btn-sm move-today" data-action="move-today">Today</button>
+            <button type="button" class="btn btn-default btn-sm move-day" data-action="move-prev">
+                <i class="calendar-icon ic-arrow-line-left" data-action="move-prev"></i>
+            </button>
+            <button type="button" class="btn btn-default btn-sm move-day" data-action="move-next">
+                <i class="calendar-icon ic-arrow-line-right" data-action="move-next"></i>
+            </button>
+        </span>
+        <span id="renderRange" class="render-range"></span>
+    </div>
+
+    <div id="calendar"></div>
+</div>  
+
+
+
+<!-- <div data-load="loading"></div> -->
+
+
+
+</body>
+</html>
