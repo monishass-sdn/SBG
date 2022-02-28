@@ -509,7 +509,7 @@ const EnableDisableOwner = (req, res, next) => {
     var Module_status = 2;
     var isActive=true;
   }
-  mongoose.set('debug', true);
+  
   NewOwners.findByIdAndUpdate(
     { _id: mongoose.Types.ObjectId(ownerid) },
     {
@@ -978,7 +978,7 @@ const AddMangeOwner = (req, res, next) => {
     console.log(Owners_Allowed, "owners");
 
     NewOwners.findById({ _id: mongoose.Types.ObjectId(owner_id) }).then((results) => {
-      ManageOwner.count({ Boat_Id: boat_id }, function (err, count) {
+      ManageOwner.count({ Boat_Id: boat_id,IsActive: true }, function (err, count) {
         console.log("Number of users:", count);
 
         if (count < Owners_Allowed) {
