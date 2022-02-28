@@ -1,0 +1,81 @@
+1.
+http://localhost:9049/api/Owner/GetBoatDetailsByIds:Manage User
+{
+    "userid":"605218a54594c74414fa33ce"
+}
+
+2.http://localhost:9049/api/Owner/GetBoat:Get Boat in DropDown
+
+3.http://localhost:9049/api/Boat/AddSeason:Add Season
+
+{ 
+    "Owner_Name":"Arun",
+    "Boat_Name":"Carpe Diem",
+    "Season_Type" :"Summer",
+    "Season_SDate":"12/12/2021",
+    "Season_EDate":"12/30/2021",
+    "Block":0,
+    "IsActive":0,
+    "Current_Time":"",
+    "Updated_Time":""    
+}
+
+4.http://localhost:9049/api/Owner/GetOwners:Get Owners in Dropdown
+
+5.http://localhost:9049/api/Owner/AddDuration :Add duration
+
+{
+"Owner_Name": "Arun",
+"Boat_name":"Carpe Diem",
+"Boat_Type": "Houseboat123",
+"From_Date":"3/16/2021",
+"To_Date":"3/16/2021",
+"Block":true,
+"IsActive":true,
+"Current_Time":"",
+"Updated_time": ""
+}
+
+6.http://localhost:9049/api/Owner/AddOwner:Add owner
+
+{"First_Name": "Jibin",
+"Last_Name":"Raj",
+" Home_Address": "xyx",
+"Email": "bjibin3@gmail.com",
+"Password":"123456",
+"Profile_Iamge": "test2.png",
+"Mobile":"8129454678",
+"Family_Name:"xyz",
+"Parking_Ability":"Expert"
+"Block":true,
+" IsActive":true,
+" Current_Time":"new Date()",
+"Updated_time": "new Date()"
+}
+
+7.http://localhost:9049/api/Owner/FileUploads: upload Profile image in owner
+profile_image:file
+
+8.http://localhost:9049/api/Login/Login:Login
+{
+    "Email" :"Admin123@gmail.com",   
+    "Password":"AdminNew1"
+    
+
+}
+
+9.http://localhost:3000/api/Login/ResetPassword :
+
+{
+    "Email" :"Admin123@gmail.com"
+      
+
+}
+
+10.http://localhost:3000/api/Login/ChangePassword
+{
+    "resetPasswordToken" :"Admin123@gmail.com",
+    "Password":"AdminNew"
+    
+
+}

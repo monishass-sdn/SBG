@@ -1,0 +1,60 @@
+1.Add Boat Type
+http://localhost:9049/api/Boat/AddBoatType
+{
+Boat_Type:"",
+Block:true,
+IsActive:true
+}
+2.Boat Location ---Get 
+http://localhost:9049/api/Boat/GetLocation
+3.Boat type---Get 
+http://localhost:9049/api/Boat/GetBoatType
+4.AddNewBoat--post
+http://localhost:9049/api/Boat/AddNewBoat
+
+{
+ 
+  "Boat_Name": "Blue Moon",
+  "Boat_Facility": "Our Marine General Medicine Boat Facility",
+  "Location_Id": "6049bf35ff41ee385c8cca1a",
+  "Boattype_id": "604b795ea2381629d04908a7",
+  "Owners_Allowed": 2,
+  "Launch_Date": "Mar-17-2021",
+  " PreLaunch_Date": "Mar-15-2021",
+  " Boat_Image": "test1.png",
+  "Boat_HandBook": "test2.png",
+  "Block": true,
+  "IsActive": true,
+  " Current_Time": "Mar-17-2021 20:12:34",
+  "Updated_time": "Mar-17-2021 20:12:34"
+}
+5.EditBoat--post
+http://localhost:9049/api/Boat/EditBoat
+
+{
+  "_id":"604f476fdef8d7417c9d40de",
+  "Boat_Name": "Blue Moon",
+  "Boat_Facility": "Our Marine General Medicine Boat Facility",
+  "Location_Id": "6049bf35ff41ee385c8cca1a",
+  "Boattype_id": "604b795ea2381629d04908a7",
+  "Owners_Allowed": 2,
+  "Launch_Date": "Mar-17-2021",
+  " PreLaunch_Date": "Mar-15-2021",
+  " Boat_Image": "test1.png",
+  "Boat_HandBook": "test2.png",
+  "Block": true,
+  "IsActive": true,
+  " Current_Time": "Mar-17-2021 20:12:34",
+  "Updated_time": "Mar-17-2021 20:12:34"
+}
+6.DeleteBoat--post
+http://localhost:9049/api/Boat/DeleteBoat
+7.View--get
+http://localhost:9049/api/Boat/GetallBoatDetails
+8.sort by id--get
+http://localhost:9049/api/Boat/GetBoatDetailsById
+9.FileUpload single--post
+http://localhost:9049/api/Boat/FileUpload
+10.FileUpload multiple--post
+http://localhost:9049/api/Boat/FileUploadmany
+
