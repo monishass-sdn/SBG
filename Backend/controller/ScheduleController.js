@@ -3096,6 +3096,18 @@ const EditSchedule = async (req, res, next) => {
         let TodatCuntDate = new Date();
         let todayDateStr = dateToStr(TodatCuntDate);
 
+
+        const checkUSer = await Schedule.findOne({ _id: scheduleid}).catch((error) => console.log(error));
+        if(checkUSer.User_Id!=Owner_id){
+
+            return res.json({
+                status: false,
+                message: 'Please Select respective Owner'
+            }) 
+        }
+        
+
+
         /* check boat is suspended */
 
         if (User_role == "Owner") {
@@ -3304,6 +3316,15 @@ const EditSchedule = async (req, res, next) => {
             incomingTotalDays = moment(new Date(req.body.end)).diff(moment(new Date(schedule.start)), "days") + 1;
             currentBookingStartDate = schedule.start;
             currentBookingEndDate = req.body.end
+
+            const check_back_schedule_USer = await Schedule.findOne({ _id: Back_to_Back_Sheduler_id}).catch((error) => console.log(error));
+            if(check_back_schedule_USer.User_Id!=Owner_id){
+    
+                return res.json({
+                    status: false,
+                    message: 'Please Select respective Owner'
+                }) 
+            }
         }
 
 
