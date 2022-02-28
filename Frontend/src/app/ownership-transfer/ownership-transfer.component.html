@@ -1,0 +1,231 @@
+ <!--Create Component for ownership transfer Done By Alagesan on 20.05.2021-->
+
+<div class="main-page">
+    <app-sidemenu></app-sidemenu>
+    <div class="contents-page col-lg-9">
+        <app-header></app-header>
+        <div class="headingz">
+            <h4>Ownership Transfer</h4>
+        </div>
+        <div class="page contents">
+                  
+                
+                  
+                 
+            <div class="row">
+         
+               <div class="col-md-12">
+          <div class="sbg-form row">
+              <div class="col-md-12">   
+                 <form [formGroup]="OwnerShipTransferForms"  novalidate>
+                    <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label>Owner Name</label> 
+                        <ng-multiselect-dropdown
+                        [placeholder]="'Select'"
+                        [ngClass]="{ 'is-invalid': OwnerShipTransferSubmitted && Owt.Owner_Id.errors }"
+                        [(ngModel)]="dropdownOwn"           
+                        [ngModelOptions]="{standalone: true}"                                               
+                                                
+                        [settings]="dropdownOwnerSettings"
+                        [data]="dropdownOwnerList_filted"                                    
+                        (onSelect)="onItemOwnerSelect($event)"                        
+                        class="singleselect_drop"
+                    >
+                    </ng-multiselect-dropdown>
+                    </div>
+                    
+                    <div class="form-group col-md-4">
+                        <label>Select boat</label> 
+                        <ng-multiselect-dropdown
+                        [placeholder]="'Select'"
+                        [ngClass]="{ 'is-invalid': OwnerShipTransferSubmitted && Owt.Boat_Id.errors }"
+                        [disabled]="checkCurrent_Boat"
+
+                        [(ngModel)]="dropdownBoat"
+                        [ngModelOptions]="{standalone: true}"
+                        
+                       
+                        [settings]="dropdownSettings"
+                        [data]="dropdownList_filted_Boat"                                    
+                        (onSelect)="onboatSelect($event)"
+                       
+                        class="singleselect_drop"
+                    >
+                    </ng-multiselect-dropdown>   
+                    </div>
+                    
+                    <div class="form-group col-md-4">
+                    <label>Exp Date of Current Owner</label>
+                    <!-- <input id="Exp_Date_Current_Owner_datepicker" type="text" class="form-control" data-zdp_readonly_element="true"  formControlName="Exp_Date_Current_Owner"
+                    
+                     [ngClass]="{ 'is-invalid': OwnerShipTransferSubmitted && Owt.Exp_Date_Current_Owner.errors }"
+                    
+                    > -->
+
+                    <input type="text" readonly class="form-control borCls" formControlName="Exp_Date_Current_Owner" [ngClass]="{ 'is-invalid': OwnerShipTransferSubmitted && Owt.Exp_Date_Current_Owner.errors }" >
+
+
+                    
+
+                    </div>
+                    </div>                                       
+                     
+                    <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label>New Owner </label> 
+
+                        <ng-multiselect-dropdown
+                        [placeholder]="'Select'"
+                        [ngClass]="{ 'is-invalid': OwnerShipTransferSubmitted && Owt.New_Owner_Id.errors }"
+
+                        [disabled]="checkCurrent_New_Owner"
+                        [(ngModel)]="dropdownNewBoat"
+                        [ngModelOptions]="{standalone: true}" 
+                        [settings]="dropdownOwnerSettings"
+                        [data]="dropdown_New_OwnerList_filted"                                    
+                        (onSelect)="onItemNewOwnerSelect($event)"
+                       
+                        class="singleselect_drop"
+                    >
+                    </ng-multiselect-dropdown> 
+                    </div>
+                    
+                    <div class="form-group col-md-4">
+                    <label>Start Date of New owner</label>
+                    <input id="Start_Date_of_New_owner_datepicker" type="text" class="form-control borCls" data-zdp_readonly_element="true"  formControlName="Start_date_of_new_owner"
+                    
+                    [ngClass]="{ 'is-invalid': OwnerShipTransferSubmitted && Owt.Start_date_of_new_owner.errors }"
+                    
+                    >
+
+                    </div>
+                    
+                    <div class="form-group col-md-4">
+                    <label>Pending number of days</label>
+                    <input type="text" readonly class="form-control borCls" formControlName="Pending_number_of_days" [ngClass]="{ 'is-invalid': OwnerShipTransferSubmitted && Owt.Pending_number_of_days.errors }" >
+
+                    </div>
+                    
+                    <div class="form-group col-md-4">
+                    <label>Ownership End Date</label>
+                    <input id="End_Date_New_owner_datepicker" type="text" class="form-control borCls" data-zdp_readonly_element="true"  formControlName="End_date_of_new_owner"
+                    [ngClass]="{ 'is-invalid': OwnerShipTransferSubmitted && Owt.End_date_of_new_owner.errors }" >
+ 
+                    </div>
+                        
+                    <div class="form-group col-md-4">
+                    <label>Summer Weekend Days</label>
+                    <input type="number" [readonly]="CommenReadOnly" (keyup)="onNumberChangeEvent($event)" (keydown)="onNumberChangeEvent($event)" (change)="onNumberChangeEvent($event)" (keypress)="onNumberChangeEvent($event)" class="form-control borCls" formControlName="No_of_SummerWeekEndDays" [ngClass]="{ 'is-invalid': OwnerShipTransferSubmitted && Owt.No_of_SummerWeekEndDays.errors }" >
+
+                    </div>
+
+                    <div class="form-group col-md-4">
+                    <label>Summer weekdays</label>
+                    <input type="number" [readonly]="CommenReadOnly" (keyup)="onNumberChangeEvent($event)" (keydown)="onNumberChangeEvent($event)" (change)="onNumberChangeEvent($event)" (keypress)="onNumberChangeEvent($event)" class="form-control borCls" formControlName="No_of_SummerWeekDays" [ngClass]="{ 'is-invalid': OwnerShipTransferSubmitted && Owt.No_of_SummerWeekDays.errors }" >
+                    
+                    </div>
+
+                    <div class="form-group col-md-4">
+                    <label>Winter Weekend Days</label>
+                    <input type="number" [readonly]="CommenReadOnly" (keyup)="onNumberChangeEvent($event)" (keydown)="onNumberChangeEvent($event)" (change)="onNumberChangeEvent($event)" (keypress)="onNumberChangeEvent($event)" class="form-control borCls"  formControlName="No_of_WinterWeekEndDays" [ngClass]="{ 'is-invalid': OwnerShipTransferSubmitted && Owt.No_of_WinterWeekEndDays.errors }" >
+                    
+                    </div>
+
+                    <div class="form-group col-md-4">
+                    <label>Winter Weekdays</label>
+                    <input type="number" [readonly]="CommenReadOnly" (keyup)="onNumberChangeEvent($event)" (keydown)="onNumberChangeEvent($event)" (change)="onNumberChangeEvent($event)" (keypress)="onNumberChangeEvent($event)" class="form-control borCls" formControlName="No_of_WinterWeekDays" [ngClass]="{ 'is-invalid': OwnerShipTransferSubmitted && Owt.No_of_WinterWeekDays.errors }" >
+
+                    </div>
+
+                    </div>                       
+
+                    <button type="submit" class="btn btn-primary" (click)='OwnerShipTransferSave()'>TRANSFER OWNERSHIP</button>
+                </form>
+            </div>  
+         </div>
+                   
+                   
+           <div class="row" style="margin-top: 25px;">
+            <div class="col-md-12 reports">
+
+                <div id="id-table-databinding">
+
+                
+
+                </div>
+           
+               
+            </div>
+          </div>           
+                   
+                   
+                   
+                   
+                   
+                   
+       </div>
+             
+          
+             </div>
+             
+             
+            
+         </div>
+    </div>
+</div>
+
+
+<button style="display:none" type="button" id="btn-CommenMessage-disp-btns-angular" class="btn btn-info btn-lg" data-toggle="modal" data-target="#btn-CommenMessage-disp-Modal">Open Modal</button>
+             
+<div class="modal fade" id="btn-CommenMessage-disp-Modal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="h4-message-type">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p id="p-message-content">{{CommenMessages}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default"  data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<button style="display:none" type="button" id="btn-CommenMessage-Save-disp-btns-angular" class="btn btn-info btn-lg" data-toggle="modal" data-target="#btn-CommenMessage-Save-disp-Modal">Open Modal</button>
+             
+<div class="modal fade" id="btn-CommenMessage-Save-disp-Modal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="h4-message-type">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p id="p-message-content">{{CommenMessages}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)='locationReload()' data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+
+
+<div class="dash-footer">
+<!-- <small>© Copyright SMART Boating 2021. All Rights Reserved.</small>   -->
+<app-footer-adminsession></app-footer-adminsession>  
+</div>
+
+ <!--Create Component for ownership transfer Done By Alagesan on 20.05.2021-->

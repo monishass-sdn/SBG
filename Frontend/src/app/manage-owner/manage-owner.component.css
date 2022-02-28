@@ -1,0 +1,23 @@
+.form-group select {
+    /* for Firefox */
+    -moz-appearance: none;
+    /* for Safari, Chrome, Opera */
+    -webkit-appearance: none;
+  }
+  /* .main-page {
+    margin: 0px 0px 0px -30px;
+} */
+:host /deep/ .boat-search .multiselect-dropdown {
+               
+  border: 1px solid #f30a0a !important; 
+
+}
+
+.mobile-sidebar{
+  left: 0px !important;
+  transition: 0.5s;
+}
+
+.modal{
+  pointer-events: none !important;
+} 

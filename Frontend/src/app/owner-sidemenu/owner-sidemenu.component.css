@@ -1,0 +1,15 @@
+.width38{
+    width: 39px;
+}
+.menu-title {
+    font-size: 16px;
+    margin-left: 10px;
+    color: #fff;
+    text-transform: uppercase;
+    flex: 1;
+}
+ul.menu-list.menulist-cust a .menu-icon1 {
+    width: 36px !important;
+    height: 36px !important;
+    background-repeat: no-repeat !important;
+}

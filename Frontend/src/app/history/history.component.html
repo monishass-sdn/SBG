@@ -1,0 +1,158 @@
+<!--Create Component for history Done By Alagesan	on 17.05.2021 -->
+<div class="main-page">
+    <app-owner-sidemenu></app-owner-sidemenu>
+    <div class="contents-page col-lg-9">
+      <app-owner-header></app-owner-header>
+      <div class="headingz">
+            <h4>History </h4>
+        </div>
+        <div class="page contents minheight">
+          <div class="container">
+<ul id="tabs" class="nav nav-tabs booking-tabs" role="tablist">
+<li class="nav-item">
+  <a id="tab-A" href="#pane-A" class="nav-link active" data-toggle="tab" role="tab">Previous Bookings</a>
+</li>
+<li class="nav-item">
+  <a id="tab-B" href="#pane-B" class="nav-link" data-toggle="tab" role="tab">Cancelled Bookings</a>
+</li>
+
+</ul>
+
+
+<div id="content" class="tab-content" role="tablist">
+<div id="pane-A" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="tab-A">
+
+
+  <div class="row owner-bookings rowPads">    
+     
+    <!-- <div class="col-lg-12 boat-list-container" id="style-scrollbar"> -->
+        <div class="col-sm-6 col-md-4 padspace5"  *ngFor="let booking of viewBookingByOwnerIddata | filter: searchText  let i = index;">
+          <div class="boat-list-1">
+          <div class="boat-img">
+                <img *ngIf="!booking.Boat_Image" src="../../assets/images/boat-1.jpg" alt="boat">
+                <img *ngIf="booking.Boat_Image" src="{{imgUrl+booking.Boat_Image}}" alt="boat">
+              </div>
+            <div class="info">
+                <h6>Booking No:<span> {{booking.Booking_ID}} </span></h6>
+                <h2>{{booking.Boat_Name}}</h2>
+                <p>{{booking.start | date :'d MMM y'}} - {{booking.end | date :'d MMM y'}}</p>
+                <!-- <button type="button" class="btn btn-success" (click)=Canceld_Booking_check(booking)>Cancel Booking</button> -->
+            </div>
+            </div>
+        
+        </div>  
+                            
+    <!-- </div>   -->
+
+
+
+
+      <!-- Modal -->
+
+<!-- <button style="display:none" type="button" id="btn-Cancel-Booking-Conformation" class="btn btn-info btn-lg" data-toggle="modal" data-target="#boat-type">Open Modal</button>
+
+
+
+<div class="modal fade" id="boat-type" tabindex="-1" role="dialog" aria-labelledby="boat-typeModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="exampleModalLabel">CONFIRM</h5>
+<button type="button" id="dynamicaly-close-btn" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">×</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="col-md-12">
+<p>{{ConformationMessage}}</p>
+</div>
+</div>
+<div class="modal-footer">
+ <button type="button" class="btn btn-primary" (click)=Canceld_Booking_Confirm_OK(Conformation_Id)>OK</button> 
+<button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+</div>
+</div>
+</div>
+</div>   -->
+<!-- End Modal -->              
+          
+          </div>
+
+
+
+
+
+
+
+
+
+
+  
+  
+</div>
+
+<div id="pane-B" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-B">
+   
+  <div class="row owner-bookings rowPads">
+           
+    <!-- <div class="col-sm-6 col-md-4 padspace5" id="style-scrollbar"> -->
+       <div class="col-sm-6 col-md-4 padspace5" *ngFor="let cancel of viewCancelBookingByOwnerIddata | filter: searchText  let i = index;">
+         <div class="boat-list-1">
+         <div class="boat-img">
+           <img *ngIf="!cancel.Boat_Image" src="../../assets/images/boat-1.jpg" alt="boat">
+           <img *ngIf="cancel.Boat_Image" src="{{imgUrl+cancel.Boat_Image}}" alt="boat">
+       </div>
+       <div class="info">
+           <h6>Booking No:<span> {{cancel.Booking_ID}} </span></h6>
+           <h2>{{cancel.Boat_Name}}</h2>
+           <p>{{cancel.start | date :'d MMM y'}} - {{cancel.end | date :'d MMM y'}}</p>
+       </div>
+       </div>
+           
+       </div>  
+   <!-- </div>   -->
+    
+ </div>
+  
+   
+               
+                      
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-12 history-owner">
+         
+  <carousel class="carosel"> 
+    
+   <div class="carousel-cell" (click)="openLink('https://smartboating.com.au/palm-beach-pb32/')">
+       <img src="/assets/images/smartboat1.png">
+   </div>
+    <div class="carousel-cell" (click)="openLink('https://smartboating.com.au/integrity-380-boat-share/')">
+     <img src="/assets/images/smartboat2.png">
+   </div>
+    <div class="carousel-cell" (click)="openLink('https://smartboating.com.au/hanse-445-twilight-boatshare/')">
+     <img src="/assets/images/smartboat3.png">
+   </div>
+    <div class="carousel-cell" (click)="openLink('https://smartboating.com.au/integrity-440-sedan-boatshare/')">
+     <img src="/assets/images/smartboat4.png">
+   </div>
+    <div class="carousel-cell" (click)="openLink('https://smartboating.com.au/hanse-415-boatshare/')">
+     <img src="/assets/images/smartboat5.png">
+   </div>
+    <div class="carousel-cell" (click)="openLink('https://smartboating.com.au/integrity-380-yamba-boatshare/')">
+     <img src="/assets/images/smartboat6.png">
+   </div> 
+</carousel> 
+</div>
+        </div>
+        
+       
+    </div>
+</div>
+<div class="dash-footer">
+  <app-footer-adminsession></app-footer-adminsession>   
+</div>
+<!--Create Component for history Done By Alagesan	on 17.05.2021 -->

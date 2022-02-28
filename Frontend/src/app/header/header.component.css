@@ -1,0 +1,11 @@
+
+
+.headerBtn-space .settings {
+    float: left;
+    margin: 0 10px 0 0;
+}
+
+.mobile-sidebar{
+    left: 0px !important;
+    transition: 0.5s;
+}

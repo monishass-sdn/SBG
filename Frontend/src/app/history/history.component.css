@@ -1,0 +1,11 @@
+.mobile-sidebar{
+    left: 0px !important;
+    transition: 0.5s;
+}
+
+.modal{
+    pointer-events: none !important;
+  } 
+  .minheight{
+      min-height: 80vh !important;
+  }

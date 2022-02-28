@@ -1,0 +1,733 @@
+<!--Create Component for owner dashboard Done By Alagesan on 17.05.2021-->
+<div class="main-page owner-dahsBoar-Main pointer-function-all" style="pointer-events:none;">
+    <app-owner-sidemenu></app-owner-sidemenu>
+    <div class="contents-page owner-dahsBoar-Main-content col-lg-9">
+        <app-owner-header></app-owner-header>
+        <div class="headingz">
+            <h4>Dashboard</h4>
+        </div>
+        <div class="page contents">
+          <div class="container">
+            <div class="text-right">
+              <a _ngcontent-cnm-c73="" (click)=toCalender()   class="btn btn-primary ml-2" >Make a Booking</a>
+              <a _ngcontent-cnm-c73=""  (click)="openSmartBoating()"  class="btn btn-primary ml-2" >Available Boat Shares</a>
+            </div>
+            
+<ul id="tabs" class="nav nav-tabs booking-tabs" role="tablist">
+
+
+<!-- <li class="nav-item">
+  <a id="tab-A" href="#pane-A" class="nav-link" data-toggle="tab" role="tab">Overview</a>
+</li> -->
+
+<li class="nav-item">
+  <a id="tab-B" href="#pane-B" class="nav-link active" (click)=locationReload() data-toggle="tab" role="tab">Reservation</a>
+</li>
+
+<li class="nav-item">
+  <a id="tab-C" href="#pane-C" class="nav-link" data-toggle="tab" (click)='Tab_Data_Binding()' role="tab">My Bookings</a>
+</li>
+
+<li class="nav-item">
+  <a id="tab-D" href="#pane-D" class="nav-link" data-toggle="tab" (click)='Tab_Data_Binding()' role="tab">Cancelled Bookings</a>
+</li>
+
+<!-- <li class="nav-item">
+  <a id="tab-E" href="#pane-E" class="nav-link" data-toggle="tab" role="tab">Reports</a>
+</li> -->
+
+</ul>
+
+
+<div id="content" class="tab-content" role="tablist">
+
+
+
+
+<div id="pane-B" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="tab-B">
+  
+<input type="button" value="reload" class="id-manual-reload" style="display:none;"> 
+
+    <!-- .....................Reservation........................... -->
+    <div class="row">
+        <div class="col-lg-6">
+
+            <label>Boat Name</label>
+   
+            <ng-multiselect-dropdown
+            [placeholder]="'Select Your Boat'"      
+            [settings]="dropdownSettings"
+            [(ngModel)]="dropdownList_filted_model"
+            [data]="dropdownList_filted"                                    
+            (onSelect)="onItemSelect($event)" 
+            (onDeSelect)="onDeSelect_boat($event)"    
+            class="cls-Boat-name singleselect_drop"
+        
+            
+        >
+        </ng-multiselect-dropdown>
+
+        </div>
+        <!-- <div class="col-lg-6" *ngIf="dropdownList_filted.length == 1">
+
+          <label>Boat Name</label>
+          <input type="text" class="form-control boattext" [(ngModel)]="singleboat" >
+         
+
+      </div> -->
+
+    </div>
+    <div class="form-row">
+      <!-- Pre launch date and boat anniversary date for book for owner Done By Alagesan on 29.07.2021	-->
+      <div class="col-lg-12">
+        <!-- <div class="form-group col-md-12"> -->
+          <br>
+          <!-- <h6 style="font-weight: 600;">{{ Total_DAYS_ALLOWED }} days from now is {{ Maximum_Length_DAYS_ALLOWED }}</h6>  -->
+         
+          
+             <h6 *ngIf="cheking_prelonch == false" style="font-weight: 600;">{{ Total_DAYS_ALLOWED }} days from now is {{ Maximum_Length_DAYS_ALLOWED }}</h6>     
+            <h6 *ngIf="cheking_prelonch == true" style="font-weight: 600;">{{ Total_DAYS_ALLOWED }} days from {{boat_anniversary_date | date :'dd/MM/yyyy'}} is {{ Maximum_Length_DAYS_ALLOWED }}</h6>     
+            <h6 style="font-weight: 600;" class="cls-getAllocatedDays">{{partialcancelldays}}/5 days partially cancelled days</h6> 
+            <h6 *ngIf="pre_launch_date && isgreater" style="font-weight: 600;">Pre Launch Date is {{ pre_launch_date | date :'dd-MM-yyyy' }}</h6>
+        <h6 *ngIf="boat_anniversary_date"style="font-weight: 600;">Boat Anniversary Date is {{ boat_anniversary_date | date :'dd-MM-yyyy' }}</h6>
+         
+         
+          <!-- <h6 class="cls-getAllocatedDays" style="display: none;">{{ Maximum_Length_DAYS_ALLOWED }}</h6>    
+
+          <ul class="col-md-12 bg-win" style="display: flex; float: left;background: #1f2c83;margin-top: 22px;">
+          <li class="li-commen"><h6 class="sum-title">SUMMER WEEKDAYS </h6> <span class="sum-second">{{ PENDING_SUMMER_WEEKDAYS }}</span></li>
+          <li class="li-commen"><h6 class="sum-title">SUMMER WEEKENDS </h6> <span class="sum-second">{{ PENDING_SUMMER_WEEKENDS }}</span></li>
+          <li class="li-commen"><h6 class="sum-title">WINTER WEEKDAYS </h6> <span class="sum-second">{{ PENDING_WINTER_WEEKDAYS }}</span></li>
+          <li class="li-commen"><h6 class="sum-title">WINTER WEEKENDS </h6> <span class="sum-second">{{ PENDING_WINTER_WEEKENDS }}</span></li>
+          </ul>     -->
+      <!-- </div>      -->
+
+      </div>
+    </div>
+
+    
+    <div class="form-row">
+      <!-- Pre launch date and boat anniversary date for book for owner Done By Alagesan on 29.07.2021	-->
+      <div class="col-lg-12">
+        <!-- <div class="form-group col-md-12"> -->
+          <br>
+          <!-- <h6 style="font-weight: 600;">{{ Total_DAYS_ALLOWED }} days from now is {{ Maximum_Length_DAYS_ALLOWED }}</h6>  -->
+         
+          <div class="" style="display: flex; justify-content: space-between;"  >
+
+            <button type="button" class="btn btn-default btn-sm move-day" style="background: linear-gradient(#4e5dbd, #031060);" data-action="move-prev" (click)='totaldays_PreVious(Global_BoatId)'>
+              <i class="calendar-icon ic-arrow-line-left" style="filter: brightness(0) invert(1)" data-action="move-prev"></i>
+          </button>
+
+         <!-- <span style="font-size: 19px;">Days remaining in {{spn_years}}</span>  -->
+         <span style="font-size: 19px;">Days remaining until <span *ngIf="boat_anniversary_date">{{boat_anniversary_datemonth}}-</span>{{spn_years}}</span>
+          <button type="button" class="btn btn-default btn-sm move-day" style="background: linear-gradient(#4e5dbd, #031060);" data-action="move-next" (click)='totaldays_Next(Global_BoatId)'>
+              <i class="calendar-icon ic-arrow-line-right" style="filter: brightness(0) invert(1)" data-action="move-next"></i>
+          </button>
+
+
+            
+          </div> 
+
+          <ul class="col-md-12 bg-win" style="display: flex; float: left;background: #1f2c83;margin-top: 22px;">
+            <li class="li-commen"><h6 class="sum-title">SUMMER WEEKDAYS </h6> <span class="sum-second">{{ PENDING_SUMMER_WEEKDAYS_second }}</span></li>
+            <li class="li-commen"><h6 class="sum-title">SUMMER WEEKENDS </h6> <span class="sum-second">{{ PENDING_SUMMER_WEEKENDS_second }}</span></li>
+            <li class="li-commen"><h6 class="sum-title">WINTER WEEKDAYS </h6> <span class="sum-second">{{ PENDING_WINTER_WEEKDAYS_second }}</span></li>
+            <li class="li-commen"><h6 class="sum-title">WINTER WEEKENDS </h6> <span class="sum-second">{{ PENDING_WINTER_WEEKENDS_second }}</span></li>
+            </ul>   
+      <!-- </div>      -->
+
+      </div>
+    </div>
+<div id="calScroll"></div>
+<br>
+    <h5>Click and Drag on the Calendar to make a Booking</h5>
+    
+    <!-- <div class="form-row">
+      
+      <div class="form-group col-md-6"> 
+        <br>
+        <h6 style="font-weight: 600;" class="cls-getAllocatedDays">{{partialcancelldays}}/5 days partially cancelled days</h6> 
+
+        <ul class="col-md-12 bg-win" style="display: flex; float: left;background: #1f2c83;margin-top: 22px;">
+        <li  class="li-commen" style="width: 45%;"><h6 class="sum-title">Pre Launch Date </h6> <span class="sum-second">{{ pre_launch_date | date :'dd-MM-yyyy' }}</span></li>
+        <li  class="li-commen" style="width: 45%;"><h6 class="sum-title">Boat Anniversary Date </h6> <span class="sum-second">{{ boat_anniversary_date | date :'dd-MM-yyyy' }}</span></li>
+        
+      
+      </ul>    
+      </div>
+    </div> -->
+
+
+    <div class="row" >                      
+
+        <div class="col-lg-12">
+         
+            <div class="calender-custom">
+             
+    
+                  <div class="code-html">
+                    <div id="menu">
+                        <span id="menu-navi">
+                            <button type="button" class="btn btn-default btn-sm move-today" data-action="move-today">Today</button>
+                            <button type="button" class="btn btn-default btn-sm move-day" data-action="move-prev" (click)='generate_partially_cancelled_days_PreVious()'>
+                                <i class="calendar-icon ic-arrow-line-left" data-action="move-prev"></i>
+                            </button>
+                            <button type="button" class="btn btn-default btn-sm move-day" data-action="move-next" (click)='generate_partially_cancelled_days_Next()'>
+                                <i class="calendar-icon ic-arrow-line-right" data-action="move-next"></i>
+                            </button>
+                        </span>
+                        <span id="renderRange" class="render-range"></span>
+                    </div>
+                    
+                      <div id="calendar"></div>
+                    
+                  </div> 
+             
+    
+        
+    
+            </div>
+    
+        </div>
+        <div>
+          <div class="col-md-12 schedule-indicators">               
+              <ul>
+                  <li><span class="green"> </span> Your scheduled booking</li>
+                  <li><span class="blue"> </span> Scheduled Boat Maintenance Day</li>
+                  <li><span class="red"> </span> Booking unavailable</li>
+                  <li><span class="lightgreen"></span> Booking in the system but awaiting approval</li>
+               </ul>   
+              </div>
+      </div>      
+        <div class="col-md-12">
+         
+          <carousel class="carosel"> 
+            
+           <div class="carousel-cell" (click)="openLink('https://smartboating.com.au/palm-beach-pb32/')">
+               <img src="/assets/images/smartboat1.png">
+           </div>
+            <div class="carousel-cell" (click)="openLink('https://smartboating.com.au/integrity-380-boat-share/')">
+             <img src="/assets/images/smartboat2.png">
+           </div>
+            <div class="carousel-cell" (click)="openLink('https://smartboating.com.au/hanse-445-twilight-boatshare/')">
+             <img src="/assets/images/smartboat3.png">
+           </div>
+            <div class="carousel-cell" (click)="openLink('https://smartboating.com.au/integrity-440-sedan-boatshare/')">
+             <img src="/assets/images/smartboat4.png">
+           </div>
+            <div class="carousel-cell" (click)="openLink('https://smartboating.com.au/hanse-415-boatshare/')">
+             <img src="/assets/images/smartboat5.png">
+           </div>
+            <div class="carousel-cell" (click)="openLink('https://smartboating.com.au/integrity-380-yamba-boatshare/')">
+             <img src="/assets/images/smartboat6.png">
+           </div> 
+       </carousel> 
+     </div>
+    
+    
+    
+    </div>  
+
+    <!-- ........................Reservation........................ -->
+  
+</div>
+
+
+<div id="pane-C" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-C">
+ 
+  <div class="row owner-bookings rowPads">    
+     
+                <!-- <div class="col-lg-12 boat-list-container" id="style-scrollbar"> -->
+                    <div class="col-sm-6 col-md-4 padspace5"  *ngFor="let booking of viewBookingByOwnerIddata | filter: searchText  let i = index;">
+                      <div class="boat-list-1">
+                      <div class="boat-img">
+                            <img *ngIf="!booking.Boat_Image" src="../../assets/images/boat1.jpg" alt="boat">
+                            <img *ngIf="booking.Boat_Image" src="{{imgUrl+booking.Boat_Image}}" alt="boat">
+                          </div>
+                        <div class="info">
+                            <h6>Booking No:<span> {{booking.Booking_ID}} </span></h6>
+                            <h2>{{booking.Boat_Name}}</h2>
+                            <p>{{booking.start | date :'d MMM y'}} - {{booking.end | date :'d MMM y'}}</p>
+                            <i style="cursor:pointer;" class="fas fa-trash" (click)=Canceld_Booking_check(booking)></i>
+                            <!-- <i class="far fa-edit" aria-hidden="true" ></i> -->
+                            <!-- <button type="button" class="btn btn-success" (click)=Canceld_Booking_check(booking)>Cancel Booking</button> -->
+                        </div>
+                        </div>
+                    
+                    </div>  
+                                        
+                <!-- </div>   -->
+     
+     
+     
+     
+                  <!-- Modal -->
+
+<button style="display:none" type="button" id="btn-Cancel-Booking-Conformation" class="btn btn-info btn-lg" data-toggle="modal" data-target="#boat-type">Open Modal</button>
+ 
+
+
+<div class="modal fade" id="boat-type" tabindex="-1" role="dialog" aria-labelledby="boat-typeModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="exampleModalLabel">CONFIRM</h5>
+<button type="button" id="dynamicaly-close-btn" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">×</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="col-md-12">
+  <p>{{ConformationMessage}}</p>
+</div>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-primary" (click)=Canceld_Booking_Confirm_OK(Conformation_Id)>OK</button>
+<button type="button" class="btn btn-secondary" data-dismiss="modal">CANCEL</button>
+</div>
+</div>
+</div>
+</div>  
+<!-- End Modal -->              
+                      
+                      </div>
+</div>
+
+<div id="pane-D" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-D">
+    <div class="row owner-bookings rowPads">
+           
+     <!-- <div class="col-sm-6 col-md-4 padspace5" id="style-scrollbar"> -->
+        <div class="col-sm-6 col-md-4 padspace5" *ngFor="let cancel of viewCancelBookingByOwnerIddata | filter: searchText  let i = index;">
+          <div class="boat-list-1">
+          <div class="boat-img">
+            <img *ngIf="!cancel.Boat_Image" src="../../assets/images/boat1.jpg" alt="boat">
+            <img *ngIf="cancel.Boat_Image" src="{{imgUrl+cancel.Boat_Image}}" alt="boat">
+        </div>
+        <div class="info">
+            <h6>Booking No:<span> {{cancel.Booking_ID}} </span></h6>
+            <h2>{{cancel.Boat_Name}}</h2>
+            <p>{{cancel.start | date :'d MMM y'}} - {{cancel.end | date :'d MMM y'}}</p>
+        </div>
+        </div>
+            
+        </div>  
+    <!-- </div>   -->
+     
+  </div>
+     
+     
+               
+                      
+                      </div>
+
+<div id="pane-E" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-E">
+  <div class="sbg-form row" style="margin-top: 10px;">
+            <div class="col-md-12">
+                <h4 class="report-title">Cancelled Dates</h4>
+            <form>
+                 <div class="form-row">
+
+<div class="form-group col-md-4">
+<label>SELECT START DATE </label>
+<span class="Zebra_DatePicker_Icon_Wrapper" style="display: block; position: relative; float: none; inset: auto; margin: 0px; padding: 0px; width: 100px;"><input id="datepicker-3" type="text" class="form-control" data-zdp_readonly_element="false" style="position: relative; float: none; inset: auto; margin: 0px; padding-right: 40px;">
+    <!-- <button type="button" class="Zebra_DatePicker_Icon" style=" right: inherit !important;z-index: 999999999999999999999;">Pick a date</button> -->
+</span>
+</div>
+                     
+<div class="form-group col-md-4">
+<label>SELECT END DATE </label>
+<span class="Zebra_DatePicker_Icon_Wrapper" style="display: block; position: relative; float: none; inset: auto; margin: 0px; padding: 0px; width: 100px;"><input id="datepicker-4" type="text" class="form-control" data-zdp_readonly_element="false" style="position: relative; float: none; inset: auto; margin: 0px; padding-right: 40px;">
+    <!-- <button type="button" class="Zebra_DatePicker_Icon" style="top: -8px; right: 12px;">Pick a date</button> -->
+</span>
+</div> 
+                     
+                     
+<div class="form-group col-md-4" style="padding-top: 30px;">
+             <button type="submit" class="btn btn-primary">GO</button>
+            </div>                              
+                     
+                     
+</div>
+                
+                
+                </form>
+            </div>
+          
+        
+        </div>
+        
+        <div class="row reports-table">
+        <table class="col-md-6 table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">DATE</th>
+            <th scope="col">LOA</th>
+           </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>14 - Jan - 2021 TO 14 - Jan - 2021</td>
+            <td>0</td>
+           </tr>
+          
+            <tr>
+            <td>18 - Jan - 2021 TO 21 - Jan - 2021</td>
+            <td>2</td>
+           </tr>
+            
+            <tr>
+            <td>30 - Jan - 2021 TO 30 - Jan - 2021</td>
+            <td>0</td>
+           </tr>
+            
+               <tr>
+            <td>10 - Feb - 2021 TO 10 - Feb - 2021</td>
+            <td>0</td>
+           </tr>
+            
+               <tr>
+            <td>14 - Feb- 2021 TO 16 - Feb- 2021</td>
+            <td>2</td>
+           </tr>
+            
+        </tbody>
+      </table>
+        
+        </div>
+        
+        <div class="row">
+         <div class="col-md-6">
+         <h4 class="report-title">pending reservation Days</h4>
+             </div>
+            
+             <div class="col-md-6">
+             <h5 class="total-pending">TOTAL pending Days : 7/25</h5>       
+            </div>
+        </div>
+        
+            
+            <div class="row pending-days">
+            <div class="col-md-6 has-border">
+                <h4>Summer</h4>
+                <div class="row data-row">
+                    <p class="col-md-6 data">Week Days - <span>3</span> </p>
+                    <p class="col-md-6 data">Week-End Days - <span>1 </span></p>
+                </div>      
+            </div>
+                
+                 <div class="col-md-6">
+                <h4>Winter</h4>
+                <div class="row data-row">
+                    <p class="col-md-6 data">Week Days - <span>2</span> </p>
+                    <p class="col-md-6 data">Week-End Days - <span>1 </span></p>
+            </div>
+            
+            </div>
+        
+       
+    </div>
+
+</div>
+
+</div>
+
+</div>
+</div>
+    </div>
+</div>
+
+<!--Show contact admin popup if boat suspend for this owner-->
+<button style="display:none" type="button" id="suspend-ownerboat-popup-message-btn"  data-backdrop="static" data-keyboard="false"  class="btn btn-info btn-lg" data-toggle="modal" data-target="#suspendBoatModal">Open Modal</button>
+                            
+                            
+<div class="modal fade" id="suspendBoatModal" role="dialog">
+<div class="modal-dialog">
+
+    
+
+    <div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <!-- <h4 class="modal-title">Disable Boat</h4> -->
+    </div>
+    <div class="modal-body">
+        <div >
+           <p>This boat is suspended. Please contact admin@smartboating.com.au or 02 9997 5344 if you have any questions.</p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default"  data-dismiss="modal">OK</button>
+    </div>
+    </div>
+    
+</div>
+</div> 
+<button style="display:none" type="button" id="btn-CommenMessage-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Footer-Success-Modal">Open Modal</button>
+            
+              
+<div class="modal fade" id="Footer-Success-Modal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="h4-message-type"></h4>
+      </div>
+      <div class="modal-body">
+        <p id="p-message-content"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default"  data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+<button style="display:none" type="button" id="btn-CommenMessage-save-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#CommenSave-Success-Modal">Open Modal</button>
+            
+              
+<div class="modal fade" id="CommenSave-Success-Modal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="h4-message-save-type">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p id="p-message-save-content"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)=locationReload() data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+<button style="display:none" type="button" id="btn-CommenMessage-delete-msg" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Commendelete-Success-Modal">Open Modal</button>
+            
+              
+<div class="modal fade" id="Commendelete-Success-Modal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p>{{commenMessages}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)=locationReload() data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<!-- --------- -->
+<button style="display:none" type="button" id="remove_Booking" class="btn btn-info btn-lg" data-toggle="modal" data-target="#remove_Bookings">Open Modal</button>
+
+<!-- Modal -->
+<div class="modal fade" id="remove_Bookings" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Booking</h4>
+      </div>
+      <div class="modal-body">
+     <span class="red">ARE YOU SURE ?</span>
+        <p>Do you want to proceed with this cancelation?</p>
+      </div>
+      <div class="modal-footer">
+    <span a  data-dismiss="modal" id="span-confermation-cancel-booking"  class="confirm-bttn">Yes</span>
+    <span a  data-dismiss="modal" class="cancel-bttn">No</span>
+       </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<!-- ............................ -->
+
+<!-- --------- -->
+<button style="display:none" type="button" id="IsLOAIncluded" class="btn btn-info btn-lg" data-toggle="modal" data-target="#IsLOAIncludeds">Open Modal</button>
+
+<!-- Modal -->
+<div class="modal fade" id="IsLOAIncludeds" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Booking</h4>
+      </div>
+      <div class="modal-body">     
+        <p id="P-IsLOAIncluded"></p>
+      </div>
+      <div class="modal-footer">
+    <span a data-dismiss="modal" id="span-IsLOAIncluded-booking"  class="confirm-bttn">YES</span>
+    <span a  data-dismiss="modal" class="cancel-bttn">NO</span>
+       </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<button style="display:none" type="button" id="btn-CommenMessage-disp-btns_angular" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Footer-Success-Modal_angular">Open Modal</button>
+             
+<div class="modal fade" id="Footer-Success-Modal_angular" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="h4-message-type">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p id="p-message-content">{{commenMessages}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default"  data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- .................................. -->
+
+
+<!-- ...................Confirm Message.................. -->
+<!-- --------- -->
+<button style="display:none" type="button" id="ConformationMessage" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ConformationMessages">Open Modal</button>
+
+<!-- Modal -->
+<div class="modal fade" id="ConformationMessages" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Message</h4>
+      </div>
+      <div class="modal-body">     
+        <p id="P-ConformationMessage"></p>
+      </div>
+      <div class="modal-footer">
+    <span a  data-dismiss="modal" id="span-ConformationMessage-booking"  class="confirm-bttn">Yes</span>
+    <span a  data-dismiss="modal" class="cancel-bttn">No</span>
+       </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<!-- ...................Confirm Message.................. -->
+<!-- --------- -->
+<button style="display:none" type="button" id="ConformationMessage_Second" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ConformationMessages_Second">Open Modal</button>
+
+<!-- Modal -->
+<div class="modal fade" id="ConformationMessages_Second" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Message</h4>
+      </div>
+      <div class="modal-body">     
+        <p id="P-ConformationMessage_Second"></p>
+      </div>
+      <div class="modal-footer">
+    <span a  data-dismiss="modal" id="span-ConformationMessage-booking"  class="confirm-bttn">Yes</span>
+    <span a  data-dismiss="modal" class="cancel-bttn">No</span>
+       </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- --------- -->
+<button style="display:none" type="button" id="ConformationMessage_Therd" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ConformationMessages_Therd">Open Modal</button>
+
+<!-- Modal -->
+<div class="modal fade" id="ConformationMessages_Therd" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Message</h4>
+      </div>
+      <div class="modal-body">     
+        <p id="P-ConformationMessage_Therd"></p>
+      </div>
+      <div class="modal-footer">
+    <span a  data-dismiss="modal" id="span-ConformationMessage-booking"  class="confirm-bttn">Yes</span>
+    <span a  data-dismiss="modal" class="cancel-bttn">No</span>
+       </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+<button style="display:none" type="button" id="btn-Iframe-save-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Iframe-Success-Modal">Open Modal</button>
+                       
+                         
+           <div class="modal  fade modal-xl" id="Iframe-Success-Modal" role="dialog">
+             <div class="modal-dialog modal-lg" style="margin: 15px auto;">
+             
+               <!-- Modal content-->
+               <div class="modal-content modal-xl">
+                 <div class="modal-header" style="height: 45px !important;">
+                   <button type="button" class="close" data-dismiss="modal">&times;</button>
+                   <h4 class="modal-title" id="h4-message-save-type">smartboating.com.au</h4>
+                 </div>
+                 
+                    <iframe src="https://smartboating.com.au/boat-shares/" style="border:none; height:88vh; width:100%;" title="description"></iframe>
+                 
+                 
+               </div>
+               
+             </div>
+           </div>
+
+
+
+
+
+
+<div class="dash-footer">
+  <app-footer-adminsession></app-footer-adminsession>   
+</div>
+<!--Create Component for owner dashboard Done By Alagesan on 17.05.2021-->

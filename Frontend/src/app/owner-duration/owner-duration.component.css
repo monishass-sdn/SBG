@@ -1,0 +1,31 @@
+.selected-item{
+    max-width: inherit !important;
+}
+
+.modal{
+    pointer-events: none !important;
+  } 
+
+
+.multiselect-dropdown .dropdown-btn .selected-item {
+    border: 1px solid #337ab7;
+    margin-right: 4px;
+    background: #337ab7;
+    padding: 0 5px;
+    color: #fff;
+    border-radius: 2px;
+    float: left;
+    display: flex;
+    max-width: inherit !important;
+}
+
+
+.is-invalid {
+    border: 1px solid red !important
+
+  }
+
+  .mobile-sidebar{
+    left: 0px !important;
+    transition: 0.5s;
+}

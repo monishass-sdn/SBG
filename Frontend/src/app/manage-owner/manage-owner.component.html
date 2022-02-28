@@ -1,0 +1,205 @@
+<div class="main-page">
+    <app-sidemenu></app-sidemenu>
+    <div class="contents-page col-lg-9">
+        <app-header></app-header>
+        <div class="headingz">
+            <h4><a routerLink="/all-owner/"><i class="far fa-arrow-alt-circle-left"></i> </a>Manage Owner</h4>
+        </div>
+        
+        
+        
+        <div class="page contents">
+      <div class="sbg-form"  style="margin-top: 10px;"> 
+           <form [formGroup]="manageOwnerForms"  novalidate>
+            
+<div class="form-row">
+
+<div class="form-group col-md-6">
+  <label>Select boat</label> 
+ <ng-multiselect-dropdown
+ [placeholder]="'Select'"
+ [ngClass]="{ 'boat-search': manageOwnerSubmitted && mof.Boat_Id.errors }"
+ [(ngModel)]="dropdownOwn_Boat_selected"
+ [ngModelOptions]="{standalone: true}" 
+ [settings]="dropdownSettings"
+ [data]="dropdownList_filted"   
+ (onDeSelect)="onDeSelectBoat($event)"                                                                     
+ (onSelect)="onboatSelect($event)"
+ (onSelectAll)="onboatAll($event)"
+ class="singleselect_drop"
+>
+</ng-multiselect-dropdown>
+</div>
+
+<div class="form-group col-md-6" >
+    <label>Total Owner Allowed</label>
+    <input type="text" class="form-control"  id="project2" readonly formControlName="Owners_Allowed" [ngClass]="{ 'is-invalid': manageOwnerSubmitted && mof.Owners_Allowed.errors }">
+    </div>
+</div>   
+               
+               
+               
+<div class="form-row">
+    
+
+    <div class="form-group col-md-6">
+      <label>Owner Name</label> 
+     <ng-multiselect-dropdown
+     [placeholder]="'Select'"
+     [disabled]="checkCurrent"
+     [ngClass]="{ 'boat-search': manageOwnerSubmitted && mof.Owner_Id.errors }"
+     [(ngModel)]="dropdownBoat_Owner_selected_model"
+     [ngModelOptions]="{standalone: true}" 
+     [settings]="dropdownOwnerSettings"
+     [data]="dropdownOwnerList_filted"     
+     (onDeSelect)="onDeSelectowner($event)"                                                                     
+                               
+     (onSelect)="onItemOwnerSelect($event)"
+     (onSelectAll)="onOwnerSelectAll($event)"
+     class="singleselect_drop"
+    >
+    </ng-multiselect-dropdown>
+    </div>
+
+    <!-- <div class="form-row"> -->
+      <div class="form-group col-md-6">
+        <label>No:Of Summer Weekdays Per Owner</label>
+        <input type="text" class="form-control" formControlName="No_of_SummerWeekDays" [ngClass]="{ 'is-invalid': manageOwnerSubmitted && mof.No_of_SummerWeekDays.errors }" >
+        </div> 
+        <div class="form-group col-md-6">
+          <label>No:Of Summer Weekends Per Owner</label>
+          <input type="text" class="form-control" formControlName="No_of_SummerWeekEndDays" [ngClass]="{ 'is-invalid': manageOwnerSubmitted && mof.No_of_SummerWeekEndDays.errors }">
+        </div>
+    <!-- </div> -->
+
+      <!-- <div class="form-row"> -->
+        <div class="form-group col-md-6">
+          <label>No:Of Winter Weekdays Per Owner</label>
+          <input type="text" class="form-control" formControlName="No_of_WinterWeekDays" [ngClass]="{ 'is-invalid': manageOwnerSubmitted && mof.No_of_WinterWeekDays.errors }" >
+          </div> 
+        <div class="form-group col-md-6">
+          <label>No:Of Winter Weekends Per Owner</label>
+          <input type="text" class="form-control" formControlName="No_of_WinterWeekEndDays" [ngClass]="{ 'is-invalid': manageOwnerSubmitted && mof.No_of_WinterWeekEndDays.errors }">
+        </div>
+    
+
+  <div class="col-md-12">
+  <button type="submit" class="btn btn-primary" style="margin-top: 20px;margin-bottom: 25px;" *ngIf="addBtnFlag" (click)= saveManageOwner()>ADD</button> 
+  <button type="submit" class="btn btn-primary" style="margin-top: 20px;margin-bottom: 25px;" *ngIf="editBtnFlag" (click)= edit()>Edit</button>    
+
+ </div>    
+                     
+
+</div>
+              
+              </form>     
+           
+             
+          </div>  
+            
+         
+
+
+  <div class="row" style="margin-top: 25px;">
+           <div class="col-md-12 reports">
+
+            <div id="id-table-databinding">
+
+                
+
+            </div>
+          
+
+            
+                </div>
+            </div> 
+
+
+
+            
+  <button style="display:none" type="button" id="pop-up-btn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+            
+              
+<div class="modal fade" id="myModal"  role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content" sibi="test1">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Manage Owner</h4>
+      </div>
+      <div class="modal-body">
+        <p>{{getResponce}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)= reloadPage() data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>  
+
+
+<button style="display:none" type="button" id="removeBoat" class="btn btn-info btn-lg" data-toggle="modal" data-target="#removeBoats">Open Modal</button>
+
+<!-- Modal -->
+<div class="modal fade" id="removeBoats"  role="dialog">
+  <div class="modal-dialog">
+  
+    <div class="modal-content" sibi="test2" >
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Manage Owner</h4>
+      </div>
+      <div class="modal-body">
+         <!-- <span class="icons-red"><i class="fa fa-exclamation" aria-hidden="true"></i></span> -->
+     <span class="red">ARE YOU SURE ?</span>
+        <p>You Want To Delete Manage Owner!!!.</p>
+      </div>
+      <div class="modal-footer">
+    <span a  (click)=delete() class="confirm-bttn">CONFIRM</span>
+    <span a  data-dismiss="modal" class="cancel-bttn">CANCEL</span>
+       </div>
+    </div>
+    
+  </div>
+</div>
+
+
+
+        </div>
+    </div>
+</div>
+
+<button style="display:none" type="button" id="btn-CommenMessage-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Footer-Success-Modal">Open Modal</button>
+            
+              
+<div class="modal fade" id="Footer-Success-Modal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p>{{commenMessages}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default"  data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+
+
+
+
+<div class="dash-footer">
+  <app-footer-adminsession></app-footer-adminsession>    
+</div>

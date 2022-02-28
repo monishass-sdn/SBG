@@ -1,0 +1,88 @@
+<!--Create Component for booking details Done By Alagesan on 09.06.2021	-->
+
+<div class="main-page">
+    <!-- <app-owner-sidemenu></app-owner-sidemenu> -->
+   
+    <div class="contents-page col-lg-9">
+        <!-- <app-owner-header></app-owner-header> -->
+        <div class="headingz">
+            <h4>Booking Details</h4>
+        </div>
+        <div class="page contents">
+            <!--Update for booking details Done By Alagesan on 10.06.2021	-->
+
+            <div class="row">
+
+                <div class="col-md-6 boat-list-1" *ngFor="let owner of allBookingDetailsFilter  let i = index;">
+                    <a class="boar-info-r" *ngIf="owner.OwnerDetails[0]">
+                    <div class="boat-img boat-img-view-display">
+                        <img *ngIf="!owner.OwnerDetails[0].Profile_Image" src="/assets/images/dummy-owner-img.jpg" alt="boat">
+                        <img *ngIf="owner.OwnerDetails[0].Profile_Image" src="{{imgUrl+owner.OwnerDetails[0].Profile_Image}}" alt="owner">
+
+                    </div>
+                    <div class="info w-100">
+                        <div *ngIf="owner.OwnerDetails[0]" >
+                            <h5><span><i class="far fa-calendar-check commen-span-space" aria-hidden="true"></i><span class="boat-label">Start :</span>  </span>{{owner.start | date :'dd-MM-yy hh:mm a'}}</h5>
+                            <h5><span><i class="far fa-calendar-check commen-span-space" aria-hidden="true"></i> <span class="boat-label">End :</span>  </span>{{owner.end | date :'dd-MM-yy hh:mm a'}}</h5>
+                        <h5><span><i class="fas fa-ship commen-span-space"></i><span class="boat-label">Booking ID :</span>   </span>{{owner.Booking_ID}}</h5>
+                        <h5><span><i class="fab fa-bootstrap commen-span-space"></i><span class="boat-label">Booking Type :</span>   </span><span *ngIf="owner.Booking_Type && !owner.Is_StandByBooking">{{owner.Booking_Type}}</span>
+                            <span *ngIf="owner.Booking_Type && owner.Is_StandByBooking">{{getBookingType(owner.Booking_Type)}}</span></h5>
+                             
+                        <h5><span><i class="far fa-user commen-span-space"></i><span class="boat-label">Name :</span>   </span>{{owner.OwnerDetails[0].First_Name}} {{owner.OwnerDetails[0].Last_Name}}</h5>
+                        <h5><span><i class="far fa-address-card commen-span-space"></i> <span class="boat-label">Home Address :</span>  </span>{{owner.OwnerDetails[0].Home_Address}}</h5>
+                        <h5><span><i class="fas fa-at commen-span-space"></i> <span class="boat-label">Email :</span>  </span>{{owner.OwnerDetails[0].Email}}</h5>
+                        <h5><span><i class="fas fa-mobile-alt commen-span-space"></i><span class="boat-label">Mobile :</span>   </span>{{owner.OwnerDetails[0].Mobile}}</h5>
+                        <h5><span><i class="fas fa-house-user commen-span-space"></i><span class="boat-label">Family Name :</span>   </span>{{owner.OwnerDetails[0].Family_Name}}</h5>
+                        <h5><span><i class="fas fa-parking commen-span-space"></i> <span class="boat-label">Parking Ability :</span>  </span>{{owner.OwnerDetails[0].Parking_Ability}}</h5>
+                        <!-- <h5><span><i class="fas fa-parking commen-span-space" aria-hidden="true"></i>  </span>{{owner.OwnerDetails[0].Parking_Ability}}</h5> -->
+                        <!--Update the sailing ability for boat bookings Done By Alagesan on 30.06.2021-->
+                        <h5><span><i class="fab fa-stripe-s commen-span-space" aria-hidden="true"></i> <span class="boat-label">Sailing Ability :</span>  </span>{{owner.OwnerDetails[0].Sailing_Ability}}</h5>
+                        <h5><span><i class="fas fa-heading commen-span-space" aria-hidden="true"></i> <span class="boat-label">Housekeeping :</span>  </span>{{owner.OwnerDetails[0].Housekeeping}}</h5>
+                        <h5><span><i class="far fa-comment commen-span-space" aria-hidden="true"></i> <span class="boat-label">Comments :</span>  </span>{{owner.commends}}</h5>
+                        
+                        </div>
+                        <div *ngIf="!owner.OwnerDetails[0]">
+
+                            <h5><span><i class="fab fa-stripe-s commen-span-space"></i> <span class="boat-label">Sailing Ability :</span>  </span> {{owner.OwnerDetails[0].Sailing_Ability}}</h5>
+                            <h5><span><i class="fas fa-mobile-alt commen-span-space"></i> <span class="boat-label">Emergency Contact Mobile :</span>  </span>{{owner.OwnerDetails[0].Emergency_Contact_Mobile}}</h5>
+
+                            <h5><span><i class="far fa-user commen-span-space"></i> <span class="boat-label">Emergency Contact Name :</span>  </span>{{owner.OwnerDetails[0].Emergency_Contact_Name}}</h5>
+                        </div>
+                    </div>
+                    </a>
+                    <a *ngIf="!owner.OwnerDetails[0]" style="text-align: center;color: green;">
+                       <h1>Admin</h1>
+                    </a>
+                </div>
+                <div class="col-md-6  boat-list-1" *ngFor="let boats of allBookingDetailsFilter  let i = index;">
+                    <a class="boar-info-r">
+                    <div class="boat-img boat-img-view-display">
+                         <img *ngIf="!boats.BoatDetails[0].Boat_Image[0]" src="/assets/images/boat1.jpg" alt="boat">
+                        <img *ngIf="boats.BoatDetails[0].Boat_Image[0]" src="{{imgUrl+boats.BoatDetails[0].Boat_Image[0]}}" alt="boat"> 
+
+                       
+
+                    </div>
+                    <div class="info w-100">
+                        
+                        <h5><span><i class="fas fa-ship commen-span-space"></i> <span class="boat-label">Boat Name :</span>  </span> {{boats.BoatDetails[0].Boat_Name}}</h5>
+
+                        <!-- <h4>{{booking.BoatDetails[0].Boat_Number}}/{{booking.Booking_ID}}</h4> -->
+                        <div *ngIf="boats.BoatDetails[0]" >
+                        <h5><span><i class="fas fa-house-user commen-span-space"></i> <span class="boat-label">Boat Facility :</span>  </span> {{boats.BoatDetails[0].Boat_Facility}}</h5>
+                        <h5><span><i class="far fa-user commen-span-space"></i> <span class="boat-label">Location Name :</span>  </span> {{boats.BoatDetails[0].Location_Name}}</h5>
+                        </div>
+                    </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="dash-footer">
+<!-- <small>© Copyright SMART Boating 2021. All Rights Reserved.</small>   -->
+<app-footer-adminsession></app-footer-adminsession>  
+</div>
+
+<!--Create Component for booking details Done By Alagesan on 09.06.2021	-->

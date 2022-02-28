@@ -1,0 +1,112 @@
+<div class="main-page">
+        
+    <div class="contents-page">
+        
+        <a routerLink="/" class="owner-login">Admin Login</a> 
+      
+        <div class="login-container">
+            
+          <div class="row">  
+         <div class="col-md-4">
+             <!--Update the owner login details for owner login Done By Alagesan  on 20.06.2021 -->
+             <img src="/assets/images/logo1.svg">
+             <p>Welcome on board! Please enter your email and password to access the booking system.</p>
+             <p>For any technical difficulties,</p>
+            <!--Update the owner phone number for owner login Done By Alagesan  on 20.06.2021 -->
+             <div class="login-email">please call: 02 9997 5344 or</div>
+             <div class="login-email">email: info@smartboating.com.au</div>
+            </div>
+            
+             <div class="col-md-8">
+               <div class="row justify-content-center">
+      <div class="col-md-12">
+          <!-- White Container -->
+          <div class="container bg-white rounded mt-2 mb-2 px-0">
+              <!-- Main Heading -->
+              <div class="row justify-content-center align-items-center pt-3">
+                  <h2>Login your account</h2>
+              </div>
+              <div class="pt-3 pb-3">
+                  
+                  <form  class="form-horizontal" [formGroup]="form"  novalidate>
+                      <!-- User Name Input -->
+                      <div class="form-group row justify-content-center px-3">
+                          <div class="col-9 px-0 widMob"> 
+                               <div class="input-container">
+<i class="fa fa-envelope icon"></i>
+<input class="input-field form-control" id="input-id-email" autocomplete="off" type="email" formControlName="Email" placeholder="Email"
+ [ngClass]="{ 'is-invalid': submitted && f.Email.errors }" (keyup.enter)= ownerLogin()>
+</div>
+                          </div>
+                      </div> <!-- Password Input -->
+                      <div class="form-group row justify-content-center px-3">
+                          <div class="col-9 px-0 widMob"> 
+                          <div class="input-container">
+<i class="fa fa-key icon"></i>
+<input class="input-field form-control" id="input-id-password" [type]="show ? 'text' : 'password'" autocomplete="off" formControlName="Password" placeholder="Password"
+ [ngClass]="{ 'is-invalid': submitted && f.Password.errors }" (keyup.enter)= ownerLogin()>
+ <span class="" (click)="password()" style="position: absolute;right: 7px; top: 9px; bottom: 0px; z-index: 1; font-size: x-large;" ><i [class]="show ? 'fas fa-eye' : 'fas fa-eye-slash'"></i></span>
+</div>
+                          
+                          </div>
+                      </div> <!-- CheckBox Remember Me-->
+                      <div class="form-group row justify-content-center px-3">
+                          <div class="col-9 widMob">
+                              <div class="row">
+                                  <div class="col-6 px-0">
+                                      <div class="custom-control custom-checkbox mb-3">
+                                           <input id="customCheck1" formControlName="rememberMe" [(ngModel)]="isChecked"  type="checkbox" class="custom-control-input checkbox-muted"> 
+                                           <label for="customCheck1" class="custom-control-label text-muted">Remember Me</label> </div>
+                                  </div> <!-- Forgot Password Link -->
+                                  <div class="col-6 px-0 text-right forgot"> <span><a href="#" (click)= forgotpassword() routerLink="" routerLinkActive="active">Forgot Password?</a></span> </div>
+                              </div>
+                          </div>
+                      </div> <!-- Log in Button -->
+                      <div class="form-group row justify-content-center">
+                          <div class="col-9 px-0 div-cls-login"><a >
+                               <input type="button" (click)= ownerLogin()  value="Log in" class="btn btn-info"></a> </div>
+                      </div>
+                  </form>
+              </div> <!-- Alternative Login -->
+             
+          </div>
+      </div>
+  </div>
+             
+            </div>
+              
+            </div>
+        
+
+            <button style="display:none" type="button" id="error-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+            
+              
+            <div class="modal fade" id="myModal" role="dialog">
+              <div class="modal-dialog">
+              
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Log in</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>{{getReplay}}</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+
+
+        </div>
+        
+        
+    </div>
+</div>
+<div class="dash-footer">
+    <app-footer-adminsession></app-footer-adminsession>    
+</div>

@@ -1,0 +1,24 @@
+.is-invalid {
+    border: 1px solid red !important
+
+  }
+
+  :host /deep/ .is-invalid .multiselect-dropdown {
+               
+    border: 1px solid red !important; 
+
+}
+
+.mobile-sidebar{
+  left: 0px !important;
+  transition: 0.5s;
+}
+
+.borCls{
+  border: 1px solid #adadad;
+  border-radius: 4px;
+}
+
+.modal{
+  pointer-events: none !important;
+} 

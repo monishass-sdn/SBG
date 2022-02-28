@@ -1,0 +1,401 @@
+<!--Create Component for myprofile Done By Alagesan	on 17.05.2021 -->
+<div class="main-page">
+    <app-owner-sidemenu></app-owner-sidemenu>
+    <div class="contents-page col-lg-9">
+          <app-owner-header></app-owner-header>
+        <div class="headingz">
+            <h4>My profile</h4>
+        </div>
+       <div class="page contents owner-profile-head">
+          
+           
+           <div class="row user-profile">
+             <div class="col-lg-12 user-contents user-profile-contents">
+                 <div class="well well-sm well-rs">
+                     <div class="row">
+                         <div class="col-lg-3 user">
+                             <img class="img-responsive avatar-img" *ngIf="!data.Profile_Image" src="../../assets/images/dummy-owner-img.jpg" alt="">
+                             <img class="img-responsive avatar-img" *ngIf="data.Profile_Image" src="{{imgUrl+data.Profile_Image}}" alt="">
+
+
+                             <!-- <a href="boat-details.html"><img class="card-img-top"  *ngIf="!boat.Profile_Image" src="/assets/images/boat1.jpg" alt="boat image"></a>
+                             <a href="boat-details.html"><img class="card-img-top"  *ngIf="boat.Profile_Image" src="{{imgUrl+boat.Profile_Image}}" alt="boat image"></a> -->
+                         </div>
+                         <div class="col-lg-9">
+                             <h4>{{data.First_Name}}</h4>
+                             <div class="d-flex mobile-flx">
+                                 <ul class="user-info" >
+                                     
+                                    <li><i class="fas fa-map-marker-alt commen-span-space"></i>{{data.Home_Address}} </li>
+                                    <li><i class="fas fa-house-user commen-span-space" aria-hidden="true"></i>{{data.Emergency_Contact_Name}} </li>
+
+                                    <li><i class="far fa-envelope commen-span-space" aria-hidden="true"></i>{{data.Email}} </li>
+                                    <li> <i class="fas fa-mobile-alt commen-span-space" aria-hidden="true"></i>{{data.Mobile}}</li>
+                                    <li> <i class="fas fa-mobile-alt commen-span-space" aria-hidden="true"></i>{{data.Emergency_Contact_Mobile}}</li>
+                                    <li><i class="fas fa-house-user commen-span-space" aria-hidden="true"></i>{{data.Family_Name}}                  </li>
+                                    
+                                 </ul>
+                                 <ul class="user-info">
+                                    <!-- <li><i class="fas fa-parking commen-span-space"></i>{{data.Parking_Ability}}</li>
+                                    <li><i class="fas fa-heading commen-span-space"></i>{{data.Housekeeping}}</li>
+                                    <li><i class="fab fa-stripe-s commen-span-space"></i>{{data.Sailing_Ability}}</li> -->
+                                    
+                                </ul>
+                             </div>
+                                      
+                            
+                            <div class="w-100 edit-button">
+                            <button type="submit" class="btn btn-primary" (click)= "editProfile()"><i class="far fa-edit" aria-hidden="true"></i>Edit</button>
+                            </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <h4 class="content-title">Change Password</h4>
+             <div class="col-lg-12 user-contents user-profile-contents">
+                 <!--Change password for myprofile Done By Alagesan on 28.07.2021    -->
+                <div class="sbg-form row">
+                    <div class="col-md-12">
+                       
+                    <form [formGroup]="saveChangePasswordform"  novalidate>
+                        <div class="form-row">                         
+                            <div class="form-group col-md-12">
+                                <input [type]="showOldPassword ? 'text' : 'password'" autocomplete="off" class="form-control" formControlName="OldPassword" [ngClass]="{ 'is-invalid': changePasswordSubmitted && cpf.OldPassword.errors }" placeholder="Current Password">
+                                <!-- <span class="" (click)="showOldPasswordText()" style="position: absolute;right: 7px; bottom: 0px; z-index: 1; font-size: x-large;" ><i class="fas fa-eye"></i></span> -->
+                                <span class="" (click)="showOldPasswordText()" style="position: absolute;right: 7px; top: 7px; bottom: 0px; z-index: 1; font-size: x-large;" ><i [class]="showOldPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i></span>
+                                
+                            
+                            </div>
+                        </div>
+                        <div class="form-row">                         
+                            <div class="form-group col-md-12">
+                                <input [type]="showNewPassword ? 'text' : 'password'" autocomplete="off" class="form-control" formControlName="NewPassword" [ngClass]="{ 'is-invalid': changePasswordSubmitted && cpf.NewPassword.errors }" placeholder="New Password">
+                                <!-- <span class="" (click)="showNewPasswordText()" style="position: absolute;right: 7px; bottom: 0px; z-index: 1; font-size: x-large;" ><i class="fas fa-eye"></i></span> -->
+                                <span class="" (click)="showNewPasswordText()" style="position: absolute;right: 7px; top: 7px; bottom: 0px; z-index: 1; font-size: x-large;" ><i [class]="showNewPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i></span>
+                                
+                            </div>
+                        </div>
+                        <div class="form-row"> 
+                            <span class="error-msg" *ngIf="enterValidPassword != ''">
+                               {{enterValidPassword}}
+                            </span>                        
+                            <div class="form-group col-md-12">
+                                <input [type]="showConfirmPassword ? 'text' : 'password'" autocomplete="off" class="form-control" formControlName="ConfirmPassword" [ngClass]="{ 'is-invalid': changePasswordSubmitted && cpf.ConfirmPassword.errors }" placeholder="Confirm Password">
+                                <!-- <span class="" (click)="showConfirmPasswordText()" style="position: absolute;right: 7px; bottom: 0px; z-index: 1; font-size: x-large;" ><i class="fas fa-eye"></i></span> -->
+                                <span class="" (click)="showConfirmPasswordText()" style="position: absolute;right: 7px; top: 7px; bottom: 0px; z-index: 1; font-size: x-large;" ><i [class]="showConfirmPassword ? 'fas fa-eye' : 'fas fa-eye-slash'"></i></span>
+                                
+                            </div>
+                        </div>
+                        <div class="form-group col-md-8" style="padding-top: 10px;">
+                            <button type="submit" class="btn btn-primary" (click)="saveChangePassword()">Save</button>
+                        </div>   
+                        </form>
+                    </div>
+                  
+                
+                </div>
+             </div>
+           
+
+
+           </div>
+
+           <h4 class="content-title">My Boats</h4>
+
+             <div class="row boat-list">
+                      
+           
+                <div class="card col-md-4" *ngFor="let boat of listBoat_New_update  let i = index;">
+                    <div class="profile-pic">
+        
+                        <a ><img class="card-img-top"  *ngIf="!boat.BoatDetails[0].Boat_Image[0]" src="/assets/images/boat1.jpg" alt="boat image"></a>
+                        <a ><img class="card-img-top"  *ngIf="boat.BoatDetails[0].Boat_Image[0]" src="{{imgUrl+boat.BoatDetails[0].Boat_Image[0]}}" alt="boat image"></a>
+        
+                       <!-- <a href="boat-details.html"><img class="card-img-top" src="assets/images/boat1.jpg" alt="boat image"></a> -->
+                      <ul class="edit">
+                        <li>  <a (click)=viewBoat(boat)><i class="far fa-eye"></i></a></li>
+                        
+                        </ul>
+                    </div>
+                        
+                    <div class="card-body">
+                    <a  class="card-link"><i class="fas fa-map-marker-alt"></i> {{boat.BoatDetails[0].Location_Name}}</a>
+                    <small  class="f-right" *ngIf="boat.BoatDetails[0] && boat.BoatDetails[0].Boattype_Name">{{boat.BoatDetails[0] && boat.BoatDetails[0].Boattype_Name}} </small>
+                    </div>                    
+                    <div class="card-header">
+                    <a > {{boat.Boat_Name}}</a>
+                    </div>
+        
+                    <div class="card-body row">                    
+                    <div class="booking-days col-md-6">
+                        <h6>{{boat.TotalBookedDaysDays}} / {{boat.TotalDays_Allocated}} Days </h6>
+                        
+        
+                   
+                    </div>
+                    </div>  
+                    
+                    <div class="card-body row">                    
+                        <div class="booking-days col-md-6">
+                            
+                            <h6>Cleaning Days: {{boat.CleaningDays}} </h6>
+            
+                       
+                        </div>
+                        </div>  
+                    
+                    <div class="card-body row">
+                        <div class="booking-days col-md-12" *ngIf="boat.Boat_Name && boat.Block == false">
+                            <div >
+                                <a > {{boat.Boat_Name}} is <span style="color: red;font-weight: 800">Suspend</span></a>
+                            </div>
+                        </div>
+                        <div class="booking-days col-md-12" *ngIf="boat.Boat_Name && boat.Block == true">
+                            <div>
+                                <a > {{boat.Boat_Name}} is <span style="color: green;font-weight: 800">active</span></a>
+                            </div>
+                        </div>
+
+                        <div class="booking-days col-md-12" *ngIf="boat.Boat_Name && boat.Block == null">
+                            <div>
+                                <a > {{boat.Boat_Name}} is <span style="color: green;font-weight: 800">active</span></a>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    
+                    <button style="display:none" type="button" data-backdrop="static" data-keyboard="false" id="active-boat-popupbtn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#activeBoatModal">Open Modal</button>
+                                
+                    <div class="modal fade" id="activeBoatModal" role="dialog">
+                    <div class="modal-dialog">
+        
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Boat</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Boat is active</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" (click)="activeBoat(boat)" data-dismiss="modal">OK</button>
+                        </div>
+                        </div>
+                        
+                    </div>
+                    </div>
+        
+                    <!--Disable and archive boat popup message for my profile Done By Alagesan on 12.07.2021	-->
+                 <button style="display:none" type="button" id="disable-boat-popup-message-btn"  data-backdrop="static" data-keyboard="false"  class="btn btn-info btn-lg" data-toggle="modal" data-target="#disableBoatModal">Open Modal</button>
+                            
+                            
+                 <div class="modal fade" id="disableBoatModal" role="dialog">
+                 <div class="modal-dialog">
+                 
+                     
+        
+                     <div class="modal-content">
+                     <div class="modal-header">
+                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+                         <h4 class="modal-title">Disable Boat</h4>
+                     </div>
+                     <div class="modal-body">
+                         <div *ngIf="boat.Boat_Name">
+                            <p>{{disableBoat}} is disable. Please contact admin@smartboating.com.au or 02 9997 5344 if you have any questions.</p>
+                         </div>
+                     </div>
+                     <div class="modal-footer">
+                         <button type="button" class="btn btn-default"  data-dismiss="modal">OK</button>
+                     </div>
+                     </div>
+                     
+                 </div>
+                 </div> 
+        
+                  <!--Show ended date popup for myprofile Done By Alagesan	on 07.07.2021 -->
+               <button style="display:none" type="button" data-backdrop="static" data-keyboard="false" id="ended-date-popupbtn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#endedDateModal">Open Modal</button>
+                      
+               <div class="modal fade" id="endedDateModal" role="dialog">
+               <div class="modal-dialog">
+               
+                   <!-- Modal content-->
+                   <div class="modal-content">
+                   <div class="modal-header">
+                       <button type="button" class="close" data-dismiss="modal">&times;</button>
+                       <h4 class="modal-title">Owner Duration Ended</h4>
+                   </div>
+                   <div class="modal-body">
+                    <p>Owner duration for {{expireBoat}} is expired on {{endedFormatDate}}.</p>
+                   </div>
+                   <div class="modal-footer">
+                       <button type="button" class="btn btn-default"  data-dismiss="modal">OK</button>
+                       <button type="button" class="btn btn-default"  data-dismiss="modal">Renew</button>
+                   </div>
+                   </div>
+                   
+               </div>
+               </div>
+        
+                 </div>   
+                   
+             </div>
+
+
+
+
+           <!--Change password for myprofile Done By Alagesan on 28.07.2021    -->
+
+          <button style="display:none" type="button" id="change-password-btn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#change-password-modal">Open Modal</button>
+        
+          <div class="modal fade" id="change-password-modal" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">{{modelTitle}}</h4>
+                </div>
+                <div class="modal-body">
+                  <p>{{getResponce}}</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" (click)="pagereload()" data-dismiss="modal">OK</button>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+<!--Show contact admin popup if boat suspend for this owner-->
+<button style="display:none" type="button" id="suspend-boat-popup-message-btn"  data-backdrop="static" data-keyboard="false"  class="btn btn-info btn-lg" data-toggle="modal" data-target="#suspendBoatModal">Open Modal</button>
+                            
+                            
+<div class="modal fade" id="suspendBoatModal" role="dialog">
+<div class="modal-dialog">
+
+    
+
+    <div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <!-- <h4 class="modal-title">Disable Boat</h4> -->
+    </div>
+    <div class="modal-body">
+        <div >
+           <p> Boat is suspended,Please contact us at admin@smartboating.com.au or 02 9997 5344 if you have any questions.</p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default"  data-dismiss="modal">OK</button>
+    </div>
+    </div>
+    
+</div>
+</div> 
+           <!--Show owner duration details for myprofile Done By Alagesan	on 01.07.2021 -->
+
+           <div>
+            <h4 class="content-title">Owner Durations Details</h4>
+            <div class="row user-profile-contents">
+                <div class="col-lg-6  boat-list-1 boat-list-2" *ngFor="let owner of ownerdurationsdetails  let i = index;">
+                    <div class="row border-rs" >
+                    
+                    <div class="col-md-12 info">
+                        <div *ngIf="owner.BoatDetails[0]" >
+                        <h5><strong>Boat Name: <i ></i>  </strong> {{owner.BoatDetails[0].Boat_Name}}</h5>
+                        <h5><strong>Boat Type:<i ></i>  </strong> {{owner.BoatDetails[0].Boattype_Name}}</h5>
+                        <h5><strong>Ownership Duration Start Date:<i ></i>  </strong> {{owner.From_Date | date:'dd/MM/yyyy'}}</h5>
+                        <h5><strong>Ownership Duration End Date: <i ></i>  </strong> {{owner.To_Date | date:'dd/MM/yyyy'}}</h5>
+                        </div>
+                        <div *ngIf="!owner.BoatDetails[0]">
+                            <h5><strong><i class="far fa-user"></i>  </strong> {{owner.OwnerDetails[0].First_Name}}{{owner.OwnerDetails[0].Last_Name}}</h5>
+                            <h5><strong><i ></i>  </strong>{{owner.BoatDetails[0].Boat_Name}}</h5>
+    
+                            <h5><strong><i ></i>  </strong>{{owner.BoatDetails[0].Boattype_Name}}</h5>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+               </div>
+           </div>
+           
+           <div class="col-md-12">
+         
+            <carousel class="carosel"> 
+              
+             <div class="carousel-cell" (click)="openLink('https://smartboating.com.au/palm-beach-pb32/')">
+                 <img src="/assets/images/smartboat1.png">
+             </div>
+              <div class="carousel-cell" (click)="openLink('https://smartboating.com.au/integrity-380-boat-share/')">
+               <img src="/assets/images/smartboat2.png">
+             </div>
+              <div class="carousel-cell" (click)="openLink('https://smartboating.com.au/hanse-445-twilight-boatshare/')">
+               <img src="/assets/images/smartboat3.png">
+             </div>
+              <div class="carousel-cell" (click)="openLink('https://smartboating.com.au/integrity-440-sedan-boatshare/')">
+               <img src="/assets/images/smartboat4.png">
+             </div>
+              <div class="carousel-cell" (click)="openLink('https://smartboating.com.au/hanse-415-boatshare/')">
+               <img src="/assets/images/smartboat5.png">
+             </div>
+              <div class="carousel-cell" (click)="openLink('https://smartboating.com.au/integrity-380-yamba-boatshare/')">
+               <img src="/assets/images/smartboat6.png">
+             </div> 
+         </carousel> 
+       </div>
+       </div>
+       
+       <!--Show ending date popup for myprofile Done By Alagesan	on 07.07.2021 -->
+       <button style="display:none" type="button" data-backdrop="static" data-keyboard="false" id="ending-date-popupbtn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#endingDateModal">Open Modal</button>
+              
+       <div class="modal fade" id="endingDateModal" role="dialog">
+       <div class="modal-dialog">
+       
+           <!-- Modal content-->
+           <div class="modal-content">
+           <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal">&times;</button>
+               <h4 class="modal-title">Ending Date</h4>
+           </div>
+           <div class="modal-body">
+               <p>{{endingFormatDate}}</p>
+           </div>
+           <div class="modal-footer">
+               <button type="button" class="btn btn-default"  data-dismiss="modal">OK</button>
+           </div>
+           </div>
+           
+       </div>
+       </div>
+
+       <!--Activate the owner in admin message for my profile Done By Alagesan on 10.07.2021	-->
+        <button style="display:none" type="button" id="suspend-owner-message-btn"  class="btn btn-info btn-lg" data-toggle="modal" data-target="#suspendOwnerModal">Open Modal</button>
+                    
+                    
+        <div class="modal fade" id="suspendOwnerModal" role="dialog">
+        <div class="modal-dialog">
+        
+            
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Owner Suspended</h4>
+            </div>
+            <div class="modal-body">
+                <p>Please contact Admin.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default"  data-dismiss="modal">OK</button>
+            </div>
+            </div>
+            
+        </div>
+        </div>  
+
+
+    </div>
+</div>
+<div class="dash-footer">
+    <app-footer-adminsession></app-footer-adminsession>    
+</div>
+<!--Create Component for myprofile Done By Alagesan	on 17.05.2021 -->

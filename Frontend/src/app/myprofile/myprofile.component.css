@@ -1,0 +1,23 @@
+/*  Add error message css Done By Alagesan on 28.07.2021*/
+.error-msg{
+    color: red;
+    text-align: center;
+    background: #ffd8d8;
+    padding: 14px;
+    width: 100%;
+  }
+
+  .owner-profile-head{
+    padding-left: 3%;
+    padding-top: 1px;
+    padding-bottom: 10%;
+  }
+
+  .mobile-sidebar{
+    left: 0px !important;
+    transition: 0.5s;
+}
+
+.modal{
+  pointer-events: none !important;
+} 

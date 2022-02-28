@@ -1,0 +1,78 @@
+    <!--Create Component for owner sidemenu Done By Alagesan	-->
+
+<div class="main-page" >
+    
+    <div class="side-menu" style="height: 150%;">
+        <div class="logo-section">
+            <a >
+                <img src="/assets/images/logo1.svg">
+            </a>
+        </div>
+        <ul class="menu-list menulist-cust">
+            <li>
+                <a  routerLink="/owner-dashboard/" routerLinkActive="active" class="menu-items ">
+                    <div class="menu-icon1">
+                    </div>
+                    <div class="menu-title">
+                        Dashboard
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a  routerLink="/myprofile/" routerLinkActive="active" class="menu-items">
+                    <div class="menu-icon1 menu-icon3">
+                    </div>
+                    <div class="menu-title">
+                        My Profile
+                    </div>
+                </a>
+            </li>
+    
+            <li>
+                <a  routerLink="/history/" routerLinkActive="active" class="menu-items">
+                    <div class="menu-icon1 menu-icon4">
+                    </div>
+                    <div class="menu-title">
+                        History
+                    </div>
+                </a>
+            </li>
+            <li >
+               
+                    <!-- <a href="https://smartboating.com.au/boat-shares/" target="_blank" class="menu-items"> -->
+                    <a (click)="openSmartBoating()" class="menu-items">   
+                        <div class="menu-icon1 menu-icon2 ">
+                        </div>
+                        <div class="menu-title">
+                            Available Boat Shares
+                        </div>
+                    </a>
+                
+            </li>
+
+        </ul>
+    </div>
+    </div>
+
+    <button style="display:none" type="button" id="btn-Iframe-save-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Iframe-Success-Modal">Open Modal</button>
+                       
+                         
+           <div class="modal  fade modal-xl" id="Iframe-Success-Modal" role="dialog">
+             <div class="modal-dialog modal-lg" style="margin: 15px auto;">
+             
+               <!-- Modal content-->
+               <div class="modal-content modal-xl">
+                 <div class="modal-header" style="height: 45px !important;">
+                   <button type="button" class="close" data-dismiss="modal">&times;</button>
+                   <h4 class="modal-title" id="h4-message-save-type">smartboating.com.au</h4>
+                 </div>
+                 
+                    <iframe src="https://smartboating.com.au/boat-shares/" style="border:none; height:88vh; width:100%;" title="description"></iframe>
+                 
+                 
+               </div>
+               
+             </div>
+           </div>
+
+        <!--Create Component for owner sidemenu Done By Alagesan	-->
