@@ -1,0 +1,46 @@
+{
+  "name": "sbg_dev",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app"
+  },
+  "description": "SBG_DEV",
+  "author": {
+    "name": ""
+  },
+  "dependencies": {
+    "absorb": "^1.0.1",
+    "async": "^3.2.0",
+    "bcrypt": "^5.0.1",
+    "bcrypt-pbkdf": "^1.0.2",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "connect-multiparty": "^2.2.0",
+    "cookie-parser": "^1.4.0",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.0.0",
+    "debug": "^2.2.0",
+    "deepmerge": "^4.2.2",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "formidable": "^1.2.2",
+    "hbs": "^4.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "merge": "^2.1.1",
+    "merge-json": "0.1.0-b.3",
+    "moment": "^2.29.1",
+    "mongoose": "^5.12.0",
+    "morgan": "^1.10.0",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.5.0",
+    "path": "^0.12.7",
+    "pug": "^2.0.0-beta6",
+    "sequelise-auto": "^0.4.31",
+    "sequelize": "^6.5.0",
+    "serve-favicon": "^2.3.0",
+    "underscore": "^1.12.1",
+    "uuid": "^8.3.2",
+    "uuidv4": "^6.2.7"
+  }
+}
