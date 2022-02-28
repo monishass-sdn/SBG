@@ -1,0 +1,40 @@
+
+$("#shown-loader-commen").css("display", "block");
+
+ $("#shown-loader-commen").css("display", "none");
+
+ .............................................
+
+<span a href="#" data-dismiss="modal" class="cancel-bttn" (click)=clearShare() style="margin: 5px auto;">CANCEL</span>
+
+
+ ////////////////////Message.........................
+     
+     this.CommenMessages = "hi message";
+     $('#btn-CommenMessage-disp-btns-angular').trigger('click');
+
+
+
+<button style="display:none" type="button" id="btn-CommenMessage-disp-btns-angular" class="btn btn-info btn-lg" data-toggle="modal" data-target="#btn-CommenMessage-disp-Modal">Open Modal</button>
+             
+<div class="modal fade" id="btn-CommenMessage-disp-Modal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="h4-message-type">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p id="p-message-content">{{CommenMessages}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default"  data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+.....................
