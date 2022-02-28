@@ -1,0 +1,77 @@
+.modal{
+    pointer-events: none !important;
+  } 
+.boat-listing .col-md-4{
+
+    margin: 0;
+}
+.btn.btn-danger{ color: #FFF; }
+
+.booking-tabs .nav-item {
+    width: auto;
+}
+.booking-tabs.nav-tabs .nav-link {
+    font-size: 14px;
+    font-weight: 500;
+    background-color: #eeeeeeb3;
+}
+.dash-filter .dropdown {
+    padding: 14px 0;
+}
+
+.Zebra_DatePicker_Icon_Wrapper input#datepicker{
+    padding-right: 25px !important;
+}
+
+.Zebra_DatePicker_Icon{ right: 8px !important; }
+
+
+.boat-listing.rowPads{ margin: 0 -15px; }
+
+.boat-list-1 .info .btn-primary, .boat-list-1 .info .btn-danger {
+    font-size: 13px;
+    padding: 5px 10px;
+    line-height: 20px;
+    min-height: 32px;
+    margin-right: 4px;
+}
+.boat-list-1 {
+    margin-bottom: 0px;
+}
+
+
+.label{
+    display: inline;
+    padding: .2em .6em .3em;
+    /* font-size: 75%; */
+    /* font-weight: 700; */
+    line-height: 2;
+    color: #fff !important;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    /* border-radius: .25em; */
+    
+}
+.label-success{
+    background-color: #1d2a81;
+
+}
+.label-danger{
+
+    background-color: #dc3545;
+
+}
+
+.mobile-sidebar{
+    left: 0px !important;
+    transition: 0.5s;
+}
+.boat-search.btnSarch{
+    display: block;
+    text-align: end;
+    padding-top: 14px;
+}
+.boat-search.btnSarch a.btn.btn-primary{ display: inline-block;  margin-right: 15px;     margin-bottom: 10px; }
+
+.boat-search.btnSarch .input-group{ float: right; width: auto;  }

@@ -1,0 +1,106 @@
+
+.modal{
+  pointer-events: none !important;
+} 
+
+.boat-info button.btn.btn-info.btn-lg {
+  border: 0;
+  font-weight: 500;
+  border-radius: 0;
+  margin-left: 5px;
+}
+
+.dash-filter .dropdown {
+  padding: 5px 10px 14px 0px;
+}
+
+.Cust_input {
+  border: 0;
+  background: transparent;
+  border-bottom: 1px solid #0b27ed;
+  width: 10%;
+}
+.request{ display: block;}
+
+.alnTx .img-boat, .alnTx .boat-info{ float: left; }
+
+.alnTx .boat-info {
+  width: calc(100% - 200px);
+}
+
+.request .boat-info:first-child {
+  border-left: 1px solid #ccc;
+  border-right: 0;
+  min-height: 100%;
+}
+
+.label{
+  display: inline;
+  padding: .2em .6em .3em;
+  /* font-size: 75%; */
+  /* font-weight: 700; */
+  line-height: 2;
+  color: #fff !important;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  /* border-radius: .25em; */
+  
+}
+.label-success{
+  background-color: #1d2a81;
+
+}
+.label-danger{
+
+  background-color: #dc3545;
+
+}
+
+span.label.label-danger.algnBtn {
+  display: inline-block;
+  margin: 0 auto;
+  float: none;
+}
+
+.mobile-sidebar{
+  left: 0px !important;
+  transition: 0.5s;
+}
+
+
+
+
+
+
+@media screen and (max-width: 767px) {
+  .alnTx .boat-info {
+    width:100%;
+    margin: 0 !important;
+  }
+  .boat-info h6 {
+    max-width: 100%;
+    min-width: inherit;
+    float: left;
+    width: 150px;
+  }
+  .request .boat-info:first-child { border: 0; }
+
+  .request > div.row {  margin-right: -15px; }
+
+  .img-boat {  height: 250px;  overflow: hidden; }
+  .img-boat img {  height: 250px;  object-fit: cover; }
+
+
+
+
+}
+@media screen and (max-width: 420px) {
+  .boat-info h6  { width: 115px; } 
+}
+@media screen and (max-width: 320px) {
+  .boat-info h6  { width: 93%; } 
+  .img-boat,  .img-boat img {  height: 250px;   }
+
+
+}

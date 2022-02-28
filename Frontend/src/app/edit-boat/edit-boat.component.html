@@ -1,0 +1,348 @@
+<div class="main-page">
+  <app-sidemenu></app-sidemenu>
+
+  <div class="contents-page col-lg-9">
+    <app-header></app-header>
+
+  
+      <div class="headingz">
+          <!-- Change all boat url  for edit boat Done By Alagesan on 25.06.2021	-->
+          <!-- <h4><a routerLink="/all-boats/"><i class="far fa-arrow-alt-circle-left"></i> </a> Boat Details</h4> -->
+          <h4><a (click)="goToViewPage()"><i class="far fa-arrow-alt-circle-left"></i> </a> Boat Details</h4>
+      </div>
+      
+      
+      
+      <div class="page contents fix-page">
+          
+        <div class="container">  
+   <div class="headingz">
+      <h4><a></a>Edit Boat </h4>
+   </div>
+ 
+            
+            
+<div id="content" class="tab-content" role="tablist">
+<div id="pane-A" class="card tab-pane fade show active" role="tabpanel" aria-labelledby="tab-A">
+   
+    
+  <div class="col-md-12 add-boat-type" > 
+         
+    <!-- Button boat type modal -->
+<!-- <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#boat-type" style="float: right; margin: 20px 0;">
++ BOAT TYPE 
+</button> -->
+
+<button type="button" data-toggle="modal" data-target="#boat-type" style="display: none;" id="pop-up-btn" class="addb-rs btn common-btn violet-btn" >Submit</button>
+
+
+   </div>
+    
+
+
+<form [formGroup]="boatform"  novalidate>
+
+  <div class="sbg-form row" style="margin-top: 50px;">
+           <div class="col-md-7">   
+              <div class="form-row">
+                          <!-- Swap the form fields  for edit boat Done By Alagesan on 25.06.2021	-->
+                <div class="form-group col-md-6">
+                  <label>Boat Name</label>
+                  <input type="text" class="form-control" formControlName="Boat_Name" [ngClass]="{ 'is-invalid': boatSubmitted && bf.Boat_Name.errors }">
+                  </div>
+
+<div class="form-group col-md-6">
+
+
+
+
+  <label>Select boat type</label> 
+  <ng-multiselect-dropdown
+  [placeholder]="'Select'" 
+  
+  [(ngModel)]="dropdownBoatType"
+  [ngModelOptions]="{standalone: true}" 
+  [ngClass]="{ 'boat-search': boatSubmitted && bf.Boattype_id.errors }"
+  [settings]="dropdownSettings"
+  [data]="boatTypes"                                                 
+  (onSelect)="getBoatTypeId($event)"
+  class="singleselect_drop"
+ >
+ </ng-multiselect-dropdown>
+
+<!-- <label for="BoatType">Select boat type</label>
+<select class="form-control" formControlName="Boattype_id" (change)="getBoatTypeId($event.target.value)" [ngClass]="{ 'is-invalid': boatSubmitted && bf.Boattype_id.errors }">
+  <option value="" selected disabled>-- Select --</option>
+  <option   *ngFor="let type of boatTypes; let i = index;" value="{{type._id}}">{{type.Boat_Type}}</option>
+ 
+  </select>     -->
+</div>
+
+</div>
+<div class="form-group">
+<label>Description</label>
+<textarea class="form-control" rows="4" placeholder="Enter here" formControlName="Boat_Description"> </textarea>
+</div>
+
+
+                  
+<div class="form-row">
+
+<div class="form-group col-md-6">
+<label>Pre- Launch Date </label>
+<input id="datepicker-Boat-Edit-1" type="text" class="form-control" data-zdp_readonly_element="true" formControlName="PreLaunch_Date" [ngClass]="{ 'is-invalid': boatSubmitted && bf.PreLaunch_Date.errors }">
+</div>
+
+<div class="form-group col-md-6">
+  <label>Anniversary / Launch Date </label>
+  <input id="datepicker-Boat-Edit-2" type="text" class="form-control" data-zdp_readonly_element="true" formControlName="Launch_Date" [ngClass]="{ 'is-invalid': boatSubmitted && bf.Launch_Date.errors }">
+</div>
+
+</div>  
+<div class="form-row">                         
+  <div class="form-group col-md-12">
+      <label>Boat Number</label>
+      <input type="text" class="form-control" formControlName="Boat_Number" [ngClass]="{ 'is-invalid': boatSubmitted && bf.Boat_Number.errors }">
+      </div>
+  </div>             
+                  
+<div class="form-row">                         
+<div class="form-group col-md-12">
+<label>Status</label>
+<select class="form-control"  formControlName="Boat_Status"  [ngClass]="{ 'is-invalid': boatSubmitted && bf.Boat_Status.errors }">
+  <!-- <option value="" selected disabled>-- Select --</option> -->
+  <option value="Enable">Enable</option>
+  <option value="Disable">Disable</option> 
+  <option value="Archive">Archive</option>
+  </select> 
+</div>
+                  </div>                      
+                  
+                  <div class="col-md-12">
+                  <div class="form-row">
+                  <span class="season-text">Season </span>
+                  <div class="form-group col-md-3">
+                  <span class="summer-text">Summer  </span>
+                  
+                  </div>
+                  <div class="form-group col-md-4">
+                  <label>From  </label>
+                  <input id="datepicker-Boat-Edit-3" type="text" class="form-control" data-zdp_readonly_element="true" formControlName="SummerSeason_SDate" [ngClass]="{ 'is-invalid': boatSubmitted && bf.SummerSeason_SDate.errors }">
+                  </div>
+                  <div class="form-group col-md-4">
+                  <label>To  </label>
+                  <input id="datepicker-Boat-Edit-4" type="text" class="form-control" data-zdp_readonly_element="true" formControlName="SummerSeason_EDate" [ngClass]="{ 'is-invalid': boatSubmitted && bf.SummerSeason_EDate.errors }">
+                  </div>
+                  
+                  <div class="form-group col-md-3">
+                  <span class="summer-text">Winter</span>
+                  </div>
+                  <div class="form-group col-md-4">
+                  <label>From  </label>
+                  <input id="datepicker-Boat-Edit-5" type="text" class="form-control" data-zdp_readonly_element="true" formControlName="WinterSeason_SDate" [ngClass]="{ 'is-invalid': boatSubmitted && bf.WinterSeason_SDate.errors }"></div>
+                  <div class="form-group col-md-4">
+                  <label>To  </label>
+                  <input id="datepicker-Boat-Edit-6" type="text" class="form-control" data-zdp_readonly_element="true" formControlName="WinterSeason_EDate" [ngClass]="{ 'is-invalid': boatSubmitted && bf.WinterSeason_EDate.errors }"></div>
+                  
+                  </div>  
+                  </div>  
+              </div>  
+             
+              <div class="col-md-5">
+                  <div class="form-row" style="margin-top: 30px;">
+                      
+                  <div class="form-group col-md-12 outerUps"> 
+                     
+                    <!-- <form action="upload_file.php" id="img-upload-form" method="post" enctype="multipart/form-data" [formGroup]="imageForms"  novalidate> -->
+                      <div class="row overScrls" id="div-binding-multiple-images">
+                     
+                    </div>
+
+                    
+                      </div>  
+
+                      <div class="custom-file" style=" margin: 10px 0 7px!important;">
+                                              
+                        <input class="show-for-sr" type="file" id="customFile" name="upload_imgs[]"  (change)="onFileChange($event, 'BACK')" multiple/>
+
+                        <label class="custom-file-label" for="customFile">Choose file</label>
+                      </div>
+                      
+                      
+  <div class="form-group col-md-12">
+    <label>Owner Rule Book</label>
+    <span style="color: red;padding-left: 5px;" id="spn-id-fileName">{{Boat_originalhandBook_Name}}</span>
+    
+
+   <div class="custom-file mb-3">
+       <input type="file" class="custom-file-input form-control" id="id_singlefile" name="filename" (focusout)="singleImage($event, 'BACK')">
+       <label class="custom-file-label" for="customFile">Choose file</label>
+   </div>
+
+   <label>Owner Manual :</label>
+   <span style="color: red;padding-left: 5px;" id="spn-id-fileName2">{{Boat_originalhandBook_Name2}}</span>
+   
+
+  <div class="custom-file mb-3">
+      <input type="file" class="custom-file-input form-control" id="id_singlefile2" name="filename" (focusout)="singleImage2($event, 'BACK')">
+      <label class="custom-file-label" for="customFile">Choose file</label>
+  </div>
+
+    <div class="form-row">
+<div class="form-group col-md-6">
+<label>Total owners allowed</label>
+<!-- <label>{{Owners_Allowed_Label}}</label> -->
+<input style="text-align: center; " formControlName="Owners_Allowed" class="form-control"  >
+<!-- <input type="number" min="0" max="50" value="{{Owners_Allowed_Label}}" ng-model="Owners_Allowed_Label" /> -->
+</div>
+<div class="form-group col-md-6">
+<label>Location of boat</label>
+<select class="form-control" formControlName="Location_Id" (change)="getLoctionTypeId($event.target.value)" [ngClass]="{ 'is-invalid': boatSubmitted && bf.Location_Id.errors }">
+  <option value="" selected disabled>-- Select --</option>
+  <option *ngFor="let loc of loctions; let i = index;" value="{{loc._id}}">{{loc.Boat_Location}}</option>
+ 
+  </select> 
+</div>
+
+</div>
+                  
+<div class="form-group">
+<label>Facilities</label>
+<textarea class="form-control" rows="4" placeholder="Enter here" formControlName="Boat_Facility" [ngClass]="{ 'is-invalid': boatSubmitted && bf.Boat_Facility.errors }"> </textarea>
+</div>
+
+</div>
+  
+ </div>
+              
+              </div>  
+            
+         
+
+         
+ 
+ 
+ </div>
+</form>
+ 
+             <div class="col-md-12">
+<!--                       <a  class="btn btn-primary">NEXT</a>--> 
+                 <button class="nexttab btn btn-primary save-bottom" [disabled]="disableButton" (click)=editBoat()>SAVE</button>
+
+              </div>   
+          
+          
+          </div>   
+    
+    
+</div>
+
+          
+          
+          
+          
+          
+      </div>
+  </div>
+  
+</div>
+<button style="display:none" type="button" id="error-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+            
+              
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Boat Type</h4>
+      </div>
+      <div class="modal-body">
+        <p>Boat Type Added Successful!!!.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+<button style="display:none" type="button" id="saveBoatModel" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalSaveBoat">Open Modal</button>
+            
+              
+<div class="modal fade" id="myModalSaveBoat" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)=goToViewPage() data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"> Edit Boat</h4>
+      </div>
+      <div class="modal-body">
+        <p>{{getRes}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)=goToViewPage() data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+<button style="display:none" type="button" id="btn-CommenMessage-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Footer-Success-Modal">Open Modal</button>
+            
+              
+<div class="modal fade" id="Footer-Success-Modal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p id="p-message-content">{{getRes}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default"  data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+<button style="display:none" type="button" id="btn-CommenMessage-save-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#CommenSave-Success-Modal">Open Modal</button>
+            
+              
+<div class="modal fade" id="CommenSave-Success-Modal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="h4-message-save-type">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p id="p-message-save-content">{{commenMessages}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)=locationReload() data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+
+<div class="dash-footer">
+  <app-footer-adminsession></app-footer-adminsession>    
+  </div>

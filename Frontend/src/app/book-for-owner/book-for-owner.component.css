@@ -1,0 +1,44 @@
+.modal{
+    pointer-events: none !important;
+  } 
+  
+.singleselect_drop .multiselect-item-checkbox {
+    padding: 0px !important;
+    }
+    .singleselect_drop input[type=checkbox]+div:before {
+    display: none !important;
+    }
+    
+    .singleselect_drop input[type=checkbox]+div:after {
+    display: none !important;
+    }
+    
+    .singleselect_drop input[type=checkbox]+div {
+    padding: 6px 10px !important;
+    }
+    
+    .singleselect_drop input[type=checkbox]:checked+div {
+    background-color: #337ab7 !important;
+    color: #fff !important;
+    }
+    .li-commen{
+        width: 24%;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .bg-win{
+        font-size: 68% !important;
+    }
+    .sum-title{
+
+        font-size: 100% !important;
+
+
+
+    }
+
+
+    .mobile-sidebar{
+        left: 0px !important;
+        transition: 0.5s;
+    }

@@ -1,0 +1,261 @@
+<!--Create Component for boat maintenance Done By Alagesan on 20.05.2021-->
+
+<div class="main-page pointer-function-all" style="pointer-events:none;">
+    <app-sidemenu></app-sidemenu>
+    <div class="contents-page col-lg-9">
+        <app-header></app-header>
+        <div class="headingz">
+            <h4>Boat Maintenance </h4>
+        </div>
+        <div class="page contents">
+                  
+            <div class="sbg-form row">
+                <div class="col-md-12">   
+                   <form>                   
+                    <div class="form-row">
+                    <div class="form-group col-md-4">
+                    <label>Boat Name</label>
+                        <ng-multiselect-dropdown
+                        [placeholder]="'Select Your Boat'"
+                        [settings]="dropdownSettings"
+                        [data]="dropdownList_filted"                                    
+                        (onSelect)="onItemSelect($event)"
+                        (onSelectAll)="onSelectAll($event)"
+                        (onDeSelect)="onDeSelect($event)"
+                        class="singleselect_drop"
+
+                    >
+                    </ng-multiselect-dropdown>
+                    <!-- class="singleselect_drop" -->
+                    <!-- class="singleselect_drop" -->
+                    </div>
+                    <div class="form-group col-md-4">
+                    <label>Boat type</label>
+                    <input  type="text" class="form-control" value={{set_BoatType}} readonly>
+
+                    </div>
+                    
+                    </div>                        
+                       
+                    <input type="button" value="reload" class="id-manual-reload" style="display:none;">
+                       
+
+                       
+ <div class="row"> 
+     
+    <div class="col-lg-12">
+        <div class="calender-custom">
+
+
+              <div class="code-html">
+                <div id="menu">
+                    <span id="menu-navi">
+                        <button type="button" class="btn btn-default btn-sm move-today" data-action="move-today">Today</button>
+                        <button type="button" class="btn btn-default btn-sm move-day" data-action="move-prev">
+                            <i class="calendar-icon ic-arrow-line-left" data-action="move-prev"></i>
+                        </button>
+                        <button type="button" class="btn btn-default btn-sm move-day" data-action="move-next">
+                            <i class="calendar-icon ic-arrow-line-right" data-action="move-next"></i>
+                        </button>
+                    </span>
+                    <span id="renderRange" class="render-range"></span>
+                </div>
+
+                <div id="calendar"></div>
+            </div>  
+
+    
+
+        </div>
+
+    </div>
+  
+</div> 
+<div>
+    <div class="col-md-12 schedule-indicators">               
+        <ul>
+            <li><span class="green"> </span> Admin Bookings</li>
+            <li><span class="blue"> </span> Maintenance</li>
+            <li><span class="red"> </span> Owner Bookings</li>
+            
+         </ul>   
+        </div>
+</div>                     
+            
+  <!-- <div class="form-row">
+    <div class="form-group col-md-8">
+    <label>COMMENTS</label>
+    <textarea class="form-control" rows="3" placeholder="Enter here"> </textarea>
+    </div>
+  </div>                                  
+  <button type="submit" class="btn btn-primary">BLOCK</button>  -->
+  </form>
+    </div>  
+    </div>
+    </div>
+    </div>
+</div>
+
+<button style="display:none" type="button" id="btn-CommenMessage-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Footer-Success-Modal">Open Modal</button>
+            
+              
+<div class="modal fade" id="Footer-Success-Modal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="h4-message-type">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p id="p-message-content"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default"  data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<button style="display:none" type="button" id="btn-CommenMessage-save-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#CommenSave-Success-Modal">Open Modal</button>
+            
+              
+<div class="modal fade" id="CommenSave-Success-Modal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="h4-message-save-type">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p id="p-message-save-content"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)=locationReload() data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<!-- --------- -->
+<button style="display:none" type="button" id="remove_Booking" class="btn btn-info btn-lg" data-toggle="modal" data-target="#remove_Bookings">Open Modal</button>
+
+<!-- Modal -->
+<div class="modal fade" id="remove_Bookings" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Maintenance</h4>
+      </div>
+      <div class="modal-body">
+        <p>You are about to cancel a maintenance booking!!!.</p>
+        <span class="red">Are you sure you want to cancel this booking?</span>
+      </div>
+      <div class="modal-footer">
+    <span a  data-dismiss="modal" id="span-confermation-cancel-booking"  class="confirm-bttn">Yes</span>
+    <span a  data-dismiss="modal" class="cancel-bttn">No</span>
+       </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ...................Confirm Message.................. -->
+<!-- --------- -->
+<button style="display:none" type="button" id="ConformationMessage" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ConformationMessages">Open Modal</button>
+
+<!-- Modal -->
+<div class="modal fade" id="ConformationMessages" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Message</h4>
+      </div>
+      <div class="modal-body">     
+        <p id="P-ConformationMessage"></p>
+      </div>
+      <div class="modal-footer">
+    <span a  data-dismiss="modal" id="span-ConformationMessage-booking"  class="confirm-bttn">Yes</span>
+    <span a  data-dismiss="modal" class="cancel-bttn">No</span>
+       </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<!-- ...................Confirm Message.................. -->
+<!-- --------- -->
+<button style="display:none" type="button" id="ConformationMessage_Second" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ConformationMessages_Second">Open Modal</button>
+
+<!-- Modal -->
+<div class="modal fade" id="ConformationMessages_Second" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Message</h4>
+      </div>
+      <div class="modal-body">     
+        <p id="P-ConformationMessage_Second"></p>
+      </div>
+      <div class="modal-footer">
+    <span a  data-dismiss="modal" id="span-ConformationMessage-booking"  class="confirm-bttn">Yes</span>
+    <span a  data-dismiss="modal" class="cancel-bttn">No</span>
+       </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- --------- -->
+<button style="display:none" type="button" id="ConformationMessage_Therd" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ConformationMessages_Therd">Open Modal</button>
+
+<!-- Modal -->
+<div class="modal fade" id="ConformationMessages_Therd" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Message</h4>
+      </div>
+      <div class="modal-body">     
+        <p id="P-ConformationMessage_Therd"></p>
+      </div>
+      <div class="modal-footer">
+    <span a  data-dismiss="modal" id="span-ConformationMessage-booking"  class="confirm-bttn">Yes</span>
+    <span a  data-dismiss="modal" class="cancel-bttn">No</span>
+       </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+ <div class="dash-footer"> 
+<!-- <small>© Copyright SMART Boating 2021. All Rights Reserved.</small>   -->
+ <app-footer-adminsession></app-footer-adminsession> 
+</div>
+
+<!--Create Component for boat maintenance Done By Alagesan on 20.05.2021-->

@@ -1,0 +1,207 @@
+<div class="main-page">
+    <app-owner-sidemenu></app-owner-sidemenu>
+    <div class="contents-page col-lg-9">
+      <app-owner-header></app-owner-header>
+      <div class="headingz">
+            <h4><a routerLink="/myprofile/"><i class="far fa-arrow-alt-circle-left"></i> </a>My Profile</h4>
+        </div>
+        <div class="page contents">
+            
+            <div class="row reverseDiv">
+             <div class="col-md-8">
+            <div class="sbg-form row">
+             <div class="col-md-12">   
+                <form [formGroup]="form"  novalidate>
+<div class="form-row">
+<div class="form-group col-md-6">
+<label>First Name</label>
+<input type="text" class="form-control" readonly formControlName="First_Name" [ngClass]="{ 'is-invalid': submitted && f.First_Name.errors }">
+</div>
+
+<div class="form-group col-md-6">
+<label>Last Name</label>
+<input type="text" class="form-control" readonly formControlName="Last_Name" [ngClass]="{ 'is-invalid': submitted && f.Last_Name.errors }">
+</div>
+
+</div>
+                    
+                    
+<div class="form-row">
+<div class="form-group col-md-12">
+<label>Home Address</label>
+<textarea class="form-control" rows="3" placeholder="Enter here" formControlName="Home_Address" [ngClass]="{ 'is-invalid': submitted && f.Home_Address.errors }"> </textarea>
+</div>
+</div>                       
+                    
+                    
+<div class="form-row">
+<div class="form-group col-md-12">
+<label>Email</label>
+<input type="email" class="form-control" readonly formControlName="Email" [ngClass]="{ 'is-invalid': submitted && f.Email.errors }">
+</div>
+
+<!-- <div class="form-group col-md-6">
+<label>Password</label>
+<input type="password" class="form-control" formControlName="Password" [ngClass]="{ 'is-invalid': submitted && f.Password.errors }">
+</div>     -->
+</div>                      
+
+      <div class="form-row">
+<div class="form-group col-md-6">
+<label>Mobile Number</label>
+<input type="number" class="form-control" formControlName="Mobile" [ngClass]="{ 'is-invalid': submitted && f.Mobile.errors }">
+</div>
+
+<div class="form-group col-md-6">
+<label>Family Names</label>
+<input type="text" class="form-control" formControlName="Family_Name" [ngClass]="{ 'is-invalid': submitted && f.Family_Name.errors }">
+</div>    
+</div>                     
+                    
+          
+
+    <div class="form-row">
+
+      <div class="form-group col-md-6">
+        <label>Emergency Contact Mobile</label>
+        <input type="number" class="form-control" formControlName="Emergency_Contact_Mobile" [ngClass]="{ 'is-invalid': submitted && f.Emergency_Contact_Mobile.errors }">
+        </div>
+
+      <div class="form-group col-md-6">
+      <label>Emergency Contact Name</label>
+      <input type="text" class="form-control" formControlName="Emergency_Contact_Name" [ngClass]="{ 'is-invalid': submitted && f.Emergency_Contact_Name.errors }">
+      </div>
+      
+          
+      </div>  
+      <!-- <div class="form-row">
+        <div class="form-group col-md-12">
+        <label>Notes</label>
+        <textarea class="form-control" readonly rows="3" placeholder="Enter here" formControlName="Notes" [ngClass]="{ 'is-invalid': submitted && f.Notes.errors }"> </textarea>
+        </div>
+        </div>  -->
+<!-- ........................end............................. -->
+<br>
+                    
+<a  class="btn btn-primary"  (click)= editOwner()>SAVE & EXIT</a>
+<!-- <a href="owner-duration.html" class="btn btn-primary">NEXT</a>                    -->
+                   
+
+</form>
+                </div>  
+             </div>
+                </div>
+                
+                   <div class="col-md-4 owner-img-upload">
+                      <div class="col-md-12">  
+                        <h4>Choose Owner Photo</h4>
+                          <p>Choose minimum 130x130 resolution</p>
+                        </div>   
+                       
+                    <div class="row img-upload" style="justify-content: center;">
+                       
+                        
+<div class="small-12 medium-2 large-2 columns" style="justify-content: center;">
+<div class="circle">
+ <!-- User Profile Image -->
+<img class="profile-pic" *ngIf="!data.Profile_Image" src="/assets/images/dummy-owner-img.jpg">
+<img class="profile-pic" *ngIf="data.Profile_Image" src="{{imgUrl+data.Profile_Image}}">
+
+
+
+</div>
+<div class="p-image">
+ <i class="fa fa-camera upload-button"></i>
+ <!-- <input type="file" class="custom-file-input form-control" id="customFile" name="filename" (focusout)="singleImage($event, 'BACK')"> -->
+
+  <input class="file-upload" type="file"  (change)="singleImage($event, 'BACK')"/>
+</div>
+</div>
+</div>   
+                       
+                       
+                       
+                </div>     
+                
+            </div>
+            
+ <button style="display:none" type="button" id="error-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+            
+              
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p>{{messages}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+<button style="display:none" type="button" id="Sucess-message-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Sucess-message-myModal">Open Modal</button>
+            
+              
+<div class="modal fade" id="Sucess-message-myModal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p>{{messages}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)= RedirectToAction() data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+<button style="display:none" type="button" id="btn-CommenMessage-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#btn-CommenMessage-disp-Modal">Open Modal</button>
+             
+<div class="modal fade" id="btn-CommenMessage-disp-Modal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="h4-message-type">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p id="p-message-content">{{CommenMessages}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default"  data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+
+        
+
+        </div>
+    </div>
+</div>
+<div class="dash-footer">
+    <app-footer-adminsession></app-footer-adminsession>    
+</div>

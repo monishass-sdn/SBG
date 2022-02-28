@@ -1,0 +1,391 @@
+/* .is-invalid {
+    border: 1px solid red !important
+
+  }
+  .boat-image {
+    width: 100% !important;
+    margin: 14px 0px 0px 0px !important;
+}   
+.dash-filter .dropdown{
+  float:left;
+  margin: -12px 5px 0px -9px;
+  width: 100%;
+  padding: 14px;
+} */
+
+.modal{
+  pointer-events: none !important;
+} 
+
+.fc-button-group {
+  position: relative;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+/* body {
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  background-color: #efefef;
+} */
+
+#calendar-container {
+  position: fixed;
+  top: 0;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+}
+
+.fc-toolbar.fc-header-toolbar {
+  margin-bottom: 1.5em;
+}
+
+.fc-header-toolbar {
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.fc-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fc-button .fc-icon {
+  vertical-align: middle;
+  font-size: 1.5em;
+}
+
+.fc-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  text-align: center;
+}
+.fc-icon {
+  font-family: "fcicons" !important;
+  /* speak: none; */
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.fc-button-primary {
+  color: #fff;
+  background-color: #393f4b;
+border-color: #393f4b;
+}
+
+
+.inner_table{
+  width:30px;}
+
+
+.fc-button-primary:not(:disabled):active, .fc-button-primary:not(:disabled).fc-button-active {
+color: #fff;
+background-color: #393f4b;
+border-color: #393f4b;
+  float: right;
+  width: 5%;
+  height: 28px;
+}
+
+#calendar .fc-view-container {
+  background-color: #fff;
+  -webkit-box-shadow: 0 15px 30px 0 rgb(0 0 0 / 20%);
+  box-shadow: 0 15px 30px 0 rgb(0 0 0 / 20%);
+}
+
+.fc-view-container {
+  position: relative;
+}
+
+.fc-view, .fc-view > table {
+  position: relative;
+  z-index: 1;
+}
+
+.fc-view-container *, .fc-view-container *:before, .fc-view-container *:after {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.fc table {
+  width: 100%;
+  box-sizing: border-box;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 1em;
+}
+
+
+.fc th, .fc td {
+  border-style: solid;
+  border-width: 1px;
+    padding: 12px;
+  vertical-align: top;
+  width: 300px;
+  border-color: #e2dcdc;
+}
+.fc-row:first-child table {
+  border-top: 0 hidden transparent;
+}
+
+.fc-row table {
+  border-left: 0 hidden transparent;
+  border-right: 0 hidden transparent;
+  border-bottom: 0 hidden transparent;
+}
+.fc-scroller > .fc-day-grid, .fc-scroller > .fc-time-grid {
+  position: relative;
+  width: 100%;
+}
+
+.fc-dayGrid-view .fc-body .fc-row {
+  min-height: 4em;
+}
+
+.fc-row.fc-rigid {
+  overflow: hidden;
+}
+
+.fc-row .fc-bg {
+  z-index: 1;
+}
+
+.fc-view-container *, .fc-view-container *:before, .fc-view-container *:after {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.fc-bg {
+  bottom: 0;
+}
+
+.fc-bg, .fc-bgevent-skeleton, .fc-highlight-skeleton, .fc-mirror-skeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.fc-row:first-child table {
+  border-top: 0 hidden transparent;
+}
+
+.fc-row table {
+  border-left: 0 hidden transparent;
+  border-right: 0 hidden transparent;
+  border-bottom: 0 hidden transparent;
+}
+
+.fc table {
+  width: 100%;
+  box-sizing: border-box;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 1em;
+}
+
+.fc-bg table {
+  height: 100%;
+}
+
+.fc-row .fc-widget-header
+{
+   border-right-width: 1px;
+   margin-right: 16px;
+
+}
+.custom-tabs .fc-head-container.fc-widget-header{
+  padding: 0 12px !important;
+}
+.fc-dayGridMonth-view .Cls-btn-left, .fc-dayGridMonth-view .Cls-btn-right{
+  margin: 0 5px 0 0;
+  float: left;
+  border-radius: 3px;
+  outline: 0;
+  border: 0;
+}
+.drpList button.btn.btn-primary.dropdown-toggle{
+  border: 0;
+  outline: 0;
+  border-radius: 3px;
+  padding: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  box-shadow: inherit;
+}
+.drpList .form-control{
+    border-radius: 3px;
+    margin:  0px 0;
+}
+.btn.btn-clear{
+  background-color: #666;
+    color: #FFF;
+    border-radius: 5px;
+    padding: 3px 15px;
+    line-height: inherit;
+    font-size: 14px;
+    margin: 0 auto;
+    display: flex;
+}
+.fc-prev-button .fc-button .fc-button-primary{
+  width: 2%; height: 28px;
+}
+.fc-next-button .fc-button .fc-button-primary{
+  width: 2%; 
+  height: 28px;
+}
+.fc-table-start-div{
+   overflow:scroll; 
+   height:500px; 
+}
+
+
+.btn-month.btn{
+  margin: 10px 0px 0;
+  float: right;
+  font-weight: 500;
+}
+
+.btn-previous{
+  background-color:#393f4b;
+  color: white;
+  width:20px;
+  height: 20px;
+
+}
+
+.btn-next {
+    background-color:#393f4b;
+  color: white;
+  width:20px;
+  height: 20px;
+}
+.cls-month-btn{
+  float: right;
+}
+.btn-BoatName-dropdown{
+  width: 100%;
+}
+
+
+
+.label{
+  display: inline;
+  padding: .2em .6em .3em;
+  /* font-size: 75%; */
+  /* font-weight: 700; */
+  line-height: 2;
+  color: #fff !important;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  /* border-radius: .25em; */
+  
+}
+.label-success{
+  background-color: #1d2a81;
+
+}
+.label-danger{
+
+  background-color: #dc3545;
+
+}
+
+.Cust_input {
+  border: 0;
+  background: transparent;
+  border-bottom: 1px solid #0b27ed;
+  width: 10%;
+}
+
+.mobile-sidebar{
+  left: 0px !important;
+  transition: 0.5s;
+}
+
+.request{ display: block;}
+
+.alnTx .img-boat, .alnTx .boat-info{ float: left; }
+
+.alnTx .boat-info {
+  width: calc(100% - 200px);
+}
+
+.request .boat-info:first-child {
+  border-left: 1px solid #ccc;
+  border-right: 0;
+  min-height: 100%;
+}
+
+
+
+
+.request span.label.label-danger.algnBtn {
+  display: inline-block;
+  margin: 0 auto;
+  float: none;
+}
+
+
+
+
+
+@media screen and (max-width: 767px) {
+  .alnTx .boat-info {
+    width:100%;
+    margin: 0 !important;
+  }
+  .boat-info h6 {
+    max-width: 100%;
+    min-width: inherit;
+    float: left;
+    width: 150px;
+  }
+  .request .boat-info:first-child { border: 0; }
+
+  .request > div.row {  margin-right: -15px; }
+
+  .img-boat {  height: 250px;  overflow: hidden; }
+  .img-boat img {  height: 250px;  object-fit: cover; }
+
+  .mob0{ padding: 0; }
+
+
+}
+
+@media screen and (max-width: 580px) {
+
+  .fc-table-start-div{ height:300px;  }
+
+
+  
+}
+
+@media screen and (max-width: 420px) {
+
+  .boat-info h6  { width: 115px; } 
+
+}
+
+@media screen and (max-width: 320px) {
+
+  .boat-info h6  { width: 93%; } 
+  .img-boat,  .img-boat img {  height: 250px;   }
+
+
+}
+

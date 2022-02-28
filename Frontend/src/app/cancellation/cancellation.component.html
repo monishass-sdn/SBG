@@ -1,0 +1,696 @@
+<!--Create Component for cancellation Done By Alagesan on 20.05.2021	-->
+<div class="main-page">
+  <app-sidemenu></app-sidemenu>
+  <div class="contents-page col-lg-9">
+    <app-header></app-header>
+    <div class="headingz">
+      <h4>Cancellation</h4>
+    </div>
+    <div class="page contents">
+      <div class="row" style="margin-bottom: 25px">
+        <div class="col-md-8 dash-filter">
+          <div class="dropdown">
+            <button  class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"  >
+              {{ Launch_Date_DropDown }}
+              <span><i class="fas fa-filter" aria-hidden="true"></i></span>
+            </button>
+            <ul class="dropdown-menu">
+              <!--Changes in launch date dropdown for cancellation Done By Alagesan  on 30.06.2021 -->
+              <li>
+                <a (click)="setLanDates($event)" value="swdf">Launch Date</a>
+              </li>
+              <li>
+                <a (click)="setLanDates($event)" value="sadf">Pre-Launch Date</a>
+              </li>
+            </ul>
+          </div>
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%" >
+              {{ Location_Name_dropDown }}
+              <span><i class="fas fa-filter"></i></span>
+            </button>
+
+            <ul class="dropdown-menu">
+              <input class="form-control" id="myInput" type="text" placeholder="Search.." [(ngModel)]="searchLoctions" />
+              <li *ngFor="let loc of loctions | filter: searchLoctions; let i = index">
+                <a style="cursor: pointer" (click)="getLoctionTypeId(loc)">{{loc.Boat_Location}}</a>
+              </li>
+              <!--Location dropdown clear for cancellation Done By Alagesan  on 25.05.2021 -->
+              <li>
+                <input type="button" class="btn btn-clear" (click)="pageRefresh()" style="text-align: center" value="Clear"/>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+
+        <div class="col-md-4 boat-search">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search" aria-label="Recipient's username" ria-describedby="basic-addon2" [(ngModel)]="searchLoction" />
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button">
+                <i class="fas fa-search" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <div class="row" style="margin-top: 20px">
+             
+        <div class="col-lg-12">
+          <div *ngFor="let cancelinfo of cancellationInfo | filter: searchLoction; let i = index" >
+          <div class="request" *ngIf="cancelinfo.LOA > 0" >
+            <div class="row">
+              <div class="col-md-8 alnTx">
+                <div class="img-boat" *ngIf="cancelinfo.BoatDetails[0].Boat_Image[0] != ''">
+                  <img src="{{ imagePath }}{{cancelinfo.BoatDetails[0].Boat_Image[0] ? cancelinfo.BoatDetails[0].Boat_Image[0] : cancelinfo.BoatDetails[0].Boat_Image[1]}}"/>
+                  
+                </div>
+
+                <div class="img-boat" *ngIf="cancelinfo.BoatDetails[0].Boat_Image[0] == ''">
+                  
+                  <!-- <h5>Image Not Uploaded</h5> -->
+                  <img  src="/assets/images/boat1.jpg"/>
+                
+                </div>
+
+            
+
+                <div class="boat-info">
+                  <div class="row">
+                    <h6 class="vendor-name">Booking Number</h6>
+                    <span>:</span>
+                    <h4>{{ cancelinfo.Booking_ID }}</h4>
+                  </div>
+
+                  <div class="row">
+                    <h6 class="vendor-name">Cancellation Dates</h6>
+                    <span>:</span>
+
+                    <div *ngIf="cancelinfo.cancaledDays.length > 0">
+                      <h4 *ngFor="let cancelinfodaysdisplay of cancelinfo.cancaledDays">
+                        {{cancelinfodaysdisplay}},                    
+                      </h4>
+                    </div>
+
+                    <div *ngIf="cancelinfo.cancaledDays.length == 0">
+                      <h4>
+                      {{ cancelinfo.start_NoTime | date: "dd/MM/yy" }}
+                        To {{ cancelinfo.end_NoTime | date: "dd/MM/yy" }}
+                      </h4>
+                    </div>
+
+
+
+                  </div>
+
+                  <div class="row">
+                    <h6 class="vendor-name">Owner Name</h6>
+                    <span>:</span>
+                    <h4>
+                      {{cancelinfo.OwnerDetails[0] ? cancelinfo.OwnerDetails[0].First_Name : NotFound }}
+                    </h4>
+                  </div>
+
+                  <div class="row">
+                    <h6 class="vendor-name">Boat Type</h6>
+                    <span>:</span>
+                    <h4>{{ cancelinfo.BoatDetails[0].Boattype_Name }}</h4>
+                  </div>
+                </div>
+
+
+              </div>
+              <div class="col-md-4">
+                <div class="boat-info">
+                  <div class="row">
+                    <h6 class="vendor-name">Boat Name</h6>
+                    <span>:</span>
+                    <h4>{{ cancelinfo.BoatDetails[0].Boat_Name }}</h4>
+                  </div>
+
+                  <div class="row">
+                    <h6 class="vendor-name">No of LOA</h6>
+                    <span>:</span>
+                    <h4>
+                      <div>
+                        {{ cancelinfo.LOA ? cancelinfo.LOA : 0 }}
+                      </div>
+                    </h4>
+                  </div>
+
+                  <div
+                    style="text-align: center;margin: 0 auto;margin-top: 10px; width: 100%; padding: 0;" >
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" (click)="ApproveLop(cancelinfo)">
+                      APPROVE
+                    </button>
+                  
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+
+          </div>
+
+
+        </div> 
+
+        <div class="col-lg-12">
+          <div *ngFor="let cancelinfo of cancellationInfo | filter: searchLoction; let i = index" >
+          <div class="request" *ngIf="cancelinfo.PartialCancellation_Status == 1" >
+          
+            <div class="row">
+              <div class="col-md-8 alnTx">
+                <div class="img-boat" *ngIf="cancelinfo.BoatDetails[0].Boat_Image[0] != ''">
+                  <img src="{{ imagePath }}{{cancelinfo.BoatDetails[0].Boat_Image[0] ? cancelinfo.BoatDetails[0].Boat_Image[0] : cancelinfo.BoatDetails[0].Boat_Image[1]}}"/>
+                </div>
+
+                <div class="img-boat" *ngIf="cancelinfo.BoatDetails[0].Boat_Image[0] == ''">
+                  
+                  <!-- <h5>Image Not Uploaded</h5> -->
+                  <img  src="/assets/images/boat1.jpg"/>
+                
+                </div>
+
+                <div class="boat-info">
+                  <div class="row">
+                    <h6 class="vendor-name">Booking Number</h6>
+                    <span>:</span>
+                    <h4>{{ cancelinfo.Booking_ID }}</h4>
+                  </div>
+
+                  <div class="row">
+                    <h6 class="vendor-name">Cancellation Dates</h6>
+                    <span>:</span>
+                    <div *ngIf="cancelinfo.cancaledDays.length > 0">
+
+
+                    <h4 *ngFor="let datas_cans of cancelinfo.cancaledDays; let i = index" >
+                          {{datas_cans}}                 
+                    </h4>
+
+                    </div>
+
+                    <div *ngIf="cancelinfo.cancaledDays.length == 0">
+                      <h4 >                       
+      
+                        {{ cancelinfo.start_CancelledDate | date: "dd/MM/yy" }}
+                        To {{ cancelinfo.end_CancelledDate | date: "dd/MM/yy" }} 
+                      </h4>
+      
+                      </div>
+
+                  </div>
+
+                  <div class="row">
+                    <h6 class="vendor-name">Owner Name</h6>
+                    <span>:</span>
+                    <h4>
+                      {{cancelinfo.OwnerDetails[0] ? cancelinfo.OwnerDetails[0].First_Name : NotFound }}
+                    </h4>
+                  </div>
+
+                  <div class="row">
+                    <h6 class="vendor-name">Boat Type</h6>
+                    <span>:</span>
+                    <h4>{{ cancelinfo.BoatDetails[0].Boattype_Name }}</h4>
+                  </div>
+                </div>
+              </div>  
+              <div class="col-md-4">
+                <div class="boat-info">
+                  <div class="row">
+                    <h6 class="vendor-name">Boat Name</h6>
+                    <span>:</span>
+                    <h4>{{ cancelinfo.BoatDetails[0].Boat_Name }}</h4>
+                  </div>
+
+                  <div class="row">
+                    <h6 class="vendor-name">No of LOA</h6>
+                    <span>:</span>
+                    <h4>
+                      <div>
+                        {{ cancelinfo.Total_Edit_Loa ? cancelinfo.Total_Edit_Loa : 0 }}
+                      </div>
+                    </h4>
+                  </div>
+
+                  <div
+                    style="text-align: center;margin: 0 auto;margin-top: 10px; width: 100%; padding: 0;" >
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal_PartialCancellation_Status" (click)="ApproveLop_PartialCancellation_Status(cancelinfo)">
+                      APPROVE 002
+                    </button>
+                  
+                  </div>
+                </div>
+              </div>
+            </div>     
+
+          </div>
+
+          </div>
+
+
+        </div>
+
+
+        <!-- .................Accepted..................... -->
+
+       
+
+        <div class="col-lg-12">
+          <div *ngFor="let cancelinfo of cancellationInfo | filter: searchLoction; let i = index ">
+          <div class="request" *ngIf="0 >= cancelinfo.LOA">
+
+            <div class="row">
+              <div class="col-md-8 alnTx">
+                <div class="img-boat" *ngIf="cancelinfo.BoatDetails[0].Boat_Image[0] != ''">
+                  <img
+                    src="{{ imagePath }}{{
+                      cancelinfo.BoatDetails[0].Boat_Image[0]
+                        ? cancelinfo.BoatDetails[0].Boat_Image[0]
+                        : cancelinfo.BoatDetails[0].Boat_Image[1]
+                    }}"
+                  />
+                </div>
+
+                <div class="img-boat" *ngIf="cancelinfo.BoatDetails[0].Boat_Image[0] == ''">
+                
+                  <!-- <h5>Image Not Uploaded</h5> -->
+                  <img  src="/assets/images/boat1.jpg"/>
+                
+                </div>
+
+                <div class="boat-info">
+                  <div class="row">
+                    <h6 class="vendor-name">Booking Number</h6>
+                    <span>:</span>
+                    <h4>{{ cancelinfo.Booking_ID }}</h4>
+                  </div>
+
+                  <div class="row">
+                    <h6 class="vendor-name">Cancellation Dates</h6>
+                    <span>:</span>
+                    <div *ngIf="cancelinfo.cancaledDays.length > 0">
+
+                      <h4 *ngFor="let cancelinfodaysdisplay of cancelinfo.cancaledDays">
+                        {{cancelinfodaysdisplay}},                  
+                      </h4>
+
+                    </div>
+
+                    <div *ngIf="cancelinfo.cancaledDays.length == 0">                 
+                      <h4>
+                        {{ cancelinfo.start_NoTime | date: "dd/MM/yy" }}
+                        To {{ cancelinfo.end_NoTime | date: "dd/MM/yy" }} 
+                      </h4>
+
+                    </div>
+                    
+                  </div>
+
+                  <div class="row">
+                    <h6 class="vendor-name">Owner Name</h6>
+                    <span>:</span>
+                    <h4>
+                      {{
+                        cancelinfo.OwnerDetails[0]
+                          ? cancelinfo.OwnerDetails[0].First_Name
+                          : NotFound
+                      }}
+                    </h4>
+                  </div>
+
+                  <div class="row">
+                    <h6 class="vendor-name">Boat Type</h6>
+                    <span>:</span>
+                    <h4>{{ cancelinfo.BoatDetails[0].Boattype_Name }}</h4>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+                
+
+                <div class="boat-info">
+                  <div class="row">
+                    <h6 class="vendor-name">Boat Name</h6>
+                    <span>:</span>
+                    <h4>{{ cancelinfo.BoatDetails[0].Boat_Name }}</h4>
+                  </div>
+
+                  <div class="row">
+                    <h6 class="vendor-name">No of LOA</h6>
+                    <span>:</span>
+                    <h4>
+                      <div>
+                        {{ cancelinfo.Approved_LOA  }}
+                      </div>
+                    </h4>
+                  </div>
+
+                  <div
+                    style="
+                      text-align: center;
+                      margin: 0 auto;
+                      margin-top: 10px;
+                      width: 100%;
+                      padding: 0;
+                    "
+                  >
+                    <span class="label label-danger algnBtn"               
+                    
+                    >
+                      APPROVED
+                    </span>
+                    <!-- <button type="button" class="btn btn-info btn-lg">
+                      DECLINE
+                    </button> -->
+                  </div>
+                </div>
+              </div> 
+
+            </div>    
+
+          </div>
+
+          </div>
+
+        </div>
+
+
+
+
+<!-- .................................. -->
+
+
+
+
+
+
+
+
+        <style>
+          .modal-body P {
+            text-align: CENTER;
+            font-size: 20px;
+            margin-top: 30px;
+          }
+
+          button.close {
+            position: absolute;
+            right: 2vh;
+            top: 4px;
+            font-size: 40px;
+            color: #fff;
+          }
+
+          h4.modal-title {
+            text-align: center;
+            margin: 0px auto;
+            font-size: 22px;
+            font-weight: 500;
+          }
+          button.btn.btn-info.btn-lg {
+            background: #d50000;
+            border: NONE;
+            padding: 7px 10px;
+            font-size: 16px;
+            cursor: pointer;
+          }
+        </style>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                  ×
+                </button>
+                <h4 class="modal-title">Boat Type</h4>
+              </div>
+              <div class="modal-body">
+                <p>Boat Type Added Successful!!!.</p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-default"
+                  data-dismiss="modal"
+                >
+                  OK
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="myModal-01" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                  ×
+                </button>
+                <h4 class="modal-title">Boat Type</h4>
+              </div>
+              <div class="modal-body">
+                <p>Boat Type Added Successful!!!.</p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-default"
+                  data-dismiss="modal"
+                >
+                  OK
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal fade" id="myModal-02" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                  ×
+                </button>
+                <h4 class="modal-title">Boat Type</h4>
+              </div>
+              <div class="modal-body">
+                <p>Boat Type Added Successful!!!.</p>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-default"
+                  data-dismiss="modal"
+                >
+                  OK
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+      
+    </div>
+  </div>
+</div>
+<div class="dash-footer">
+  <!-- <small>© Copyright SMART Boating 2021. All Rights Reserved.</small>   -->
+  <app-footer-adminsession></app-footer-adminsession>
+</div>
+<!--Create Component for cancellation Done By Alagesan on 20.05.2021	-->
+<!-- Button trigger modal -->
+
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update LOA</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" *ngIf="IsmodelActive">
+        If you approve this cancellation
+        <strong>{{
+          ApproveLopDetails.Name ? ApproveLopDetails.Name : NotFound
+        }}</strong>
+        will have
+        <!-- <strong
+          ><input
+            type="number"
+            class="Cust_input"
+            placeholder="0"
+            [(ngModel)]="ApproveLopDetails.LOA"
+        /></strong> -->
+        
+        Weekend 
+        <strong
+          ><input
+            type="number"
+            class="Cust_input"
+            placeholder="0"
+            
+            [(ngModel)]="ApproveLopDetails.WeekEnd_Count"
+        /></strong>
+        Weekday
+        <strong
+          ><input
+            type="number"
+            class="Cust_input"
+            placeholder="0"
+            
+            [(ngModel)]="ApproveLopDetails.WeekDay_Count"
+        /></strong>
+        LOA's. Do you want to Proceed?
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="UpdateLop()">
+          Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div
+  class="modal fade"
+  id="exampleModal_PartialCancellation_Status"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update LOA</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" *ngIf="IsmodelActive">
+        If you approve this cancellation
+        <strong>{{
+          ApproveLopDetails.Name ? ApproveLopDetails.Name : NotFound
+        }}</strong>
+        will have
+        <!-- <strong
+          ><input
+            type="number"
+            class="Cust_input"
+            placeholder="0"
+            [(ngModel)]="ApproveLopDetails.LOA"
+        /></strong> -->
+        
+        Weekend 
+        <strong
+          ><input
+            type="number"
+            class="Cust_input"
+            placeholder="0"
+            
+            [(ngModel)]="ApproveLopDetails.WeekEnd_Count_Edit"
+        /></strong>
+        Weekday
+        <strong
+          ><input
+            type="number"
+            class="Cust_input"
+            placeholder="0"
+            
+            [(ngModel)]="ApproveLopDetails.WeekDay_Count_Edit"
+        /></strong>
+        LOA's. Do you want to Proceed?
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Close
+        </button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="UpdateLop()">
+          Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<button style="display:none" type="button" id="pop-up-btn_btn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal2">Open Modal</button>
+            
+              
+<div class="modal fade" id="myModal2"  role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content" sibi="test1">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cancellation</h4>
+      </div>
+      <div class="modal-body">
+        <p>{{getResponce}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default"  (click)= pageRefresh() >OK</button>
+       
+      </div>
+    </div>
+    
+  </div>
+</div>  
