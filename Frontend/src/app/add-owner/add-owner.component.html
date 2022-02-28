@@ -1,0 +1,279 @@
+<div class="main-page">
+    <app-sidemenu></app-sidemenu>
+    <div class="contents-page col-lg-9">
+        <app-header></app-header>
+        <div class="headingz">
+            <h4><a  routerLink="/all-owner/"><i class="far fa-arrow-alt-circle-left"></i> </a> Add Owner</h4>
+        </div>
+        
+        
+        
+        <div class="page contents">
+            
+            <div class="row">
+             <div class="col-md-8 col-lg-9">
+            <div class="sbg-form row">
+             <div class="col-md-12">   
+                <form [formGroup]="form"  novalidate>
+<div class="form-row">
+<div class="form-group col-md-6">
+<label>First Name</label>
+<input type="text" class="form-control" formControlName="First_Name" [ngClass]="{ 'is-invalid': submitted && f.First_Name.errors }">
+</div>
+
+<div class="form-group col-md-6">
+<label>Last Name</label>
+<input type="text" class="form-control" formControlName="Last_Name" [ngClass]="{ 'is-invalid': submitted && f.Last_Name.errors }">
+</div>
+
+</div>
+                    
+                    
+<div class="form-row">
+<div class="form-group col-md-12">
+<label>Home Address</label>
+<textarea class="form-control" rows="3" placeholder="Enter here" formControlName="Home_Address" [ngClass]="{ 'is-invalid': submitted && f.Home_Address.errors }"> </textarea>
+</div>
+</div>                       
+                    
+                    
+<div class="form-row">
+<div class="form-group col-md-6">
+<label>Email</label>
+<input type="email" class="form-control" formControlName="Email" [ngClass]="{ 'is-invalid': submitted && f.Email.errors }">
+</div>
+
+<div class="form-group col-md-6" style="position: relative;">
+<label>Password</label>
+<input [type]="show ? 'text' : 'password'" autocomplete="off" class="form-control" formControlName="Password" [ngClass]="{ 'is-invalid': submitted && f.Password.errors }">
+<span class="" (click)="password()" style="position: absolute;right: 7px; top: 40px; bottom: 0px; z-index: 1; font-size: x-large;" ><i [class]="show ? 'fas fa-eye' : 'fas fa-eye-slash'"></i></span>
+
+<!-- <span class="" (click)="password()" style="position: absolute;right: 7px; bottom: 0px; z-index: 1; font-size: x-large;" ><i class="fas fa-eye"></i></span>
+<i class="fas fa-eye-slash"></i> -->
+</div>    
+</div>                      
+
+      <div class="form-row">
+<div class="form-group col-md-6">
+<label>Mobile Number</label>
+<input type="text" class="form-control" formControlName="Mobile" [ngClass]="{ 'is-invalid': submitted && f.Mobile.errors }">
+</div>
+
+<div class="form-group col-md-6">
+<label>Family Names</label>
+<input type="text" class="form-control" formControlName="Family_Name" [ngClass]="{ 'is-invalid': submitted && f.Family_Name.errors }">
+</div>    
+</div>                     
+                    
+    <!-- Parking Ability for add owner  Done By Alagesan	on 20.07.2021 -->
+    <div class="form-row">
+      <div>
+        <span class="error-msg" *ngIf="submitted && !this.parkingAbilityMessage">
+          Please select any option below in parking ability!
+        </span>
+      </div>
+      <label style="font-weight: bold; text-transform: none; margin-right: 15px;">Parking Ability :</label>
+    <div class="form-group" *ngFor="let item of Parking_Ability_List; let i=index">
+    <div class="form-check-inline">
+    <label class="form-check-label">
+    <input type="radio" class="form-check-input" (change)="onParkingItemChange($event.target.checked)" formControlName="Parking_Ability" [name]="item.name" [value]="item.value" [checked]="item.checked" >{{item.value}}
+    </label>
+    </div>
+    </div> 
+    </div>   
+     
+
+<!-- ........................Start................... -->
+
+    <!-- Sailing ability  for add owner  Done By Alagesan	on 20.07.2021 -->
+    <div class="form-row">
+      <div>
+        <span class="error-msg" *ngIf="submitted && !this.sailingabilityMessage">
+          Please select any option below in sailing ability!
+        </span>
+      </div>
+      <label style="font-weight: bold; text-transform: none; margin-right: 15px;">Sailing Ability :</label>
+    <div class="form-group" *ngFor="let item of Sailing_Ability_List; let i=index">
+    <div class="form-check-inline">
+    <label class="form-check-label">
+    <input type="radio" class="form-check-input" (change)="onSailingItemChange($event.target.checked)" formControlName="Sailing_Ability" [name]="item.name" [value]="item.value" [checked]="item.checked" >{{item.value}}
+    </label>
+    </div>
+    </div> 
+    </div>    
+
+    <!-- Housekeeping  for add owner  Done By Alagesan	on 20.07.2021 -->
+    <div class="form-row">
+      <div>
+        <span class="error-msg" *ngIf="submitted && !this.housekeepingMessage">
+          Please select any option below in housekeeping time !
+        </span>
+      </div>
+      <label style="font-weight: bold; text-transform: none; margin-right: 15px;">Housekeeping Time :</label>
+    <div class="form-group" *ngFor="let item of Housekeeping_List; let i=index">
+    <div class="form-check-inline">
+    <label class="form-check-label">
+    <input type="radio" class="form-check-input" (change)="onHousekeepingItemChange($event.target.checked)" formControlName="Housekeeping" [name]="item.name" [value]="item.value" [checked]="item.checked" >{{item.value}}
+    </label>
+    </div>
+    </div> 
+    </div>    
+          
+
+    <div class="form-row">
+
+      <div class="form-group col-md-6">
+        <label>Emergency Contact Mobile</label>
+        <input type="text" class="form-control" formControlName="Emergency_Contact_Mobile" [ngClass]="{ 'is-invalid': submitted && f.Emergency_Contact_Mobile.errors }">
+        </div>
+
+      <div class="form-group col-md-6">
+      <label>Emergency Contact Name</label>
+      <input type="text" class="form-control" formControlName="Emergency_Contact_Name" [ngClass]="{ 'is-invalid': submitted && f.Emergency_Contact_Name.errors }">
+      </div>
+      
+          
+      </div>  
+
+      <div class="form-row">
+        <div class="form-group col-md-12">
+        <label>Notes</label>
+        <textarea class="form-control" rows="3" placeholder="Enter here" formControlName="Notes" [ngClass]="{ 'is-invalid': submitted && f.Notes.errors }"> </textarea>
+        </div>
+        </div> 
+  
+
+
+
+
+
+<!-- ........................end............................. -->
+<br>
+                    
+<a  class="btn btn-primary"  (click)= addOwner()>SAVE & EXIT</a>
+<!-- <a href="owner-duration.html" class="btn btn-primary">NEXT</a>                    -->
+                   
+
+</form>
+                </div>  
+             </div>
+                </div>
+                
+                   <div class="col-md-4 col-lg-3 owner-img-upload">
+                      <div class="col-md-12">  
+                        <h4>Choose Owner Photo</h4>
+                          <p>Choose minimum 130x130 resolution</p>
+                        </div>   
+                       
+                    <div class="img-upload">
+                      <div class="small-12 medium-2 large-2 columns">
+                      <div class="circle">
+                      <!-- User Profile Image -->
+                      <img class="profile-pic" src="/assets/images/dummy-owner-img.jpg">
+
+
+                      </div>
+                      <div class="p-image">
+                      <i class="fa fa-camera upload-button"></i>
+                      <!-- <input type="file" class="custom-file-input form-control" id="customFile" name="filename" (focusout)="singleImage($event, 'BACK')"> -->
+
+                        <input class="file-upload" type="file"  (change)="singleImage($event, 'BACK')"/>
+                      </div>
+                      </div>
+                    </div>   
+                       
+                       
+                       
+                </div>     
+                
+            </div>
+            
+            <button style="display:none" type="button" id="error-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+            
+              
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" (click)=goToViewPage() data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Owner</h4>
+      </div>
+      <div class="modal-body">
+        <p>{{addownerMessage}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)=goToViewPage() data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+        
+
+<!--Upload profile image max size exceeded message for add owner Done By Alagesan  on 16.06.2021 -->
+
+<button style="display:none" type="button" id="profileImageModel" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModalProfileImage">Open Modal</button>
+            
+              
+<div class="modal fade" id="myModalProfileImage" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content" style="Width:120%">
+      <div class="modal-header">
+        <button type="button" class="close"  data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Profile Image</h4>
+      </div>
+      <div class="modal-body">
+        <p>{{profilePicResponse}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<!--Upload profile image max size exceeded message for add owner Done By Alagesan  on 16.06.2021 -->
+
+        </div>
+    </div>
+</div>
+
+
+
+<button style="display:none" type="button" id="btn-CommenMessage-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Footer-Success-Modal">Open Modal</button>
+            
+              
+<div class="modal fade" id="Footer-Success-Modal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p>{{commenMessages}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default"  data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+
+
+
+<div class="dash-footer">
+<!-- <small>© Copyright SMART Boating 2021. All Rights Reserved.</small>   -->
+<app-footer-adminsession></app-footer-adminsession>  
+</div>
+

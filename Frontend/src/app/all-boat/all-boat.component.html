@@ -1,0 +1,390 @@
+<div class="main-page">
+  <app-sidemenu></app-sidemenu>
+  <div class="contents-page">
+    <app-header></app-header>
+    <div class="headingz">
+      <h4>Boats</h4>
+    </div>
+
+
+
+    <div class="page contents">
+      <div class="row">
+
+        <div class="col-md-4 dash-filter">
+
+          <div class="dropdown">
+
+            <!-- <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="width: 100%;margin: -3px 0px 0px 0px;">{{Location_Name_dropDown}}
+                  <span><i class="fas fa-filter"></i></span></button> -->
+
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"
+              style="width: 100%;">{{Location_Name_dropDown}}
+              <span><i class="fas fa-filter"></i></span></button>
+
+            <!-- <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{Location_Name_dropDown}} -->
+            <!-- <span><i class="fas fa-filter"></i></span></button> -->
+            <ul class="dropdown-menu">
+              <input class="form-control" id="myInput" type="text" placeholder="Search.." [(ngModel)]="searchLoction">
+              <li *ngFor="let loc of loctions | filter: searchLoction let i = index;">
+                <a style="cursor:pointer;" (click)="getLoctionTypeId(loc)">{{loc.Boat_Location}}</a>
+              </li>
+              <!--Location dropdown clear for all boat Done By Alagesan  on 25.05.2021 -->
+              <li><input type="button" class="btn btn-clear" (click)="pageRefresh()" style="text-align: center;" value="Clear"></li>
+            </ul>
+          </div>
+
+        </div>
+        <div class="col-md-4 boat-search">
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" style="height: 36px;" [(ngModel)]="searchText" placeholder="Search"
+              aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" style="height: 36px;" type="button"><i
+                  class="fas fa-search"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <ul style="width: 100%;" class="top-btn">
+            <li style="width: 100%;"><a style="width: 96%;" routerLink="/add-boat/" class="btn btn-primary">ADD
+                BOAT</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <form class="form-horizontal" [formGroup]="form" novalidate>
+        <div class="row date-filter" style="padding: 0 5px;">
+
+
+          <div class="form-group col-md-3" style="margin-top: 33px;">
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" 
+                style="width: 100%;">{{Launch_Date_DropDown}}
+                <span><i class="fas fa-filter"></i></span></button>
+              <ul class="dropdown-menu">
+              <!--Update the launch date for all boat Done By Alagesan  on 24.06.2021 -->
+                <li><a (click)="setLanDates($event)" value="swdf">Launch Date</a></li>
+                <li><a (click)="setLanDates($event)" value="sadf">Pre-Launch Date</a></li>
+              </ul>
+            </div>
+          </div>
+
+
+          <div class="form-group col-md-3">
+            <label>From Date </label>
+            <!-- <input id="datepicker" type="text" class="form-control" data-zdp_readonly_element="false" formControlName="Launch_Date1" (focusout)="fromDates($event)"
+    [ngClass]="{ 'is-invalid': submitted && f.Launch_Date1.errors }"> -->
+
+            <input style="height: 36px;" id="datepiker-all-boat-from-date" type="text" class="form-control"
+              data-zdp_readonly_element="true" formControlName="Launch_Date1" 
+              [ngClass]="{ 'is-invalid': submitted && f.Launch_Date1.errors }">
+
+
+          </div>
+          <div class="form-group col-md-3">
+            <label>To Date </label>
+            <!-- <input id="datepicker-2" type="text" class="form-control" data-zdp_readonly_element="false" formControlName="Launch_Date2" (focusout)="toDates($event)"
+ [ngClass]="{ 'is-invalid': submitted && f.Launch_Date2.errors }"> -->
+
+            <input style="height: 36px;" id="datepiker-all-boat-to-date" type="text" class="form-control"
+              data-zdp_readonly_element="true" formControlName="Launch_Date2" 
+              [ngClass]="{ 'is-invalid': submitted && f.Launch_Date2.errors }">
+
+          </div>
+          <div class="col-md-3 padT-30" style="text-align: right;">
+            <!--           <a  class="btn btn-primary" style="width: 100%;">SEARCH</a>-->
+            <button type="button" class="btn btn-primary" (click)="getSearchData()" style="width: 100%;">SEARCH</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- Modal -->
+      <div class="modal fade" id="alert" tabindex="-1" role="dialog" aria-labelledby="boat-typeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+
+            <div class="modal-body">
+              <div class="col-md-12">
+                <div class="alert alert-success alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong>Success!</strong> This alert box could indicate a successful or positive action.
+                </div>
+                <div class="alert alert-info alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong>Info!</strong> This alert box could indicate a neutral informative change or action.
+                </div>
+                <div class="alert alert-warning alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong>Warning!</strong> This alert box could indicate a warning that might need attention.
+                </div>
+                <div class="alert alert-danger alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+                  <strong>Danger!</strong> This alert box could indicate a dangerous or potentially negative action.
+                </div>
+
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="boat-image">
+        <h4 class="content-title">Boats</h4>
+
+        <div class="row boat-list rowPads">
+
+          <div class="col-sm-6 col-md-4 padspace5" *ngFor="let boat of allBoats | filter: searchText  let i = index;">
+            <div class="card" style="max-width: 100%;margin: 5px 0 10px;" >
+              <div class="profile-pic">
+                <a><img class="card-img-top" *ngIf="!boat.Boat_Image[0]" src="/assets/images/boat1.jpg"
+                    alt="boat image"></a>
+                <a><img class="card-img-top" *ngIf="boat.Boat_Image[0]" src="{{imgUrl+boat.Boat_Image[0]}}"
+                    alt="boat image"></a>
+                <!-- <iframe class="card-img-top"  *ngIf="boat.Boat_HandBook" [src]="sanitizer.bypassSecurityTrustResourceUrl(imgUrl+boat.Boat_HandBook)" ></iframe> -->
+
+                <ul class="edit">
+                  <li> <a (click)=editBoat(boat)><i class="far fa-edit"></i></a></li>
+                  <li> <a (click)=viewBoat(boat)><i class="far fa-eye"></i></a></li>
+                  <!-- <li>  <a (click)=deleteBoat(boat._id)><i class="far fa-trash-alt"></i></a></li> -->
+                  <li> <a (click)=deleteBoatModel(boat._id)><i class="far fa-trash-alt"></i></a></li>
+
+
+                </ul>
+              </div>
+
+              <div class="card-body">
+                <div *ngIf="boat.Location_Name">
+                  <a class="card-link"><i class="fas fa-map-marker-alt"></i> {{boat.Location_Name}}</a>
+                  <a class="card-link f-right"><i style="margin: 5px 0px 0px 0px;right: 15px;position: absolute;"
+                      class="far fa-calendar-alt" (click)=viewBoat(boat)></i> </a>
+                </div>
+                <div *ngIf="!boat.Location_Name && boat.locationDetails.length > 0">
+                  <a class="card-link"><i class="fas fa-map-marker-alt"></i> {{boat.locationDetails[0].Boat_Location}}</a>
+                  <a class="card-link f-right"><i style="margin: 5px 0px 0px 0px;right: 15px;position: absolute; cursor: pointer;"
+                      class="far fa-calendar-alt" (click)=viewBoat(boat)></i> </a>
+                </div>
+
+              </div>
+              <div class="card-header">
+                <a> {{boat.Boat_Name}}</a>
+              </div>
+
+              <div class="card-body row">
+                <div class="booking-days col-md-6">
+                  <!-- <h6>100/300 Days </h6> -->
+                  <h6  *ngIf="!boat.Total_Days">0/0 Days </h6>
+                  <h6  *ngIf="boat.Total_Days">{{boat.BookedDaystotal}}/ {{boat.AllocatedDaystotal}} Days </h6>
+
+                </div>
+                 <!--Update the boat details for all boat Done By Alagesan  on 20.06.2021 -->
+                <div class="owner-nos col-md-6">
+                  <h6>{{boat.Owners_Allowed}}  Owners </h6>
+                </div>
+
+                <div *ngIf="boat.Boat_Status == 0"> 
+                  <div class="custRadiBtn col-md-12">
+                    <label class="container-rad">En
+                      <input type="radio" name="{{boat._id}}" (click)='Enabled_Boat(boat)'>
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container-rad orange">Di
+                      <input type="radio" checked="checked" name="{{boat._id}}" (click)='Disable_Boat(boat)'>
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container-rad red">Ar
+                      <input type="radio" name="{{boat._id}}" (click)='Archived_Boat(boat)'>
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+                </div>
+
+                <div *ngIf="boat.Boat_Status == 1"> 
+                  <div class="custRadiBtn col-md-12">
+                    <label class="container-rad">En
+                      <input type="radio" checked="checked" name="{{boat._id}}" (click)='Enabled_Boat(boat)'>
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container-rad orange">Di
+                      <input type="radio" name="{{boat._id}}" (click)='Disable_Boat(boat)'>
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container-rad red">Ar
+                      <input type="radio" name="{{boat._id}}" (click)='Archived_Boat(boat)'>
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+                </div>
+
+                <div *ngIf="boat.Boat_Status == 2"> 
+                  <div class="custRadiBtn col-md-12">
+                    <label class="container-rad">En
+                      <input type="radio" name="{{boat._id}}" (click)='Enabled_Boat(boat)'>
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container-rad orange">Di
+                      <input type="radio" name="{{boat._id}}" (click)='Disable_Boat(boat)'>
+                      <span class="checkmark"></span>
+                    </label>
+                    <label class="container-rad red">Ar
+                      <input type="radio" checked="checked" name="{{boat._id}}" (click)='Archived_Boat(boat)'>
+                      <span class="checkmark"></span>
+                    </label>
+                  </div>
+                </div>
+                <div *ngIf="boat.BoattypeDetails && boat.BoattypeDetails[0].Boat_Type" class="booking-days col-md-6">
+            <small>&nbsp;{{boat.BoattypeDetails[0].Boat_Type}}</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+          <!-- --------- -->
+
+
+
+        </div>
+        <!-- <jw-pagination [items]="allBoats" (changePage)="onChangePage($event)"></jw-pagination> -->
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+<button style="display:none" type="button" id="btn-CommenMessage-disp-btns-angular" class="btn btn-info btn-lg" data-toggle="modal" data-target="#btn-CommenMessage-disp-Modal">Open Modal</button>
+             
+<div class="modal fade" id="btn-CommenMessage-disp-Modal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="h4-message-type">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p id="p-message-content">{{CommenMessages}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)='pageRefresh()' data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="dash-footer">
+  <app-footer-adminsession></app-footer-adminsession>
+  <!-- <small>© Copyright SMART Boating 2021. All Rights Reserved.</small> -->
+</div>
+<!-- --------- -->
+<!--Update boat modal  for all boat Done By Alagesan  on 18.06.2021 -->
+<button style="display:none" type="button" id="removeBoat" class="btn btn-info btn-lg" data-toggle="modal"
+  data-target="#removeBoats">Open Modal</button>
+
+<!-- Modal -->
+
+<div class="modal fade" id="removeBoats" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Boat</h4>
+      </div>
+      <div class="modal-body">
+     <span class="red">This boat is about to be permanently deleted, and cannot be recovered.</span>
+        <p>Are you sure you want to delete this boat?</p>
+      </div>
+      <div class="modal-footer">
+    <span a (click)=deleteBoat() class="confirm-bttn">Yes</span>
+    <span a  data-dismiss="modal" class="cancel-bttn">No</span>
+       </div>
+    </div>
+
+  </div>
+</div>
+
+<!--Update boat modal  for all boat Done By Alagesan  on 18.06.2021 -->
+<button style="display:none" type="button" id="removeBookedBoat" class="btn btn-info btn-lg" data-toggle="modal" data-target="#removeBookedBoats">Open Modal</button>
+
+<div class="modal fade" id="removeBookedBoats" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content" style="width:600px">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Boat</h4>
+      </div>
+      <div class="modal-body">
+        <!-- <span class="red">ARE YOU SURE ?</span> -->
+        <p>This boat has an upcoming booking, so it cannot be deleted.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--Update boat modal  for all boat Done By Alagesan  on 18.06.2021 -->
+<button style="display:none" type="button" id="pop-up-btn" class="btn btn-info btn-lg" data-toggle="modal"
+  data-target="#myModal">Open Modal</button>
+
+
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Boat </h4>
+      </div>
+      <div class="modal-body">
+        <p>{{getResponce}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+
+  </div>
+</div>

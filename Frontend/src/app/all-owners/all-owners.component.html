@@ -1,0 +1,276 @@
+<div class="main-page">
+    <app-sidemenu></app-sidemenu>
+    <div class="contents-page col-lg-9">
+        <app-header></app-header>
+        <div class="headingz">
+            <h4>Owners</h4>
+        </div>        
+        <div class="page contents">            
+            <div class="row">               
+             
+                 <div class="col-md-4 boat-search">
+                     <div class="input-group mb-3">
+                        <input class="form-control" id="myInput" type="text" placeholder="Search" [(ngModel)]="searchLoction">
+
+</div>
+                  </div> 
+                
+                
+                
+                
+            <div class="col-md-8">
+                <ul class="top-btn" style="float: right; margin: 8px 0px;">   
+                 <li ><a  routerLink="/add-owner/" class="btn btn-primary">ADD OWNER</a></li>
+                 <li ><a  routerLink="/ownership-transfer/" class="btn btn-primary">OWNERSHIP TRANSFER</a></li>
+                </ul>       
+            </div>
+            </div>
+            
+            <div class="container profile-page" style="padding: 0;margin-top: 20px;">
+<div class="row divLargs">
+  
+  <div class="col-xl-6 col-lg-12 col-md-6" *ngFor="let owner of allOwners | filter: searchLoction let i = index;" >
+      <div class="card profile-header">
+          <div class="body">
+              <div class="row">
+                 <div class="col-lg-3 col-md-3 col-12 text-center img_divs">
+                      <div class="profile-image" style="margin: 0 auto;    margin-top: 15px;">
+                         <!-- <img src="/assets/images/owner-img-1.jpg" alt="owner-img"> -->
+                        
+                         <img class="img-responsive" *ngIf="!owner.Profile_Image" src="../../assets/images/owner-img-1.jpg" alt="">
+                             <img class="img-responsive" *ngIf="owner.Profile_Image" src="{{imgUrl+owner.Profile_Image}}" alt="">
+                        
+                         
+                        </div>
+                  </div>
+                  <div class="col-lg-7 col-md-9 col-12">
+                      <h4 class="m-t-0 m-b-0"><strong>{{owner.First_Name}}</strong> {{owner.Last_Name}}</h4>
+                      <span class="email"><i class="far fa-envelope"></i> {{owner.Email}}</span> <br>
+                      <span class="phone"><i class="fas fa-mobile-alt"></i> {{owner.Mobile}}</span> <br>
+                      <span class="phone"><i class="fas fa-house-user"></i> {{owner.Family_Name}}</span><br>
+                      <span *ngIf="owner.Boat_Summer_Details.length == 0" class="phone"><i class="fas fa-ship"></i> No Boats Assigned</span>
+                      <span *ngIf="owner.Boat_Summer_Details.length > 0" class="phone"><i class="fas fa-ship"></i> 
+                        <span style="margin-left: 5px;" *ngFor="let bot_details of owner.Boat_Summer_Details; let index = index" (click)="Boatbase_SummerDetails(owner.Boat_Summer_Details,bot_details)">
+                          <a style="cursor:pointer; color:brown;">{{bot_details.Boat_Name}} </a>
+                          <a style="cursor:pointer; color:brown;" *ngIf="bot_details.Boat_Name == ''"> No Boats Assigned </a>
+                        </span>
+                      </span>
+
+                  </div>  
+                  
+                  <div class="col-md-2 update-user">
+                      <ul>
+                          <li><button (click)= editOwner(owner)><i class="far fa-edit"></i> </button></li>
+                          <li><a ><button (click)= viewOwner(owner)><i class="far fa-eye"></i> </button></a></li>
+                          <li><button (click)= deleteownerModel(owner)><i class="far fa-trash-alt"></i> </button></li>
+                          
+                          <!-- ......................TemperoryComment........................-->
+                         <!-- <li><button *ngIf="owner.Block == true"  (click)= owner_Enable_And_Disable(owner) style="background-color: darkgreen;">En</button></li>
+                         <li><button *ngIf="owner.Block == false" (click)= owner_Enable_And_Disable(owner) style="background-color: red;">De</button></li>
+                            -->
+                        </ul>    
+                  </div>
+
+
+
+                  <div *ngFor="let bot_details of owner.Boat_Summer_Details; let index = index">
+
+                     <div class="row" *ngIf="visibleIndices.has(bot_details.dynamicNumber)" style="margin: 0;">
+
+                          <div class="col-md-6 owner-datas"  *ngIf="owner.Boat_Summer_Details.length > 0;  else templateName">
+                              <ul>
+                                <li><h6>TOTAL DAYS BOOKED </h6> <span>{{bot_details.Total_Days_BookedDays}}/{{bot_details.Total_Days}}</span></li>
+                              <li><h6>SUMMER WEEKDAYS </h6> <span>{{bot_details.Summer_WeekDays_BookedDays}}/{{bot_details.Summer_WeekDays}}</span></li>
+                                
+                              <li><h6>SUMMER WEEKENDS </h6> <span>{{bot_details.Summer_WeekEndDays_BookedDays}}/{{bot_details.Summer_WeekEndDays}}</span></li>
+
+                              
+
+                            </ul>
+                         </div>  
+                        
+                          <div class="col-md-6 owner-datas"  *ngIf="owner.Boat_Summer_Details.length > 0; else templateName2">
+                            <ul>
+                              <li><h6>PARTIALLY CANCELLED </h6> <span>{{bot_details.No_Cancellation}}/5</span></li>
+                              <li><h6>WINTER WEEKDAYS </h6> <span>{{bot_details.Winter_WeekDays_BookedDays}}/{{bot_details.Winter_WeekDays}}</span></li>
+                              <li><h6>WINTER WEEKENDS </h6> <span>{{bot_details.Winter_WeekEndDays_BookedDays}}/{{bot_details.Winter_WeekEndDays}}</span></li>
+                              
+                            </ul>
+                        </div>
+                        
+                        <ng-template #templateName>
+                        <div class="col-md-6 owner-datas">
+                            <ul>
+                        <li><h6>TOTAL DAYS BOOKED </h6> <span>0/0</span></li>
+                        <li><h6>SUMMER WEEKDAYS </h6> <span>0/0</span></li>
+                        <li><h6>SUMMER WEEKENDS </h6> <span>0/0</span></li>
+                        
+                            </ul>
+                        </div>  
+                      </ng-template>
+                      <ng-template #templateName2>
+                        
+                          <div class="col-md-6 owner-datas">
+                            <ul>
+                              <li><h6>PARTIALLY CANCELLED </h6> <span>0/5</span></li>
+                       
+                        <li><h6>WINTER WEEKDAYS </h6> <span>0/0</span></li>
+                        <li><h6>WINTER WEEKENDS </h6> <span>0/0</span></li>
+                            </ul>
+                        </div>
+
+                      </ng-template>
+                     
+                       </div>
+                  </div>
+
+                  <!-- ......................... -->
+                  <div>
+
+                    <div *ngIf="owner.Status == 0"> 
+                      <div class="custRadiBtn col-md-12">
+                        <label class="container-rad">En
+                          <input type="radio" name="{{owner.Owner_id}}" (click)='Enabled_Owner(owner)'>
+                          <span class="checkmark"></span>
+                        </label>
+                        <label class="container-rad orange">Di
+                          <input type="radio" checked="checked" name="{{owner.Owner_id}}" (click)='Disable_Owner(owner)'>
+                          <span class="checkmark"></span>
+                        </label>
+                        <label class="container-rad red">Ar
+                          <input type="radio" name="{{owner.Owner_id}}" (click)='Archived_Owner(owner)'>
+                          <span class="checkmark"></span>
+                        </label>
+                      </div>
+                    </div>
+    
+                    <div *ngIf="owner.Status == 1"> 
+                      <div class="custRadiBtn col-md-12">
+                        <label class="container-rad">En
+                          <input type="radio" checked="checked" name="{{owner.Owner_id}}" (click)='Enabled_Owner(owner)'>
+                          <span class="checkmark"></span>
+                        </label>
+                        <label class="container-rad orange">Di
+                          <input type="radio" name="{{owner.Owner_id}}" (click)='Disable_Owner(owner)'>
+                          <span class="checkmark"></span>
+                        </label>
+                        <label class="container-rad red">Ar
+                          <input type="radio" name="{{owner.Owner_id}}" (click)='Archived_Owner(owner)'>
+                          <span class="checkmark"></span>
+                        </label>
+                      </div>
+                    </div>
+    
+                    <div *ngIf="owner.Status == 2"> 
+                      <div class="custRadiBtn col-md-12">
+                        <label class="container-rad">En
+                          <input type="radio" name="{{owner.Owner_id}}" (click)='Enabled_Owner(owner)'>
+                          <span class="checkmark"></span>
+                        </label>
+                        <label class="container-rad orange">Di
+                          <input type="radio" name="{{owner.Owner_id}}" (click)='Disable_Owner(owner)'>
+                          <span class="checkmark"></span>
+                        </label>
+                        <label class="container-rad red">Ar
+                          <input type="radio" checked="checked" name="{{owner.Owner_id}}" (click)='Archived_Owner(owner)'>
+                          <span class="checkmark"></span>
+                        </label>
+                      </div>
+                    </div>
+
+                    
+                  </div>
+
+                  <!-- ........................... -->
+                        
+                 </div>
+          </div>                    
+      </div>
+  </div>  
+  
+</div>
+<!-- <jw-pagination [items]="allOwners" (changePage)="onChangePage($event)"></jw-pagination> -->
+
+
+</div>   
+           
+            
+        </div>
+    </div>
+</div>
+<div class="dash-footer">
+    <app-footer-adminsession></app-footer-adminsession>    
+</div>
+
+<!-- --------- -->
+<button style="display:none" type="button" id="removeBoat" class="btn btn-info btn-lg" data-toggle="modal" data-target="#removeBoats">Open Modal</button>
+
+<!-- Modal -->
+<div class="modal fade" id="removeBoats" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Owner</h4>
+      </div>
+      <div class="modal-body">
+     <span class="red">The owner is about to be permanently deleted, and cannot be recovered.</span>
+        <p>Are you sure you want to delete this owner?</p>
+      </div>
+      <div class="modal-footer">
+    <span a data-dismiss="modal" (click)=deleteOwner() class="confirm-bttn">Yes</span>
+    <span a data-dismiss="modal" class="cancel-bttn">No</span>
+       </div>
+    </div>
+
+  </div>
+</div>
+
+<button style="display:none" type="button" id="pop-up-btn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <!-- Change the pop up message title for all owner Done By Alagesan on 30.06.2021	-->
+        <h4 class="modal-title">Owner </h4>
+      </div>
+      <div class="modal-body">
+        <p>{{getResponce}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="location_reload()" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<button style="display:none" type="button" id="btn-CommenMessage-save-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#CommenSave-Success-Modal">Open Modal</button>
+            
+              
+<div class="modal fade" id="CommenSave-Success-Modal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="h4-message-save-type">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p id="p-message-save-content">{{commenmessages}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)=location_reload() data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>

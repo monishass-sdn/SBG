@@ -1,0 +1,7 @@
+.modal{
+    pointer-events: none !important;
+  } 
+.mobile-sidebar{
+    left: 0px !important;
+    transition: 0.5s;
+}

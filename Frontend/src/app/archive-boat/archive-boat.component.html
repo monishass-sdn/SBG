@@ -1,0 +1,251 @@
+<!--Create Component for archive boat Done By Alagesan  on 20.05.2021 -->
+<div class="main-page">
+    <app-sidemenu></app-sidemenu>
+
+    <div class="contents-page">
+        <app-header></app-header>
+        <div class="headingz">
+          <!--Update heading for archive boat Done By Alagesan  on 21.05.2021 -->
+            <h4>Archive Boats</h4>
+        </div>
+        
+        
+        
+        <div class="page contents">
+            <div class="row" style="margin-bottom: 25px;">
+                  
+           <div class="col-md-8 dash-filter">   
+           
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{Location_Name_dropDown}}
+                <span><i class="fas fa-filter"></i></span></button>
+                <ul class="dropdown-menu">
+                <input class="form-control" id="myInput" type="text" placeholder="Search.." [(ngModel)]="searchLoction">
+                <li *ngFor="let loc of loctions | filter: searchLoction let i = index;">
+                  <a style="cursor:pointer;"  (click)="getLoctionTypeId(loc)">{{loc.Boat_Location}}</a>
+                </li>
+                <!--Location dropdown clear for archive boat Done By Alagesan  on 25.05.2021 -->
+              <li><input type="button" class="btn btn-clear" (click)="pageRefresh()" style="text-align: center;" value="Clear"></li>
+                </ul>
+                                  </div>
+               
+                 </div>        
+                 <div class="col-md-4 boat-search">
+                     <div class="input-group mb-3">
+                        <input type="text" class="form-control" style="height: 36px;" [(ngModel)]="searchText" placeholder="Search" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <div class="input-group-append">
+<button class="btn btn-outline-secondary" style="height: 36px;" type="button"><i class="fas fa-search"></i></button>
+</div>
+</div>
+                  </div>   
+                  
+           
+            </div>
+            
+          <h4 class="content-title">Boats</h4>   
+            
+             <div class="row boat-list rowPads">
+                
+             <div class="col-sm-6 col-md-4 padspace5" *ngFor="let boat of allBoats | filter: searchText  let i = index;">
+              <div class="card" style="max-width: 100%;margin: 5px 0 10px;" >
+              <!--Update view boat redirect for archive boat Done By Alagesan  on 13.06.2021 -->
+                <div class="profile-pic">
+                    <a ><img class="card-img-top"  *ngIf="!boat.Boat_Image[0]" src="/assets/images/boat1.jpg" alt="boat image"></a>
+                    <a ><img class="card-img-top"  *ngIf="boat.Boat_Image[0]" src="{{imgUrl+boat.Boat_Image[0]}}" alt="boat image"></a>
+                    <ul class="edit">
+                        <li>  <a (click)=editBoat(boat)><i class="far fa-edit"></i></a></li>
+                      <li>  <a (click)=viewBoat(boat)><i class="far fa-eye"></i></a></li> 
+                      <li>  <a (click)=deleteBoatModel(boat._id)><i class="far fa-trash-alt"></i></a></li>
+   
+   
+                      </ul>
+                </div>
+                 
+                <div class="card-body">
+                  <div *ngIf="boat.Location_Name">
+                    <a class="card-link"><i class="fas fa-map-marker-alt"></i> {{boat.Location_Name}}</a>
+                    <a class="card-link f-right"><i style="margin: 5px 0px 0px 0px;right: 15px;position: absolute;"
+                        class="far fa-calendar-alt" (click)=viewBoat(boat)></i> </a>
+                  </div>
+                  <div *ngIf="!boat.Location_Name">
+                    <a class="card-link"><i class="fas fa-map-marker-alt"></i> {{boat.locationDetails[0].Boat_Location}}</a>
+                    <a class="card-link f-right"><i style="margin: 5px 0px 0px 0px;right: 15px;position: absolute; cursor: pointer;"
+                        class="far fa-calendar-alt" (click)=viewBoat(boat)></i> </a>
+                  </div>
+                </div>                    
+                <div class="card-header">
+                <a> {{boat.Boat_Name}}</a>
+                </div>
+
+                <div class="card-body row">                    
+                  <div class="booking-days col-md-6">
+                    <!-- <h6>100/300 Days </h6> -->
+                    <!-- <h6  *ngIf="!boat.Total_Days">0/0 Days </h6>
+                    <h6  *ngIf="boat.Total_Days &&(boat.BookedDaystotal || boat.AllocatedDaystotal)">{{boat.BookedDaystotal}}/ {{boat.AllocatedDaystotal}} Days </h6>
+                    <h6  *ngIf="boat.Total_Days && !boat.BookedDaystotal && !boat.AllocatedDaystotal">0/0 Days </h6> -->
+                    <h6  *ngIf="!boat.Total_Days">0/0 Days </h6>
+                    <h6  *ngIf="boat.Total_Days">{{boat.BookedDaystotal?boat.BookedDaystotal:'0'}}/ {{boat.AllocatedDaystotal?boat.AllocatedDaystotal:'0'}} Days </h6>
+                  </div>
+                   <!--Update the boat details for all boat Done By Alagesan  on 20.06.2021 -->
+                  <div class="owner-nos col-md-6">
+                    <h6>{{boat.Owners_Allowed}}  Owners </h6>
+                  </div>
+  
+                  <div *ngIf="boat.Boat_Status == 0"> 
+                    <div class="custRadiBtn col-md-12">
+                      <label class="container-rad">En
+                        <input type="radio" name="{{boat._id}}" (click)='Enabled_Boat(boat)'>
+                        <span class="checkmark"></span>
+                      </label>
+                      <label class="container-rad orange">Di
+                        <input type="radio" checked="checked" name="{{boat._id}}" (click)='Disable_Boat(boat)'>
+                        <span class="checkmark"></span>
+                      </label>
+                      <label class="container-rad red">Ar
+                        <input type="radio" name="{{boat._id}}" (click)='Archived_Boat(boat)'>
+                        <span class="checkmark"></span>
+                      </label>
+                    </div>
+                  </div>
+  
+                  <div *ngIf="boat.Boat_Status == 1"> 
+                    <div class="custRadiBtn col-md-12">
+                      <label class="container-rad">En
+                        <input type="radio" checked="checked" name="{{boat._id}}" (click)='Enabled_Boat(boat)'>
+                        <span class="checkmark"></span>
+                      </label>
+                      <label class="container-rad orange">Di
+                        <input type="radio" name="{{boat._id}}" (click)='Disable_Boat(boat)'>
+                        <span class="checkmark"></span>
+                      </label>
+                      <label class="container-rad red">Ar
+                        <input type="radio" name="{{boat._id}}" (click)='Archived_Boat(boat)'>
+                        <span class="checkmark"></span>
+                      </label>
+                    </div>
+                  </div>
+  
+                  <div *ngIf="boat.Boat_Status == 2"> 
+                    <div class="custRadiBtn col-md-12">
+                      <label class="container-rad">En
+                        <input type="radio" name="{{boat._id}}" (click)='Enabled_Boat(boat)'>
+                        <span class="checkmark"></span>
+                      </label>
+                      <label class="container-rad orange">Di
+                        <input type="radio" name="{{boat._id}}" (click)='Disable_Boat(boat)'>
+                        <span class="checkmark"></span>
+                      </label>
+                      <label class="container-rad red">Ar
+                        <input type="radio" checked="checked" name="{{boat._id}}" (click)='Archived_Boat(boat)'>
+                        <span class="checkmark"></span>
+                      </label>
+                    </div>
+                  </div>
+                
+                
+                </div>                   
+                </div>
+              </div>
+          
+            </div>  
+         </div>
+    </div>
+</div>
+<div class="dash-footer">
+<small>© Copyright SMART Boating 2021. All Rights Reserved.</small>    
+</div>
+<!--Create Component for archive boat Done By Alagesan  on 20.05.2021 -->
+
+
+<!-- --------- -->
+<!--Update Delete modal for archive boat Done By Alagesan  on 14.06.2021 -->
+
+<button style="display:none" type="button" id="removeBoat" class="btn btn-info btn-lg" data-toggle="modal" data-target="#removeBoats">Open Modal</button>
+
+<!-- Modal -->
+<!--Update boat modal  for all boat Done By Alagesan  on 14.06.2021 -->
+<div class="modal fade" id="removeBoats" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Boat</h4>
+      </div>
+      <div class="modal-body">
+     <span class="red">This boat is about to be permanently deleted, and cannot be recovered.</span>
+        <p>Are you sure you want to delete this boat?</p>
+      </div>
+      <div class="modal-footer">
+    <span a (click)=deleteBoat() class="confirm-bttn">Yes</span>
+    <span a  data-dismiss="modal" class="cancel-bttn">No</span>
+       </div>
+    </div>
+
+  </div>
+</div>
+
+<button style="display:none" type="button" id="pop-up-btn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Boat </h4>
+      </div>
+      <div class="modal-body">
+        <p>{{getResponce}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<button style="display:none" type="button" id="btn-CommenMessage-disp-btns-angular" class="btn btn-info btn-lg" data-toggle="modal" data-target="#btn-CommenMessage-disp-Modal">Open Modal</button>
+             
+<div class="modal fade" id="btn-CommenMessage-disp-Modal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="h4-message-type">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p id="p-message-content">{{CommenMessages}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)='pageRefresh()' data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+<button style="display:none" type="button" id="removeBookedBoat" class="btn btn-info btn-lg" data-toggle="modal" data-target="#removeBookedBoats">Open Modal</button>
+
+<div class="modal fade" id="removeBookedBoats" role="dialog">
+  <div class="modal-dialog">
+
+    <div class="modal-content" style="width:600px">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Boat</h4>
+      </div>
+      <div class="modal-body">
+        <!-- <span class="red">ARE YOU SURE ?</span> -->
+        <p>This boat has an upcoming booking, so it cannot be deleted.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+
+  </div>
+</div>

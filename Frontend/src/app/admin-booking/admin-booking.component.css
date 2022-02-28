@@ -1,0 +1,29 @@
+.modal{
+    pointer-events: none !important;
+  } 
+.calender-custom .code-html #calendar {
+    max-width: 100% !important;
+}  
+.boat-image {
+    width: 100% !important;
+    margin: 19px 0px 0px 0px !important;
+}   
+
+.page.contents.fix-page{
+    padding: 30px;
+}
+#menu {
+    padding: 16px 0;
+}
+
+.mobile-sidebar{
+    left: 0px !important;
+    transition: 0.5s;
+}
+
+@media screen and (max-width:580px) {
+
+    .page.contents.fix-page {  padding: 15px;   }
+
+
+}   

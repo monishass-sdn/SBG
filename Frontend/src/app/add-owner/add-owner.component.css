@@ -1,0 +1,41 @@
+
+
+.modal{
+    pointer-events: none !important;
+  } 
+
+.img-upload img.profile-pic{
+    height: 128px;
+    object-fit: cover;
+}
+.img-upload .small-12.medium-2{
+    margin: 0 auto;
+    width: 130px;
+    position: relative;
+}
+.img-upload .circle{
+    left: inherit;
+    top: 20px;
+    position: relative;
+    margin: 0 auto;
+    border: 2px solid rgb(136 136 136 / 70%);
+    background-color: #c3c3c3;
+}
+.img-upload .p-image {
+    top: 118px;
+    left: 10px;
+}
+
+/*  Add error message css Done By Alagesan on 20.07.2021*/
+.error-msg{
+    color: red;
+    text-align: center;
+    background: #ffd8d8;
+    padding: 14px;
+    width: 100%;
+  }
+
+  .mobile-sidebar{
+    left: 0px !important;
+    transition: 0.5s;
+}

@@ -1,0 +1,14 @@
+.modal{
+    pointer-events: none !important;
+  } 
+.dash-filter .dropdown {
+    float: left;
+    margin: -12px 5px 0px -9px;
+    width: 100%;
+    padding: 14px;
+}
+
+.mobile-sidebar{
+    left: 0px !important;
+    transition: 0.5s;
+}
