@@ -1,0 +1,1053 @@
+
+
+
+
+
+<div class="main-page">
+    <app-sidemenu></app-sidemenu>
+    <div class="contents-page col-lg-9">
+        <app-header></app-header>
+        <div class="headingz">
+            <h4>Settings</h4>
+        </div>
+        
+        
+        
+        <div class="page contents">
+            
+           
+<div class="container">
+<ul id="tabs" class="nav nav-tabs booking-tabs nav nav-tabs" role="tablist">
+  <li class="nav-item" *ngIf="BoatType"  [ngClass]="{'tab-selected-color': tab_Id_select === 1 }" tab_Id_select="1">
+      <a id="tab-A" href="#pane-A"  linktype="pane-A" class="nav-link" data-toggle="tab" role="tab">Boat Type</a>
+  </li>
+  <li class="nav-item" *ngIf="Location"  [ngClass]="{'tab-selected-color': tab_Id_select === 2 }">
+    <a id="tab-F" href="#pane-F" linktype="pane-F" class="nav-link" data-toggle="tab" role="tab">Locations</a>
+  </li>
+  <li class="nav-item" *ngIf="UnavailableDays"  [ngClass]="{'tab-selected-color': tab_Id_select === 3 }">
+      <a id="tab-B" href="#pane-B" linktype="pane-B" class="nav-link" data-toggle="tab" role="tab">Unavailable Days</a>
+  </li>
+  <li class="nav-item" *ngIf="ConsecutiveDays"  [ngClass]="{'tab-selected-color': tab_Id_select === 4 }">
+    <a id="tab-C" href="#pane-C" linktype="pane-C" class="nav-link" data-toggle="tab" role="tab">Consecutive Days</a>
+</li>
+<li class="nav-item" *ngIf="NextBookingDays"  [ngClass]="{'tab-selected-color': tab_Id_select === 5 }">
+  <a id="tab-D" href="#pane-D" linktype="pane-D" class="nav-link" data-toggle="tab" role="tab">Next Booking Days</a>
+</li>
+<li class="nav-item" *ngIf="ShareAllocation"  [ngClass]="{'tab-selected-color': tab_Id_select === 6 }">
+  <a id="tab-E" href="#pane-E" linktype="pane-E" class="nav-link" data-toggle="tab" role="tab">Share Allocation</a>
+</li>
+<!--Add location tab for settings Done By Alagesan on 21.06.2021    -->
+
+<!--Add special days tab for settings Done By Alagesan on 21.06.2021    -->
+
+<li class="nav-item" *ngIf="SpecialDays"  [ngClass]="{'tab-selected-color': tab_Id_select === 7 }">
+  <a id="tab-G" href="#pane-G" linktype="pane-G" class="nav-link" data-toggle="tab" role="tab">Special Days</a>
+</li>
+
+
+</ul>
+
+
+
+<div id="div-data-table">
+
+<div id="content" class="tab-content" role="tablist">
+  <div id="pane-A"   class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-A">
+
+    <!--Add boat type for settings Done By Alagesan on 25.06.2021    -->
+
+    <div  *ngIf="BoatType">
+
+   
+
+  <div class="row" style="margin-top: 55px;">
+    <div class="col-md-12 add-boat-type" > 
+         
+      <!-- Button boat type modal -->
+  <button type="button" class="btn btn-secondary" (click)=addBoatTypeClear() data-toggle="modal" data-target="#boat-type" style="float: right; ">
+   BOAT TYPE 
+  </button>
+  
+  <button type="button" data-toggle="modal" data-target="#boat-type" style="display: none;" id="pop-up-btn" class="addb-rs btn common-btn violet-btn" >Submit</button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="boat-type" tabindex="-1" role="dialog" aria-labelledby="boat-typeModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+      <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">ADD BOAT TYPE</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+      </button>
+      </div>
+      <form   [formGroup]="addBoatTypeform"  novalidate>
+      
+      <div class="modal-body">
+      <div class="form-group col-md-12">
+      <label>Boat Type Name</label>
+      <input type="text" class="form-control" formControlName="Boat_Type" [ngClass]="{ 'is-invalid': addBoatTypesubmitted && abtf.Boat_Type.errors }">
+      </div>
+      
+      <div class="form-group col-md-12">
+      <label>Description</label>
+        <textarea class="form-control" rows="3" formControlName="Type_Description"  style="border-color: crimson;" [ngClass]="{ 'cls-facility': addBoatTypesubmitted && abtf.Type_Description.errors }"> </textarea>
+        <!-- <input type="text" class="form-control" formControlName="Type_Description" [ngClass]="{ 'is-invalid': addBoatTypesubmitted && abtf.Type_Description.errors }"> -->
+      
+      
+      </div>
+        
+      </div>
+      </form>
+      <div class="modal-footer">
+      <button type="button" (click)=addBoatType() id="id-button-Add-boat" class="btn btn-primary">ADD</button>
+      <span class="cancel-bttn"  data-dismiss="modal">Close</span>
+    </div>
+      </div>
+    </div>
+  </div>    
+ </div>   
+     <!--Add boat type for settings Done By Alagesan on 25.06.2021    -->
+ 
+  </div>
+
+  <div class="row" style="margin-top: 25px;"> 
+
+    
+            
+    <div class="col-md-12 reports" id="temp-data-bindings">
+              
+                    
+                   
+    </div>  
+                
+  </div>
+
+</div>
+
+
+
+      
+      
+       
+<button style="display:none" type="button" id="edit-boat-type-modal-btn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#edit-boat-type">Open Modal</button>
+
+
+
+<div class="modal fade" id="edit-boat-type" tabindex="-1" role="dialog" aria-labelledby="boat-typeModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">EDIT BOAT TYPE</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form [formGroup]="editBoatTypeform"  novalidate>
+<div class="modal-body">
+  <div class="form-group col-md-12">
+<label>Boat Type Name</label>
+<input type="text" class="form-control"   formControlName="Boat_Type" [ngClass]="{ 'is-invalid': editBoatTypesubmitted && ebtf.Boat_Type.errors }">
+</div>
+
+
+      <div class="form-group col-md-12">
+<label>Description</label>
+  <textarea class="form-control" rows="3"   formControlName="Type_Description" style="border-color: crimson;" [ngClass]="{ 'cls-facility': editBoatTypesubmitted && ebtf.Type_Description.errors }"> </textarea>
+</div>
+
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)=updateBoattype()>UPDATE</button>
+  <span class="cancel-bttn"  data-dismiss="modal">Close</span>
+</div>
+</form>
+</div>
+</div>
+</div>  
+  </div>
+      <!--Update design for settings Done By Alagesan    -->
+  <div id="pane-B"   class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-B">
+    <div class="row">
+     
+
+      <div class="col-md-6">
+        <div class="sbg-form"  style="margin-top: 25px;"> 
+          <form>
+          <div class="form-row">
+              
+<div class="form-group col-md-12">
+    <label>Boat Name</label>
+      
+    <ng-multiselect-dropdown
+      [placeholder]="'Select'"
+      [settings]="dropdownSettings_UNAVAILABLE_DATE"
+      [data]="dropdownList_filted"                                    
+      (onSelect)="onItemSelect_UNAVAILABLE_DATE($event)"
+      (onDeSelect)="onDeSelect_UNAVAILABLE_DATE($event)"
+      (onSelectAll)="onSelectAll_UNAVAILABLE_DATE($event)"
+      (onDeSelectAll)="onDeSelectAll_UNAVAILABLE_DATE($event)" 
+                 
+      
+    >
+    </ng-multiselect-dropdown>
+
+    <!-- class="singleselect_drop" -->
+  
+</div>  
+              </div>               
+              
+<div class="form-row">                 
+  <div class="col-md-12 add-date" style="padding: 0;">                      
+    <div class="row">                 
+    <!-- <div class="form-group col-md-7 ">
+    <label>Unavailable Date</label>
+
+
+
+    <div class="input_fields_wrap input_fields_wrap_single">
+
+    <div>
+      
+      <input type="date" name="mytext[]"  class="form-control" data-zdp_readonly_element="false">
+      <a  href="#" class="remove_field"   style="margin-right: -72px; margin-top: -33px;">Remove</a>
+    </div>
+    
+    </div>
+
+    </div> -->
+                    
+                    <!-- <div class="form-group col-md-2" style="margin-left: 63px;">     
+                    
+                    <button class="add_field_button">Add</button>
+                    
+                    
+                    </div>            -->
+                    
+                    
+
+    </div>  
+  </div>  
+</div>  
+              
+<!-- <div class="form-row">     
+
+  <div class="col-md-2"> 
+      <a class="btn btn-primary" id="id-btn-unAvilableDate-single" style="margin-top: 32px;">SAVE</a>
+  </div>             
+              
+</div>
+              -->
+                        
+              
+          </form>  
+          
+          
+          <!-- ........................new field.......... -->
+
+
+          <form [formGroup]="productForm" (ngSubmit)="onSubmit()">  
+      
+                       
+            <table class="table table-bordered" formArrayName="UnavilableDay">  
+              <tr>  
+                <th colspan="2">Enter Date</th>  
+                <th width="150px"><button type="button" (click)="addQuantity()" class="btn btn-primary">Add</button></th>  
+              </tr>  
+              <tr *ngFor="let quantity of UnavilableDay().controls; let i=index" [formGroupName]="i">  
+                <td>  
+                    Day :  
+                    <input type="number"  formControlName="day" class="form-control">  
+                </td>  
+                <td>  
+                    Month:  
+                    <input type="number"  formControlName="month" class="form-control">  
+                </td>  
+                <td>  
+                  Year:  
+                  <input type="number"  formControlName="year" class="form-control">  
+              </td> 
+                <td>  
+                    <button (click)="removeQuantity(i)" class="btn btn-danger">Remove</button>  
+                </td>  
+              </tr>  
+            </table>  
+             
+            <button type="submit" class="btn btn-primary">Submit</button>  
+              
+          </form>  
+
+
+
+
+
+           <!-- ................................................ -->
+          
+            
+   </div>
+      </div>
+    </div>
+      <div class="col-md-12 reports" id="temp-unavailable-days">
+
+        </div> 
+  </div>
+ 
+  <div id="pane-C"  class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-C">
+    <div class="sbg-form"  style="margin-top: 25px;"> 
+       <form  [formGroup]="Consecutiveform">
+
+        <div class="form-row">
+           
+          <div class="form-group col-md-4">
+          
+            <label>Boat Name</label>
+            <ng-multiselect-dropdown
+            [(ngModel)]="dropdownOwn"
+            [ngModelOptions]="{standalone: true}" 
+            [placeholder]="'Select'"
+            [settings]="dropdownSettings_CONSECUTIVEDAYS"
+            [data]="dropdownList_filted"                                    
+            (onSelect)="onItemSelect_CONSECUTIVEDAYS($event)" 
+            (onDeSelect)="onItemDeSelect_CONSECUTIVEDAYS($event)" 
+            class="singleselect_drop"
+        >
+        </ng-multiselect-dropdown>
+        </div>  
+      </div> 
+
+       <div class="form-row">
+           
+          <div class="form-group col-md-4">
+          <label>Summer Consecutive Days Allowed For Booking</label>
+          <!-- <span class="error-msg" *ngIf="!ConsecutiveSubmitted && SummerConsecutiveDaysMessage !== ''">
+            {{SummerConsecutiveDaysMessage}}
+         </span>  -->
+          <input type="text" class="form-control" value="{{SUMMER_CONSECUTIVE_DAYS_ALLOWED}}" formControlName="Summer_ConsecutiveDays" [ngClass]="{ 'is-invalid': ConsecutiveSubmitted && cf.Summer_ConsecutiveDays.errors }">
+          </div>  
+      </div>               
+           
+           <div class="form-row">
+           
+            <div class="form-group col-md-4">
+            <label>Winter Consecutive Days Allowed For Booking</label>
+            <!-- <span class="error-msg" *ngIf="!ConsecutiveSubmitted && WinterConsecutiveDaysMessage !== ''">
+              {{WinterConsecutiveDaysMessage}}
+           </span>  -->
+            <input type="text" class="form-control" value="{{WINTER_CONSECUTIVE_DAYS_ALLOWED}}" formControlName="Winter_ConsecutiveDays" [ngClass]="{ 'is-invalid': ConsecutiveSubmitted && cf.Winter_ConsecutiveDays.errors }">
+            </div>  
+                       </div> 
+                       
+                       
+                       <div class="form-row">
+           
+                        <div class="form-group col-md-4">
+                        <label>Booking days Between pre-Launch and launch</label>
+                        <!-- <span class="error-msg" *ngIf="!ConsecutiveSubmitted && BookingDaysMessage !== ''">
+                          {{BookingDaysMessage}}
+                       </span>  -->
+                        <input type="text" class="form-control" value="{{BookingDaysMessage}}" formControlName="Booking_Days" [ngClass]="{ 'is-invalid': ConsecutiveSubmitted && cf.BookingDaysMessage.errors }">
+                        </div>  
+                      </div>  
+                      
+                      <div class="form-row">
+           
+                        <div class="form-group col-md-4">
+                        <label>No Of Weekdays</label>
+                        
+                       
+                        <input type="text" class="form-control" value="{{No_Of_WeekDays}}" formControlName="No_Of_WeekDays" [ngClass]="{ 'is-invalid': ConsecutiveSubmitted && cf.No_Of_WeekDays.errors }">
+                        </div>  
+                      </div>  
+
+                      <div class="form-row">
+           
+                        <div class="form-group col-md-4">
+                        <label>No Of Weekends</label>
+                        
+                       
+                        <input type="text" class="form-control" value="{{No_Of_WeekEndDays}}" formControlName="No_Of_WeekEndDays" [ngClass]="{ 'is-invalid': ConsecutiveSubmitted && cf.No_Of_WeekEndDays.errors }">
+                        </div>  
+                      </div>  
+
+
+           
+            <div class="form-row">     
+
+<div class="col-md-2">
+
+<a  class="btn btn-primary" style="margin-top: 32px;" (click)="Add_CONSECUTIVE_DAYS()">SAVE</a>
+           </div>             
+           
+</div>
+          
+                     
+           
+          </form>     
+       
+         
+      </div>  
+
+</div>
+<div id="pane-D"  class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-D">
+  <div class="sbg-form"  style="margin-top: 25px;"> 
+     <form  [formGroup]="Bookingform">
+     
+     
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          
+          <label>Boat Name</label>
+          <ng-multiselect-dropdown          
+          [(ngModel)]="bookdropdownOwn"
+          [ngModelOptions]="{standalone: true}" 
+          [placeholder]="'Select'"
+          [settings]="dropdownSettings_CONSECUTIVEDAYS"
+          [data]="dropdownList_filted"                                    
+          (onSelect)="onItemSelect_Next_Booking_Day($event)" 
+          (onDeSelect)="onItemDeSelect_Next_Booking_Day($event)"            
+          class="singleselect_drop"
+      >
+      </ng-multiselect-dropdown>
+      </div>  
+
+      </div>
+     
+     
+      <div class="form-row">    
+            <div class="form-group col-md-4">
+            <label>Maximum days to book in advance</label>
+            <input type="text" class="form-control" value="{{NEXT_BOOKING_DAYS_ALLOWED}}" formControlName="Next_BookingDay" [ngClass]="{ 'is-invalid': BookingSubmitted && bf.Next_BookingDay.errors }">
+            </div>  
+         </div>               
+         
+          <div class="form-row">     
+
+<div class="col-md-2">
+
+<a  class="btn btn-primary" style="margin-top: 32px;" (click)="Add_NEXT_BOOKING_DAY()">SAVE</a>
+         </div>             
+         
+</div>
+        
+                   
+         
+        </form>     
+     
+       
+    </div>  
+
+</div>
+
+
+<div id="pane-E" class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-E">
+  <div class="col-md-2">
+  <!--Change the button text for settings Done By Alagesan on 08.07.2021    -->
+    <button  class="btn btn-primary" style="margin-top: 32px;" (click)="addShare()">ADD Default Share Allocation per Boat</button>
+         
+        </div>  
+  <div class="row" style="margin-top: 25px; overflow-x: auto;"> 
+            
+    <div class="col-md-12 reports" id="id-table-databinding">
+              
+                    
+                   
+    </div>  
+                
+  </div>
+  
+</div>
+  <!--Add location tab for settings Done By Alagesan on 21.06.2021    -->
+<div id="pane-F"  class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-F">
+  <div class="sbg-form"  style="margin-top: 25px;" *ngIf="!editBtnFlag"> 
+    <form [formGroup]="addBoatLocationform">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Location Name</label>
+            <input type="text" formControlName="Boat_Location" class="form-control" [ngClass]="{ 'is-invalid': boatLocationSubmitted && ablf.Boat_Location.errors }">
+          </div>  
+          <div class="form-group col-md-6">
+            <label>Location URL</label>
+            <input type="text" formControlName="Location_URL" class="form-control" [ngClass]="{ 'is-invalid': boatLocationSubmitted && ablf.Location_URL.errors }">
+          </div>
+        </div>                  
+         <div class="form-row">     
+            <div class="col-md-2">
+            <a  class="btn btn-primary" *ngIf="addBtnFlag"  (click)=saveBoatLocation()>SAVE</a>
+            </div>             
+         </div>
+    </form>     
+   </div> 
+   <div class="sbg-form"  style="margin-top: 25px;" *ngIf="!addBtnFlag" > 
+    <form [formGroup]="editBoatLocationform">
+      <input type="text" formControlName="_id" style="display: none;" >
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label>Location Name</label>
+            <input type="text" formControlName="Boat_Location" class="form-control" [ngClass]="{ 'is-invalid': editboatLocationSubmitted && eblf.Boat_Location.errors }">
+          </div>  
+          <div class="form-group col-md-6">
+            <label>Location URL</label>
+            <input type="text" formControlName="Location_URL" class="form-control" [ngClass]="{ 'is-invalid': editboatLocationSubmitted && eblf.Location_URL.errors }">
+          </div>
+        </div>                  
+         <div class="form-row">     
+            <div class="col-md-2">
+            <a  class="btn btn-primary" *ngIf="editBtnFlag" (click)= editBoatLocation()>Edit</a>
+            </div>             
+         </div>
+    </form>     
+   </div> 
+   <div class="row" style="margin-top: 25px;">
+    <div class="col-md-12 reports" id="temp-locations-data">
+
+    </div> 
+   </div>
+</div>
+
+<!--Add special days tab for settings Done By Alagesan on 21.06.2021    -->
+<!--Add special days data integrations for settings Done By Alagesan on 23.06.2021    -->
+<div id="pane-G"  class="card tab-pane fade" role="tabpanel" aria-labelledby="tab-G">
+  <div class="sbg-form"  style="margin-top: 25px;"> 
+    <form [formGroup]="specialDaysform">
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label>Name</label>
+            <input type="text" formControlName="Name" id="text-id-special-days-Name"  placeholder="Name" class="form-control" [ngClass]="{ 'is-invalid': specialDaysSubmitted && sdf.Name.errors }">
+          </div>  
+        
+          <div class="form-group col-md-4">
+            <label>Start Date</label>
+            <span class="Zebra_DatePicker_Icon_Wrapper" readonly="readonly" style="display: block; position: relative; float: none; inset: auto; margin: 0px; padding: 0px; width: 345px;"><input type="text" id="text-id-special-days-Start" formControlName="Start_Date"  class="form-control" data-zdp_readonly_element="true" style="position: relative; float: none; inset: auto; margin: 0px; padding-right: 20px;" [ngClass]="{ 'is-invalid': specialDaysSubmitted && sdf.Start_Date.errors }" >
+            </span>
+          </div>  
+        
+          <div class="form-group col-md-4">
+            <label>End Date</label>
+            <span class="Zebra_DatePicker_Icon_Wrapper" readonly="readonly" style="display: block; position: relative; float: none; inset: auto; margin: 0px; padding: 0px; width: 345px;"><input type="text" id="text-id-special-days-End" formControlName="End_Date"  class="form-control" data-zdp_readonly_element="true" style="position: relative; float: none; inset: auto; margin: 0px; padding-right: 20px;" [ngClass]="{ 'is-invalid': specialDaysSubmitted && sdf.End_Date.errors }">
+            </span>         
+          </div>  
+        </div> 
+        
+         <div class="form-row">     
+            <div class="col-md-2">
+            <a  class="btn btn-primary" id="a-Id-special-days-Save"  (click)=saveSpecialDays() >SAVE</a>
+            <a style="display: none;" class="btn btn-primary" id="a-Id-special-days-Edit" >Edit</a>
+            </div>             
+         </div>
+    </form>     
+   </div> 
+   <div class="row" style="margin-top: 25px;"> 
+            
+    <div class="col-md-12 reports" id="temp-data-bindings-specialDays">
+  
+          
+    
+        </div>  
+    
+    </div>    
+</div>
+  <button style="display:none" type="button" id="pop-up-btn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+            
+     
+  <div class="modal fade" id="myModalUpdatemsg" role="dialog">
+    <div class="modal-dialog">
+    
+      
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Unavailable Dates</h4>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog">
+  
+    
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Boat Type</h4>
+      </div>
+      <div class="modal-body">
+        <p>{{getResponce}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<button style="display:none" type="button" id="removeBoat" class="btn btn-info btn-lg" data-toggle="modal" data-target="#removeBoats">Open Modal</button>
+
+
+<div class="modal fade" id="removeBoats" role="dialog">
+  <div class="modal-dialog">
+  
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Boat Type</h4>
+      </div>
+      <div class="modal-body">
+         
+     <span class="red">Are you sure you want to delete this boat type?</span>
+       
+      </div>
+      <div class="modal-footer">
+    <span a href="#" (click)=deleteBoat() class="confirm-bttn">Yes</span>
+    <span a href="#" data-dismiss="modal" class="cancel-bttn">No</span>
+       </div>
+    </div>
+    
+  </div>
+</div>
+
+
+ 
+
+</div>
+
+
+<!-- .......................... -->
+
+</div>
+
+</div>     
+            
+<button style="display:none" type="button" id="addshare" class="btn btn-info btn-lg" data-toggle="modal" data-target="#shareModel">Open Modal</button>
+
+<!--Update modalpopup for settings Done By Alagesan        -->
+
+<div class="modal fade" id="shareModel" role="dialog">
+  <div class="modal-dialog">
+  
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" (click)=clearShare() class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Owners share allocation</h4>
+      </div>
+       <!-- Clear the multiselect dropdown changes for settings  Done By Alagesan on 13.06.2021	-->
+      
+       <form [formGroup]="Shareform">
+        <div class="form-group col-md-12">
+          <label>Select boat</label> 
+         <ng-multiselect-dropdown 
+         [placeholder]="'Select'"
+         [settings]="dropdownSettings"
+         [data]="dropdownList_filted" 
+         [(ngModel)]="selectedItemsRoot" 
+         [ngModelOptions]="{standalone: true}"                                  
+         (onSelect)="onItemSelect($event)"
+         (onDeSelect)="onItemDeSelect($event)"
+         (onSelectAll)="onSelectAll($event)"
+         class="singleselect_drop"
+        >
+        </ng-multiselect-dropdown>
+        </div>
+        <div class="form-group col-md-12">
+        <label>No:Of Shares </label>
+        <input type="text" class="form-control" readonly formControlName="No_of_Shares" [ngClass]="{ 'is-invalid': shareSubmitted && sf.No_of_Shares.errors }" >
+        </div>  
+        <div class="form-group col-md-12">
+        <label>No:Of Summer Weekdays Per Owner</label>
+        <input type="text" class="form-control"formControlName="No_of_SummerWeekDays" [ngClass]="{ 'is-invalid': shareSubmitted && sf.No_of_SummerWeekDays.errors }" >
+        </div> 
+        <div class="form-group col-md-12">
+          <label>No:Of Summer Weekends Per Owner</label>
+          <input type="text" class="form-control" formControlName="No_of_SummerWeekEndDays" [ngClass]="{ 'is-invalid': shareSubmitted && sf.No_of_SummerWeekEndDays.errors }">
+        </div>
+        <div class="form-group col-md-12">
+          <label>No:Of Winter Weekdays Per Owner</label>
+          <input type="text" class="form-control"formControlName="No_of_WinterWeekDays" [ngClass]="{ 'is-invalid': shareSubmitted && sf.No_of_WinterWeekDays.errors }" >
+          </div> 
+        <div class="form-group col-md-12">
+          <label>No:Of Winter Weekends Per Owner</label>
+          <input type="text" class="form-control" formControlName="No_of_WinterWeekEndDays" [ngClass]="{ 'is-invalid': shareSubmitted && sf.No_of_WinterWeekEndDays.errors }">
+        </div>
+      <div class="modal-footer">
+    <span  (click)=saveShare() class="confirm-bttn" >Save</span>
+    <span a href="#" data-dismiss="modal" class="cancel-bttn" (click)=clearShare() >CANCEL</span>
+       </div>
+       </form>
+    </div>
+    
+  </div>
+</div>        
+
+            
+<button style="display:none" type="button" id="Sharepop-up-btn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myMessageModal">Open Modal</button>
+            
+              
+<div class="modal fade" id="myMessageModal" role="dialog">
+  <div class="modal-dialog">
+  
+    
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">{{modelTitle}}</h4>
+      </div>
+      <div class="modal-body">
+        <p>{{getResponce}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)="pagereload()" data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>        
+            
+            <!--Add special days data integrations for settings Done By Alagesan on 23.06.2021    -->
+
+
+          <button style="display:none" type="button" id="special-days-pop-up-btn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#specialDaysModal">Open Modal</button>
+                      
+                        
+          <div class="modal fade" id="specialDaysModal" role="dialog">
+            <div class="modal-dialog">
+            
+              
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">{{modelTitle}}</h4>
+                </div>
+                <div class="modal-body">
+                  <p>{{getResponce}}</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal" (click)="location_Reload()">OK</button>
+                </div>
+              </div>
+              
+            </div>
+          </div>  
+
+          <!--Add boat location popup message for settings Done By Alagesan on 24.06.2021    -->
+
+
+          <button style="display:none" type="button" id="add-boat-location-popup" class="btn btn-info btn-lg" data-toggle="modal" data-target="#boatLocationModal">Open Modal</button>
+          
+            
+          <div class="modal fade" id="boatLocationModal" role="dialog">
+            <div class="modal-dialog">
+            
+              
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">{{modelTitle}}</h4>
+                </div>
+                <div class="modal-body">
+                  <p>{{getResponce}}</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" (click)="pagereload()" data-dismiss="modal">OK</button>
+                </div>
+              </div>
+              
+            </div>
+          </div>  
+
+           <!--Edit boat location popup message for settings Done By Alagesan on 24.06.2021    -->
+
+
+           <button style="display:none" type="button" id="edit-boat-location-popup" class="btn btn-info btn-lg" data-toggle="modal" data-target="#editboatLocationModal">Open Modal</button>
+          
+            
+           <div class="modal fade" id="editboatLocationModal" role="dialog">
+             <div class="modal-dialog">
+             
+               
+               <div class="modal-content">
+                 <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal">&times;</button>
+                   <h4 class="modal-title">{{modelTitle}}</h4>
+                 </div>
+                 <div class="modal-body">
+                   <p>{{getResponce}}</p>
+                 </div>
+                 <div class="modal-footer">
+                   <button type="button" class="btn btn-default" (click)="pagereload()"  data-dismiss="modal">OK</button>
+                 </div>
+               </div>
+               
+             </div>
+           </div>  
+
+            <!--Edit boat type popup message for settings Done By Alagesan on 18.07.2021    -->
+
+
+            <button style="display:none" type="button" id="edit-boat-type-popup-btn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#editboattypemodal">Open Modal</button>
+          
+            
+            <div class="modal fade" id="editboattypemodal" role="dialog">
+              <div class="modal-dialog">
+              
+                
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{modelTitle}}</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>{{getResponce}}</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" (click)="pagereload()"  data-dismiss="modal">OK</button>
+                  </div>
+                </div>
+                
+              </div>
+            </div>  
+
+            <!--Delete boat type popup message for settings Done By Alagesan on 18.07.2021    -->
+
+
+            <button style="display:none" type="button" id="delete-boat-type-popup-btn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#deleteboattypemodal">Open Modal</button>
+          
+            
+            <div class="modal fade" id="deleteboattypemodal" role="dialog">
+              <div class="modal-dialog">
+              
+                
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{{modelTitle}}</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>{{getResponce}}</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" (click)="pagereload()"  data-dismiss="modal">OK</button>
+                  </div>
+                </div>
+                
+              </div>
+            </div>  
+
+          <!--Add boat type data integrations for settings Done By Alagesan on 25.06.2021    -->
+
+
+          <button style="display:none" type="button" id="add-boat-type-popup" class="btn btn-info btn-lg" data-toggle="modal" data-target="#boatTypeModal">Open Modal</button>
+        
+          
+          <div class="modal fade" id="boatTypeModal" role="dialog">
+            <div class="modal-dialog">
+            
+              
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">{{modelTitle}}</h4>
+                </div>
+                <div class="modal-body">
+                  <p>{{getResponce}}</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" (click)="pagereload()" data-dismiss="modal">OK</button>
+                </div>
+              </div>
+              
+            </div>
+          </div>  
+                       
+          
+          <!--Delete locatin confrm / cancel popup modal for settings Done By Alagesan on 17.07.2021    -->
+          <button style="display:none" type="button" id="deleteLocation" class="btn btn-info btn-lg" data-toggle="modal"
+data-target="#delete-location-modal-popup">Open Modal</button>
+
+          <!-- Modal -->
+
+          <div class="modal fade" id="delete-location-modal-popup" role="dialog">
+          <div class="modal-dialog">
+
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Location</h4>
+              </div>
+              <div class="modal-body">
+            <span class="red">Are you sure you want to delete this Locatoin?</span>
+                
+              </div>
+              <div class="modal-footer">
+            <span a href="#"  (click)=deleteLocationdata() class="confirm-bttn">Yes</span>
+            <span a href="#" data-dismiss="modal" class="cancel-bttn">No</span>
+              </div>
+            </div>
+
+          </div>
+          </div>
+
+          <!--Delete locations success popup message for settings Done By Alagesan on 17.07.2021    -->
+          <button style="display:none" type="button" id="delete-location-sucess-btn" class="btn btn-info btn-lg" data-toggle="modal"
+          data-target="#delete-location-sucess-modal">Open Modal</button>
+
+
+          <div class="modal fade" id="delete-location-sucess-modal" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Delete Location </h4>
+              </div>
+              <div class="modal-body">
+                <p>{{getResponce}}</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)=pagereload() data-dismiss="modal">OK</button>
+              </div>
+            </div>
+
+          </div>
+          </div>
+
+
+
+
+<!-- ................................. -->
+
+
+
+
+
+
+<button style="display:none" type="button" id="id-Unavilable-Day" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Unavilable-Day-Model">Open Modal</button>
+
+<!--Update modalpopup for settings Done By Alagesan        -->
+
+<div class="modal fade" id="Unavilable-Day-Model" role="dialog">
+  <div class="modal-dialog">
+  
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button"  class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Delete Unavailable day for boat</h4>
+      </div>
+       <!-- Clear the multiselect dropdown changes for settings  Done By Alagesan on 13.06.2021	-->
+      
+       <form [formGroup]="Shareform">
+       
+       
+
+          <div class="col-md-12 reports" id="temp-unavailable-days-popup">
+
+          </div> 
+
+       
+        
+      <div class="modal-footer">
+        <span class="confirm-bttn"  id="id-unAvilableDay-Delete-popup-save">Save</span>
+        <span class="cancel-bttn"  data-dismiss="modal">Close</span>
+       </div>
+       </form>
+    </div>
+    
+  </div>
+</div>  
+
+
+
+
+<button style="display:none" type="button" id="btn-CommenMessage-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Footer-Success-Modal">Open Modal</button>
+            
+              
+<div class="modal fade" id="Footer-Success-Modal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="h4-message-type">{{MessageTitle}}</h4>
+      </div>
+      <div class="modal-body">
+        <p id="p-message-content">{{CommenMessages}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default"  data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+<button style="display:none" type="button" id="btn-CommenMessage-save-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#CommenSave-Success-Modal">Open Modal</button>
+            
+              
+<div class="modal fade" id="CommenSave-Success-Modal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="h4-message-save-type">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p id="p-message-save-content"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" (click)=pagereload() data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+<!-- delete specialday -->
+
+<button style="display:none" type="button" id="removeSpecialday" class="btn btn-info btn-lg" data-toggle="modal" data-target="#removeSpecialdays">Open Modal</button>
+
+
+<div class="modal fade" id="removeSpecialdays" role="dialog">
+  <div class="modal-dialog">
+  
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Delete special day</h4>
+      </div>
+      <div class="modal-body">
+         
+     <span class="red">Are you sure you want to delete this special day?</span>
+       
+      </div>
+      <div class="modal-footer">
+    <span a href="#" (click)=deleteSpecialday() class="confirm-bttn">Yes</span>
+    <span a href="#" data-dismiss="modal" class="cancel-bttn">No</span>
+       </div>
+    </div>
+    
+  </div>
+</div>
+
+
+
+
+
+<!-- ............................................. -->
+
+
+
+        </div>
+    </div>
+</div>
+<div class="dash-footer">
+  <app-footer-adminsession></app-footer-adminsession>    
+</div>

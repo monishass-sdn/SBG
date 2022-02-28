@@ -1,0 +1,204 @@
+
+
+
+<div class="main-page">
+  <app-sidemenu></app-sidemenu>
+    <div class="contents-page col-lg-9">
+        
+
+        <div class="headingz">
+          <!-- Change all boat url  for view boat Done By Alagesan on 25.06.2021	-->
+            <h4><a routerLink="/view-owner/"><i class="far fa-arrow-alt-circle-left"></i> </a> Boat Details</h4>
+        </div>
+        
+        
+        
+        <div class="page contents">
+            
+<div class="row">
+<div class="container boat-detail">
+
+<!-- boat Item Heading -->
+<h4 style="width: 100%;">{{data.Boat_Name}} </h4>
+
+<div class="row 1">
+
+  <div class="col-lg-12">
+    <div class="calender-custom">
+
+
+          <div class="code-html">
+            <div id="menu">
+                <span id="menu-navi">
+                    <button type="button" class="btn btn-default btn-sm move-today" data-action="move-today">Today</button>
+                    <button type="button" class="btn btn-default btn-sm move-day" data-action="move-prev">
+                        <i class="calendar-icon ic-arrow-line-left" data-action="move-prev"></i>
+                    </button>
+                    <button type="button" class="btn btn-default btn-sm move-day" data-action="move-next">
+                        <i class="calendar-icon ic-arrow-line-right" data-action="move-next"></i>
+                    </button>
+                </span>
+                <span id="renderRange" class="render-range"></span>
+            </div>
+
+            <div id="calendar"></div>
+        </div>  
+
+
+
+    </div>
+
+</div>
+
+</div>
+
+<!-- boat Item Row -->
+
+<div class="row 2">
+
+
+  <!-- New Edit............ -->
+  
+  <div class="col-md-6 boat-image-slider">
+   
+    <div class="container" id="id-sliderbinding-First" style="padding: 0;"> 
+  
+      <div class="container">
+        
+      <div class="row" id="id-sliderbinding-Second"> 
+  
+      </div>
+  
+      </div>
+  
+    </div>
+    <!--Updated for view boat Done By Alagesan  on 12.06.2021 -->
+  
+    
+  </div>
+  <div class="col-md-6">
+    <h3 *ngIf="HandBookUrl != null" class="boat_title">HandBook : <a href={{HandBookUrl}} target="_blank">download</a></h3>
+    <h3 *ngIf="HandBookUrl == null" class="boat_title">HandBook :<span class="span-file-not-fount">File not found</span></h3> 
+      <h3 class="boat_title">Boat Details </h3>
+      <div class="row">
+      <ul class="col-md-12">
+        <div *ngIf="data.Boattype_Name">
+          <li><h6 >Boat Type </h6> <span>{{data.Boattype_Name}}</span></li>
+          </div>
+          <div *ngIf="!data.Boattype_Name">
+            <li><h6>Boat Type </h6> <span>{{data.BoattypeDetails[0].Boat_Type}}</span></li>
+            </div>
+            <li><h6>Owners Allowed </h6> <span>{{data.Owners_Allowed}}</span></li>
+            <div *ngIf="data.Location_Name">
+              <li><h6>Location </h6> <span>{{data.Location_Name}}</span></li>
+              </div>
+              <div *ngIf="!data.Location_Name">
+                <li><h6>Location </h6> <span>{{data.locationDetails[0].Boat_Location}}</span></li>
+                </div>
+                  <li><h6>Launch Date </h6> <span>{{Launch_Dates}}</span></li>
+            <li><h6>Pre-Launch Date </h6> <span>{{preDates}}</span></li>
+            <li><h6>Status </h6> <span>{{boatStatus}}</span></li>
+           
+           
+      </ul>
+      </div>
+
+      <!-- <input type="button" class="btn btn-primary" style="margin: 25px 0 10px;" value="Edit Boat" (click)=editBoat()> -->
+  </div>
+  
+  
+  <!-- New edit End............. -->
+  
+  
+  </div>
+
+<div class="row 3">
+
+
+
+
+  <div class="col-md-6">
+
+    <div class="row">
+
+       <div class="col-md-12">
+        <h4 class="summer_Duration mt-3" style="width:100%;padding-top: 10px;">Seasons Duration</h4> 
+      </div> 
+
+      <div class="col-md-6">
+        <ul>       
+       
+          <li><h6 style="min-width: 120px;">Summer From </h6> <span>{{Summer_From}}</span> </li> 
+          <li><h6 style="min-width: 115px;">Summer To </h6> <span>{{Summer_To}}</span></li>
+         
+        </ul>
+
+      </div>
+
+      <div class="col-md-6">
+
+        <ul>          
+          <li><h6 style="min-width: 115px;">Winter From </h6> <span>{{Winter_From}}</span></li>
+          <li><h6 style="min-width: 110px;">Winter To </h6> <span>{{Winter_To}}</span></li>
+        </ul>
+
+      </div>
+        
+      
+     
+     </div>
+
+
+
+      <ul class="col-md-12 bg-win" style="float: left;background: #1f2c83;margin-top: 22px;">
+      <li><h6 class="sum-title">SUMMER WEEKDAYS </h6> <span class="sum-second">{{TotalDaysAssigned_Summer_WeekDays}}</span></li>
+      <li><h6 class="sum-title">SUMMER WEEKENDS </h6> <span class="sum-second">{{TotalDaysAssigned_Summer_WeekEndDays}}</span></li>
+      </ul>
+      <ul class="col-md-12 bg-win" style="float: left;background: #1f2c83;margin-top: 22px;">
+      <li><h6 class="sum-title">WINTER WEEKDAYS </h6> <span class="sum-second">{{TotalDaysAssigned_Winter_WeekDays}}</span></li>
+      <li><h6 class="sum-title">WINTER WEEKENDS </h6> <span class="sum-second">{{TotalDaysAssigned_Winter_WeekEndDays}}</span></li>
+      </ul>
+  </div>
+
+  <div class="col-md-6">
+
+    <ul>
+      
+         
+          <li><h6 class="pt-2">Facilities </h6>
+            <span><textarea class="facilities" readonly rows="3" placeholder="Enter Here Text">{{data.Boat_Facility}}
+            </textarea></span>
+          </li> 
+          <li>
+            <h6 class="descr-title mt-2">Description </h6>
+            <textarea class="form-add-boat" rows="4" readonly placeholder="Enter Here Text">{{data.Boat_Description}}
+            </textarea>
+          </li>
+    </ul>
+
+  </div>
+
+
+
+
+</div>
+
+
+
+                  
+     
+                  
+
+</div>
+                         
+</div>
+            
+            
+            
+           
+        </div>
+    </div>
+</div>
+<div class="dash-footer">
+   
+</div>

@@ -1,0 +1,71 @@
+
+/*  Add error message css Done By Alagesan on 29.07.2021*/
+.error-msg{
+    color: red;
+    text-align: center;
+    background: #ffd8d8;
+    padding: 14px;
+    width: 100%;
+  }
+  .cls-facility{
+    /* border-color: red !important; */
+    
+     border: 1px solid red !important;
+
+}
+
+.modal{
+  pointer-events: none !important;
+} 
+
+.no-clear.ng-select .ng-clear-wrapper {
+  display: none;
+}
+
+.booking-tabs .nav-item .nav-link{
+ border: 0;
+}
+
+.booking-tabs .nav-item.tab-selected-color .nav-link{
+  background: linear-gradient(
+    0deg, rgba(1,13,94,1) 0%, rgba(84,99,197,1) 93%)!important;
+        color: #fff !important;
+        border-radius: 0;
+        border: 0;
+}
+
+a.remove_field {
+  margin: 10px 0 0 0!important;
+}
+
+.mobile-sidebar{
+   left: 0px !important; 
+   transition: 0.5s; 
+}
+
+#shareModel label{ margin: 0; }
+#shareModel .form-group {
+  margin-bottom: 10px;
+}
+
+
+.modal-open {
+  overflow-y: scroll !important;
+}
+
+.modal-footer{
+  display: flex;
+  justify-content: center;
+}
+.modal-footer .confirm-bttn,
+.modal-footer .cancel-bttn
+{
+  margin: 5px;
+  display: inline-block;
+}
+.modal-footer .btn{
+  margin:initial;
+}
+span.cancel-bttn,span.confirm-bttn{
+  padding: 6px 20px;
+}

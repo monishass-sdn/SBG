@@ -1,0 +1,186 @@
+<div class="main-page" >
+    
+<div class="side-menu owner-sidemenu-second">
+    <div class="logo-section">
+        <a >
+            <img src="/assets/images/logo1.svg">
+        </a>
+    </div>
+    <ul class="menu-list">
+        <li>
+            <a  routerLink="/dashboard/" routerLinkActive="active" class="menu-items ">
+                <div class="menu-icon1">
+                </div>
+                <div class="menu-title">
+                    Dashboard
+                </div>
+            </a>
+        </li>
+        
+
+        
+        
+          <li>
+            <a href="" data-target="#boat" class="menu-items" id="a-menu-boat-main" data-toggle="collapse" role="button" routerLinkActive="active" aria-expanded="false" aria-controls="boat">
+                <div class="menu-icon1 menu-icon2">
+                </div>
+                <div class="menu-title">
+                    Boat
+                </div>
+             <span><i class="fas fa-caret-down"></i></span>   
+                
+            </a>
+              <ul class="collapse" id="boat">
+                        
+              <li *ngIf="AllBoats"><a routerLinkActive="active-sidebar" href="#" routerLink="/all-boats/" id="id-submenu-child-boat-All-Boats" >All Boats</a></li>
+              <li *ngIf="AddBoat"><a routerLinkActive="active-sidebar" href="#" routerLink="/add-boat/" id="id-submenu-child-boat-Add-Boat" >Add Boat</a></li>
+              <li *ngIf="ArchivedBoats"><a routerLinkActive="active-sidebar" href="#" routerLink="/archived-boats/" id="id-submenu-child-boat-Archive-Boats" >Archive Boats</a></li>
+             </ul> 
+        </li>
+        
+        
+         <li>
+            <a href="" data-target="#owner" class="menu-items" id="a-menu-Owners-main" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="owner">
+                <div class="menu-icon1 menu-icon3">
+                </div>
+                <div class="menu-title">
+                    Owners
+                </div>
+             <span><i class="fas fa-caret-down"></i></span>   
+                
+            </a>
+              <ul class="collapse" id="owner">
+              <li *ngIf="AllOwners" ><a routerLinkActive="active-sidebar"  href="#" routerLink="/all-owner/" id="id-submenu-child-Owners-All-Owners" >All Owners</a></li>
+              <li *ngIf="AddOwner"><a routerLinkActive="active-sidebar" href="#" routerLink="/add-owner/" id="id-submenu-child-Owners-Add-Owner" >Add Owner</a></li>
+              <li *ngIf="AllOwners" ><a routerLinkActive="active-sidebar"  href="#" routerLink="/archived-All-Owners-Component/" id="id-submenu-child-Owners-All-Owners" >Archive Owners</a></li>
+              <li *ngIf="ManageOwner"><a routerLinkActive="active-sidebar" href="#" (click)=setManageOwnerData() id="id-submenu-child-Owners-Manage-Owner" routerLink="/manage-owner/" >Manage Owner</a></li>
+              <li *ngIf="OwnerDuration"><a routerLinkActive="active-sidebar" href="#" routerLink="/owner-duration/" id="id-submenu-child-Owners-Owner-Duration" >Owner Duration</a></li>             
+              <li *ngIf="OwnershipTransfer"><a routerLinkActive="active-sidebar" href="#" routerLink="/ownership-transfer/" id="id-submenu-child-Owners-Ownership-Transfer" >Ownership Transfer</a></li>        
+            </ul> 
+        </li>
+        
+        
+      
+      
+        <li *ngIf="StandByBooking || Booking || BookingAdminBooking || BookingMaintenanceBooking">
+            <a href="" routerLink="/boat-bookings/" routerLinkActive="active" class="menu-items">
+                <div class="menu-icon1 menu-icon4">
+                </div>
+                <div class="menu-title">
+                    Boat Bookings
+                </div>
+            </a>
+        </li>
+        
+      
+        
+         <li *ngIf="BoatMaintenance">
+            <a href="" routerLink="/boat-maintenance/" routerLinkActive="active" class="menu-items">
+                <div class="menu-icon1 menu-icon8">
+                </div>
+                <div class="menu-title">
+                    Boat Maintenance
+                </div>
+            </a>
+        </li>
+        
+         <li *ngIf="AdminBooking">
+            <a href="" routerLink="/AdminBooking/" routerLinkActive="active" class="menu-items">
+                <div class="menu-icon1 menu-icon9">
+                </div>
+                <div class="menu-title">
+                   Admin Booking
+                </div>
+            </a>
+        </li>
+        
+         <li *ngIf="Cancellation">
+            <a href="" routerLink="/cancellation/" routerLinkActive="active" class="menu-items">
+                <div class="menu-icon1 menu-icon7">
+                </div>
+                <div class="menu-title">
+                    Cancellation
+                </div>
+            </a>
+        </li>
+        
+         <li>
+            <a href="" data-target="#reports"  id="a-menu-Reports-main" class="menu-items" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="reports">
+                <div class="menu-icon1 menu-icon10">
+                </div>
+                <div class="menu-title">
+                    Reports
+                </div>
+             <span><i class="fas fa-caret-down"></i></span>   
+                
+            </a>
+               <ul class="collapse" id="reports">
+              <li  *ngIf="BoatDatesOverview"><a routerLinkActive="active-sidebar" href="#" routerLink="/report-Boat-Dates-Overview/" id="id-submenu-child-Reports-Boat-Dates-Overview" >Boat Dates Overview</a></li>
+              <li *ngIf="BoatUsageOverview"><a routerLinkActive="active-sidebar" href="#" routerLink="/report-Boat-Usage-Overview/" id="id-submenu-child-Reports-Boat-Usage-Overview" >Boat Usage Overview</a></li>
+              <li *ngIf="OwnerUsageOverview"><a routerLinkActive="active-sidebar" href="#" routerLink="/report-Owner-Usage-Overview/" id="id-submenu-child-Reports-Owner-Usage-Overview" >Owner Usage Overview</a></li>
+              <li *ngIf="OwnerDetailsOverview"><a routerLinkActive="active-sidebar" href="#" routerLink="/report-Owner-Details-Overview/" id="id-submenu-child-Reports-Owner-Details-Overview" >Owner Details Overview</a></li>
+              <li *ngIf="MaintenanceComponent"><a routerLinkActive="active-sidebar" href="#" routerLink="/Report-Maintenance-Component/" id="id-submenu-child-Reports-Maintenance-Component" >Maintenance Component</a></li>
+             
+              <li *ngIf="ReportCleaningSchedule"><a routerLinkActive="active-sidebar" href="#" routerLink="/Report-Cleaning-Schedule/" id="id-submenu-child-Report-Cleaning-Schedule-Component">Cleaning Schedule</a></li>
+
+              
+              <!-- <li><a href="#" routerLink="/report-booking/" routerLinkActive="active">Booking Report</a></li> -->
+              
+          </ul> 
+        </li>
+
+         <!-- Alignment issue fixed for side  menu Done By Alagesan on 15.06.2021	-->
+
+        <li  *ngIf="SmartBoating">
+            <ul>
+                <!-- <a href="https://smartboating.com.au/boat-shares/" target="_blank" class="menu-items"> -->
+                <a (click)="openSmartBoating()" class="menu-items">   
+                    <div class="menu-icon1 menu-icon2">
+                    </div>
+                    <div class="menu-title">
+                        SMART Boating
+                    </div>
+                </a>
+            </ul>
+        </li>
+        
+        
+          <!-- Add Admin for side  menu Done By Alagesan on 29.07.2021	-->
+
+        <li *ngIf="AddSubAdmin">
+            <a href="" routerLink="/SubAdmin-admin/" routerLinkActive="active" class="menu-items" id="a-menu-Add-Admin-main" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="owner">
+                <div class="menu-icon1 menu-icon3">
+                </div>
+                <div class="menu-title">
+                    Add Admin
+                </div>
+            </a> 
+        </li>
+        
+
+    </ul>
+</div>
+</div>
+
+
+
+<button style="display:none" type="button" id="btn-Iframe-save-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#Iframe-Success-Modal">Open Modal</button>
+                       
+                         
+           <div class="modal  fade modal-xl" id="Iframe-Success-Modal" role="dialog">
+             <div class="modal-dialog modal-lg" style="margin: 15px auto;">
+             
+               <!-- Modal content-->
+               <div class="modal-content modal-xl">
+                 <div class="modal-header" style="height: 45px !important;">
+                   <button type="button" class="close" data-dismiss="modal">&times;</button>
+                   <h4 class="modal-title" id="h4-message-save-type">smartboating.com.au</h4>
+                 </div>
+                 
+                    <iframe src="https://smartboating.com.au/boat-shares/" style="border:none; height:88vh; width:100%;" title="description"></iframe>
+                 
+                 
+               </div>
+               
+             </div>
+           </div>

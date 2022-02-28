@@ -1,0 +1,165 @@
+<div class="main-page">
+    <app-sidemenu></app-sidemenu>
+
+    <div class="contents-page">
+        <app-header></app-header>
+
+        <div class="headingz">
+            <h4><a href="#" routerLink="/all-owner/"><i class="far fa-arrow-alt-circle-left"></i> </a>{{data.First_Name}} {{ data.Last_Name}}</h4>
+        </div>
+        
+        
+        
+        <div class="page contents">
+        
+           
+            <div class="col-lg-12 user-contents user-profile-contents">
+                <div class="well well-sm well-rs">
+                    <div class="row">
+                        <div class="col-lg-3 user">
+                            <img class="img-responsive avatar-img" *ngIf="!data.Profile_Image" src="../../assets/images/dummy-owner-img.jpg" alt="">
+                            <img class="img-responsive avatar-img" *ngIf="data.Profile_Image" src="{{imgUrl+data.Profile_Image}}" alt="">
+
+
+                            <!-- <a href="boat-details.html"><img class="card-img-top"  *ngIf="!boat.Profile_Image" src="/assets/images/boat1.jpg" alt="boat image"></a>
+                            <a href="boat-details.html"><img class="card-img-top"  *ngIf="boat.Profile_Image" src="{{imgUrl+boat.Profile_Image}}" alt="boat image"></a> -->
+                        </div>
+                        <div class="col-lg-9">
+                            <h4>{{data.First_Name}}</h4>
+                            <div class="d-flex mobile-flx">
+                                <ul class="user-info" >
+                                    
+                                   <li><i class="fas fa-map-marker-alt commen-span-space"></i>{{data.Home_Address}} </li>
+                                   <li><i class="far fa-envelope commen-span-space" aria-hidden="true"></i>{{data.Email}} </li>
+                                   <li> <i class="fas fa-mobile-alt commen-span-space" aria-hidden="true"></i>{{data.Mobile}}</li>
+                                   <li> <i class="fas fa-mobile-alt commen-span-space" aria-hidden="true"></i>{{data.Emergency_Contact_Mobile}}</li>
+                                   <li><i class="fas fa-house-user commen-span-space" aria-hidden="true"></i>{{data.Family_Name}}                  </li>
+                                   
+                                </ul>
+                                <ul class="user-info">
+                                   <li><i class="fas fa-house-user commen-span-space" aria-hidden="true"></i>{{data.Emergency_Contact_Name}} </li>
+                                   <li><i class="fas fa-parking commen-span-space"></i>{{data.Parking_Ability}}</li>
+                                   <li><i class="fas fa-heading commen-span-space"></i>{{data.Housekeeping}}</li>
+                                   <li><i class="fab fa-stripe-s commen-span-space"></i>{{data.Sailing_Ability}}</li>
+                                   
+                               </ul>
+                            </div>
+                             
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            
+            
+
+
+            <h4 class="content-title">My Boats</h4>
+
+
+            <div class="col-lg-12 user-contents user-profile-contents">
+
+                <div class="row boat-list">
+                     
+          
+                    <div class="card col-md-4" *ngFor="let boat of listBoat_New_update  let i = index;">
+                        <div class="profile-pic">
+            
+                            <a ><img class="card-img-top"  *ngIf="!boat.BoatDetails[0].Boat_Image[0]" src="/assets/images/boat1.jpg" alt="boat image"></a>
+                            <a ><img class="card-img-top"  *ngIf="boat.BoatDetails[0].Boat_Image[0]" src="{{imgUrl+boat.BoatDetails[0].Boat_Image[0]}}" alt="boat image"></a>
+            
+                           <!-- <a href="boat-details.html"><img class="card-img-top" src="assets/images/boat1.jpg" alt="boat image"></a> -->
+                            <ul class="edit">
+                            
+                            <li> <a (click)=viewBoat(boat)><i class="far fa-eye"></i></a></li>
+                           
+          
+          
+                          </ul> 
+                        </div>
+                            
+                        <div class="card-body">
+                        <a  class="card-link"><i class="fas fa-map-marker-alt"></i> {{boat.BoatDetails[0].Location_Name}}</a>
+                        <a  class="card-link f-right"></a>
+                        </div>                    
+                        <div class="card-header">
+                        <a > {{boat.Boat_Name}}</a>
+                        </div> 
+            
+                        <div class="card-body row">                    
+                        <div class="booking-days col-md-6">
+                            <h6>{{boat.TotalBookedDaysDays}} / {{boat.TotalDays_Allocated}} Days </h6>
+            
+                        <!-- <h6>100/300 Days </h6> -->
+                        </div>
+                        </div>   
+                        
+                        <div class="card-body row">
+                            <div class="booking-days col-md-12" *ngIf="boat.Boat_Name && boat.BoatDetails[0].Boat_Status == '0' ||  boat.Boat_Name &&  boat.BoatDetails[0].Boat_Status == '2'">
+                                <div >
+                                    <a > {{boat.Boat_Name}} is disable.</a>
+                                </div>
+                            </div>
+                            <div class="booking-days col-md-12" *ngIf="boat.Boat_Name && boat.BoatDetails[0].Boat_Status == '1'">
+                                <div>
+                                    <a > {{boat.Boat_Name}} is active.</a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        
+                        
+            
+                       
+                 
+            
+                     </div>   
+                       
+                 </div>
+     
+
+            </div>
+
+
+            <div class="col-lg-12 user-contents user-profile-contents">
+
+                <div id="id-table-databinding">
+        
+                        
+        
+                </div>
+
+            </div>
+
+
+           
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+
+      
+
+
+
+
+
+
+
+
+    </div>
+</div>
+<div class="dash-footer">
+<small>© Copyright SMART Boating 2021. All Rights Reserved.</small>    
+</div>

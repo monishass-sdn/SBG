@@ -1,0 +1,99 @@
+<!--Create Component for available boat report Done By Alagesan on 21.05.2021	-->
+
+<div class="main-page">
+    <app-sidemenu></app-sidemenu>
+    <div class="contents-page col-lg-9">
+        <app-header></app-header>
+        <div class="headingz">
+            <h4> Maintenance Component </h4>
+        </div>
+        <div class="page contents">
+                  
+            <div class="row justify-content-end" style="margin-bottom: 25px;"> 
+            <div class="col-md-12">
+                <ul class="top-btn">   
+               <li (click)="exportexcel()" ><a  class="btn btn-primary"><i class="far fa-file-pdf" aria-hidden="true"></i> EXPORT</a></li>    
+                </ul>       
+            </div>
+            </div>              
+            
+             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Calendar</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                <div class="row">                    
+                <div class="col-md-12">
+                    <div class="calendar-area">
+                        <div class="calendar-block" style="border: none;">
+                            <div id="pb-calendar-2" class="pb-calendar"><div class="top-frame"><div class="year-month-frame"><span class="year">2021</span><span class="month">May</span></div><div class="control-frame"><a href="#" class="control-btn prev-btn"><img src="../../assets/images/arrow-prev.png" class="icon"></a><a href="#" class="control-btn next-btn"><img src="../../assets/images/arrow-next.png" class="icon"></a></div></div><div class="calendar-head-frame"><div class="row row-dayname"><div class="col col-dayname holiday">SUN</div><div class="col col-dayname">MON</div><div class="col col-dayname">TUE</div><div class="col col-dayname">WED</div><div class="col col-dayname">THU</div><div class="col col-dayname">FRI</div><div class="col col-dayname">SAT</div></div></div><div class="calendar-body-frame"><div class="row row-day"><div class="col before-month holiday" data-day-yyyymmdd="20210425">25<div class="schedule-dot-list"></div></div><div class="col before-month" data-day-yyyymmdd="20210426">26<div class="schedule-dot-list"></div></div><div class="col before-month" data-day-yyyymmdd="20210427">27<div class="schedule-dot-list"></div></div><div class="col before-month" data-day-yyyymmdd="20210428">28<div class="schedule-dot-list"></div></div><div class="col before-month" data-day-yyyymmdd="20210429">29<div class="schedule-dot-list"></div></div><div class="col before-month" data-day-yyyymmdd="20210430">30<div class="schedule-dot-list"></div></div><div class="col  holiday" data-day-yyyymmdd="20210501">01<div class="schedule-dot-list"></div></div></div><div class="row row-day"><div class="col  holiday" data-day-yyyymmdd="20210502">02<div class="schedule-dot-list"><span class="schedule-dot-item red" data-schedule-id="1"></span></div></div><div class="col " data-day-yyyymmdd="20210503">03<div class="schedule-dot-list"><span class="schedule-dot-item red" data-schedule-id="2"></span></div></div><div class="col " data-day-yyyymmdd="20210504">04<div class="schedule-dot-list"><span class="schedule-dot-item red" data-schedule-id="3"></span></div></div><div class="col " data-day-yyyymmdd="20210505">05<div class="schedule-dot-list"></div></div><div class="col " data-day-yyyymmdd="20210506">06<div class="schedule-dot-list"><span class="schedule-dot-item green" data-schedule-id="7"></span></div></div><div class="col " data-day-yyyymmdd="20210507">07<div class="schedule-dot-list"><span class="schedule-dot-item green" data-schedule-id="8"></span></div></div><div class="col  holiday" data-day-yyyymmdd="20210508">08<div class="schedule-dot-list"></div></div></div><div class="row row-day"><div class="col  holiday" data-day-yyyymmdd="20210509">09<div class="schedule-dot-list"></div></div><div class="col " data-day-yyyymmdd="20210510">10<div class="schedule-dot-list"><span class="schedule-dot-item red" data-schedule-id="4"></span></div></div><div class="col " data-day-yyyymmdd="20210511">11<div class="schedule-dot-list"><span class="schedule-dot-item green" data-schedule-id="5"></span></div></div><div class="col " data-day-yyyymmdd="20210512">12<div class="schedule-dot-list"><span class="schedule-dot-item green" data-schedule-id="6"></span></div></div><div class="col " data-day-yyyymmdd="20210513">13<div class="schedule-dot-list"></div></div><div class="col " data-day-yyyymmdd="20210514">14<div class="schedule-dot-list"></div></div><div class="col  holiday" data-day-yyyymmdd="20210515">15<div class="schedule-dot-list"></div></div></div><div class="row row-day"><div class="col  holiday" data-day-yyyymmdd="20210516">16<div class="schedule-dot-list"></div></div><div class="col " data-day-yyyymmdd="20210517">17<div class="schedule-dot-list"></div></div><div class="col " data-day-yyyymmdd="20210518">18<div class="schedule-dot-list"></div></div><div class="col " data-day-yyyymmdd="20210519">19<div class="schedule-dot-list"></div></div><div class="col " data-day-yyyymmdd="20210520">20<div class="schedule-dot-list"><span class="schedule-dot-item green" data-schedule-id="1"></span></div></div><div class="col " data-day-yyyymmdd="20210521">21<div class="schedule-dot-list"></div></div><div class="col  holiday" data-day-yyyymmdd="20210522">22<div class="schedule-dot-list"></div></div></div><div class="row row-day"><div class="col  holiday" data-day-yyyymmdd="20210523">23<div class="schedule-dot-list"><span class="schedule-dot-item red" data-schedule-id="2"></span></div></div><div class="col " data-day-yyyymmdd="20210524">24<div class="schedule-dot-list"><span class="schedule-dot-item red" data-schedule-id="3"></span></div></div><div class="col " data-day-yyyymmdd="20210525">25<div class="schedule-dot-list"></div></div><div class="col " data-day-yyyymmdd="20210526">26<div class="schedule-dot-list"></div></div><div class="col " data-day-yyyymmdd="20210527">27<div class="schedule-dot-list"></div></div><div class="col " data-day-yyyymmdd="20210528">28<div class="schedule-dot-list"></div></div><div class="col  holiday" data-day-yyyymmdd="20210529">29<div class="schedule-dot-list"></div></div></div><div class="row row-day"><div class="col  holiday" data-day-yyyymmdd="20210530">30<div class="schedule-dot-list"></div></div><div class="col " data-day-yyyymmdd="20210531">31<div class="schedule-dot-list"></div></div><div class="col after-month" data-day-yyyymmdd="20210601">01<div class="schedule-dot-list"></div></div><div class="col after-month" data-day-yyyymmdd="20210602">02<div class="schedule-dot-list"></div></div><div class="col after-month" data-day-yyyymmdd="20210603">03<div class="schedule-dot-list"></div></div><div class="col after-month" data-day-yyyymmdd="20210604">04<div class="schedule-dot-list"></div></div><div class="col after-month holiday" data-day-yyyymmdd="20210605">05<div class="schedule-dot-list"></div></div></div></div></div>
+                </div>
+                                        
+                                        <div class="col-md-12 schedule-indicators">
+                                    
+                    <ul>
+                        <li><span class="red"> </span>Booked</li>
+                        <li><span class="green"> </span>Admin Booked</li>
+                        <li>No Color - Available Days</li>
+                        
+                    </ul>   
+                        
+                                </div>
+                                        
+                                    </div>    
+                                    
+                                    
+                </div>  
+                
+                </div>
+
+
+                </div>
+
+                </div>
+                </div>
+            </div> 
+            
+                    
+            <div class="sbg-form" style="margin-top: 0px;"> 
+                <form>
+                <div class="form-row">
+        
+        </div>
+                    
+                                
+                    
+                    </form>     
+                
+                    
+            </div>   
+                    
+            <div class="row" style="margin-top: 25px;">
+                    <div class="col-md-12 reports">
+                        <div class="table-wrap1">
+                            <div class="table-wrap2">
+                                <div id="id-table-databinding">
+                    
+                                    
+                    
+                                </div>
+                            </div>
+                        </div>
+                    
+                        </div>
+            </div> 
+            
+        </div>
+    </div>
+</div>
+<div class="dash-footer">
+<!-- <small>© Copyright SMART Boating 2021. All Rights Reserved.</small>   -->
+<app-footer-adminsession></app-footer-adminsession>  
+</div>
+
+<!--Create Component for available boat report Done By Alagesan on 21.05.2021	-->

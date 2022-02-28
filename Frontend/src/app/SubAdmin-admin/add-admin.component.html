@@ -1,0 +1,503 @@
+<div class="main-page">
+    <app-sidemenu></app-sidemenu>
+  
+    <div class="contents-page ">
+      <app-header></app-header>
+        <div class="headingz">
+          <!-- Create component for add admin   Done By Alagesan on 29.07.2021	-->
+            <h4> Add Admin</h4>
+        </div>
+        <div class="page contents">
+            <form [formGroup]="form"  novalidate>
+            <div class="sbg-form"> 
+               
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label>Username</label> 
+                            <input type="text" class="form-control" formControlName="Username" [ngClass]="{ 'is-invalid': submitted && f.Username.errors }" placeholder="Username">
+                        </div>
+                    </div>  
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label>Email Id</label> 
+                            <input type="text" class="form-control" formControlName="Email" [ngClass]="{ 'is-invalid': submitted && f.Email.errors }" placeholder="Email Id">
+                        </div>
+                    </div>
+                    <div class="form-row"> 
+                    <div class="form-group col-md-4">
+                      <label>Phone Number</label>
+                      <input type="text" class="form-control" formControlName="Phone" [ngClass]="{ 'is-invalid': submitted && f.Phone.errors }" placeholder="Phone number">
+                      </div>
+                    </div>
+                      
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <label>Password</label> 
+                            <input [type]="show ? 'text' : 'password'" formControlName="Password" [ngClass]="{ 'is-invalid': submitted && f.Password.errors }" placeholder="Password" autocomplete="off" class="form-control" >
+                            <!-- <span class="" (click)="password()" style="position: absolute;right: 7px; bottom: 0px; z-index: 1; font-size: x-large;" ><i class="fas fa-eye"></i></span> -->
+                            <span class="" (click)="password()" style="position: absolute;right: 7px; top: 41px; bottom: 0px; z-index: 1; font-size: x-large;" ><i [class]="show ? 'fas fa-eye' : 'fas fa-eye-slash'"></i></span>
+                            
+                        </div> 
+                   </div>                
+                    <div class="form-row">     
+                        <div class="col-md-2">
+                            <a  class="btn btn-primary" *ngIf="addAdminBtnFlag" (click)= add_Sub_Addmin() style="margin-top: 10px;" >Create</a>
+                            <a  class="btn btn-primary" *ngIf="editAdminBtmFlag" (click)= Edit_Sub_Addmin() style="margin-top: 10px;" >Edit</a>
+
+                        </div>             
+                    </div>
+                  
+            </div>  
+            <div>
+                <div class="sbg-form row">
+                    <div class="col-md-12">
+                        <div class="form-row">
+                            <div class="col-md-6" style="padding-top: 20px;padding-bottom: 10px;">
+                                <!-- <button  class="btn btn-primary" type="button"  style="width: 100%;">Admin Permissions <span><i ></i></span></button> -->
+                                <h3>Admin Permissions</h3>
+                                <hr>
+                              </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                    <!-- Admin permissions for add admin   Done By Alagesan on 30.07.2021	-->
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                            <label style="font-weight: bold; text-transform: none; margin-right: 15px;">Dashboard :</label>
+                            <div class="form-check-inline">
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"  value="Overview" formControlName="Overview" [ngClass]="{ 'is-invalid': submitted && f.Overview.errors }" name="Overview">Overview
+                            </label>
+                            </div>
+                            <div class="form-check-inline">
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"  value="New Booking"  name="New_booking" formControlName="NewBooking" [ngClass]="{ 'is-invalid': submitted && f.NewBooking.errors }">New booking 
+                            </label>
+                            </div>
+                              
+                            <div class="form-check-inline">
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"  value="Todays Booking"  name="Todays_Booking" formControlName="TodaysBooking" [ngClass]="{ 'is-invalid': submitted && f.TodaysBooking.errors }">Todays Booking
+                            </label>
+                            </div> 
+                            <div class="form-check-inline">
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"  value="Cancellations"  name="Cancellations" formControlName="Cancellations" [ngClass]="{ 'is-invalid': submitted && f.Cancellations.errors }">Cancellations
+                            </label>
+                            </div> 
+                            <div class="form-check-inline">
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"  value="Standby Booking"  name="Standby_Booking" formControlName="StandbyBooking" [ngClass]="{ 'is-invalid': submitted && f.StandbyBooking.errors }">Standby Booking
+                            </label>
+                            </div> 
+                            <div class="form-check-inline" style="display: none;">
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"  value="Need Assistance"  name="Parking_Ability" formControlName="NeedAssistance" [ngClass]="{ 'is-invalid': submitted && f.NeedAssistance.errors }">Need Assistance
+                            </label>
+                            </div>        
+                            
+                            </div>    
+                        </div> 
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                            <label style="font-weight: bold; text-transform: none; margin-right: 15px;" >Settings :</label>
+                            <div class="form-check-inline">
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"  value="Boat Type" name="Boat_Type" formControlName="BoatType" [ngClass]="{ 'is-invalid': submitted && f.BoatType.errors }">Boat Type
+                            </label>
+                            </div>
+                            <div class="form-check-inline">
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"  value="Location"  name="Location" formControlName="Location" [ngClass]="{ 'is-invalid': submitted && f.Location.errors }">Location 
+                            </label>
+                            </div>
+                              
+                            <div class="form-check-inline">
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"  value="Unavailable Days"  name="Unavailable_Days" formControlName="UnavailableDays" [ngClass]="{ 'is-invalid': submitted && f.UnavailableDays.errors }">Unavailable Days
+                            </label>
+                            </div> 
+                            <div class="form-check-inline">
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"  value="Consecutive Days"  name="Consecutive_Days" formControlName="ConsecutiveDays" [ngClass]="{ 'is-invalid': submitted && f.ConsecutiveDays.errors }">Consecutive Days
+                            </label>
+                            </div> 
+                            <div class="form-check-inline">
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"  value="Next Booking Days"  name="Next_Booking_Days" formControlName="NextBookingDays" [ngClass]="{ 'is-invalid': submitted && f.NextBookingDays.errors }">Next Booking Days
+                            </label>
+                            </div> 
+                            <div class="form-check-inline">
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"  value="Share Allocation"  name="Share_Allocation" formControlName="ShareAllocation" [ngClass]="{ 'is-invalid': submitted && f.ShareAllocation.errors }">Share Allocation
+                            </label>
+                            </div>        
+                            <div class="form-check-inline">
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"  value="Special Days"  name="Special_Days" formControlName="SpecialDays" [ngClass]="{ 'is-invalid': submitted && f.SpecialDays.errors }">Special Days
+                            </label>
+                            </div> 
+                            </div>    
+                        </div> 
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                            <label style="font-weight: bold; text-transform: none; margin-right: 15px;">Boat :</label>
+                            <div class="form-check-inline">
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"  value="All Boats" name="All_Boats" formControlName="AllBoats" [ngClass]="{ 'is-invalid': submitted && f.AllBoats.errors }">All Boats
+                            </label>
+                            </div>
+                            <div class="form-check-inline">
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"  value="Add Boat"  name="Add_Boat" formControlName="AddBoat" [ngClass]="{ 'is-invalid': submitted && f.AddBoat.errors }">Add Boat 
+                            </label>
+                            </div>
+                              
+                            <div class="form-check-inline">
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"  value="Archived Boats"  name="Archived_Boats" formControlName="ArchivedBoats" [ngClass]="{ 'is-invalid': submitted && f.ArchivedBoats.errors }">Archived Boats
+                            </label>
+                            </div> 
+                            </div>    
+                        </div> 
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                            <label style="font-weight: bold; text-transform: none; margin-right: 15px;">Owners :</label>
+                            <div class="form-check-inline">
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"  value="All Owners" name="All_Owners" formControlName="AllOwners" [ngClass]="{ 'is-invalid': submitted && f.AllOwners.errors }">All Owners
+                            </label>
+                            </div>
+                            <div class="form-check-inline">
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"  value="Add Owner"  name="Add_Owner" formControlName="AddOwner" [ngClass]="{ 'is-invalid': submitted && f.AddOwner.errors }">Add Owner 
+                            </label>
+                            </div>
+                              
+                            
+                            <div class="form-check-inline">
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"  value="Manage Owner"  name="Manage_Owner"formControlName="ManageOwner" [ngClass]="{ 'is-invalid': submitted && f.ManageOwner.errors }">Manage Owner
+
+                            </label>
+                            </div> 
+
+                            <div class="form-check-inline">
+                              <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input"  value="Owner Duration"  name="Owner_Duration" formControlName="OwnerDuration" [ngClass]="{ 'is-invalid': submitted && f.OwnerDuration.errors }">Owner Duration
+  
+                              </label>
+                              </div> 
+
+                            <div class="form-check-inline">
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"  value="Ownership Transfer"  name="Ownership_Transfer" formControlName="OwnershipTransfer" [ngClass]="{ 'is-invalid': submitted && f.OwnershipTransfer.errors }">Ownership Transfer
+                            </label>
+                            </div> 
+                            </div>    
+                        </div> 
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label style="font-weight: bold; text-transform: none; margin-right: 15px;">Boat Booking :</label>
+                                <div class="form-check-inline">
+                                <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input"  value="Booking" name="Booking" formControlName="Booking" [ngClass]="{ 'is-invalid': submitted && f.Booking.errors }">Booking
+                                </label>
+                                </div>   
+                                <div class="form-check-inline">
+                                <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input"  value="Stand By Booking" name="Stand_By_Booking" formControlName="StandByBooking" [ngClass]="{ 'is-invalid': submitted && f.StandByBooking.errors }">Stand By Booking
+                                </label>
+                                </div>  
+
+                                <div class="form-check-inline">
+                                  <label class="form-check-label">
+                                  <input type="checkbox" class="form-check-input"  value="BookingAdmin Booking" name="BookingAdmin_Booking" formControlName="BookingAdminBooking" [ngClass]="{ 'is-invalid': submitted && f.BookingAdminBooking.errors }">Admin Booking
+                                  </label>
+                                  </div>
+                                  
+                                  <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input"  value="BookingMaintenance Booking" name="BookingMaintenance_Booking" formControlName="BookingMaintenanceBooking" [ngClass]="{ 'is-invalid': submitted && f.BookingMaintenanceBooking.errors }">Maintenance Booking
+                                    </label>
+                                    </div>
+
+
+                                <div class="form-check-inline" style="display: none;">
+                                    <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input"  value="Boat Bookings" name="Boat_Bookings" formControlName="BoatBookings" [ngClass]="{ 'is-invalid': submitted && f.BoatBookings.errors }">Boat Bookings
+                                    </label>
+                                    </div> 
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label style="font-weight: bold; text-transform: none; margin-right: 15px;">Boat Maintenance :</label>
+                                <div class="form-check-inline">
+                                <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input"  value="Boat Maintenance" name="Boat_Maintenance" formControlName="BoatMaintenance" [ngClass]="{ 'is-invalid': submitted && f.BoatMaintenance.errors }">Boat Maintenance
+                                </label>
+                                </div>      
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label style="font-weight: bold; text-transform: none; margin-right: 15px;">Admin Booking :</label>
+                                <div class="form-check-inline" style="display:none;">
+                                    <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input"  value="Book for Admin " name="Book_for_Admin" formControlName="BookforAdmin" [ngClass]="{ 'is-invalid': submitted && f.BookforAdmin.errors }">Book for Admin
+                                    </label>
+                                    </div> 
+                                <div class="form-check-inline">
+                                <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input"  value="Book for an Owner" name="Book_for_an_owner" formControlName="BookforanOwner" [ngClass]="{ 'is-invalid': submitted && f.BookforanOwner.errors }">Book for an Owner
+                                </label>
+                                </div>  
+                                <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                    <input type="checkbox" class="form-check-input"  value="Admin Booking" name="Admin_Booking" formControlName="AdminBooking" [ngClass]="{ 'is-invalid': submitted && f.AdminBooking.errors }">Admin Booking
+                                    </label>
+                                    </div>     
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label style="font-weight: bold; text-transform: none; margin-right: 15px;">Cancellation :</label>
+                                <div class="form-check-inline">
+                                <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input"  value="Cancellation" name="Cancellation" formControlName="Cancellation" [ngClass]="{ 'is-invalid': submitted && f.Cancellation.errors }">Cancellation
+                                </label>
+                                </div>      
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                            <label style="font-weight: bold; text-transform: none; margin-right: 15px;">Reports :</label>
+                            <div class="form-check-inline">
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"  value="Boat Dates Overview" name="Boat_Dates_Overview" formControlName="BoatDatesOverview" [ngClass]="{ 'is-invalid': submitted && f.BoatDatesOverview.errors }">Boat Dates Overview
+                            </label>
+                            </div>
+                            <div class="form-check-inline">
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"  value="Boat Usage Overview"  name="Boat_Usage_Overview" formControlName="BoatUsageOverview" [ngClass]="{ 'is-invalid': submitted && f.BoatUsageOverview.errors }">Boat Usage Overview 
+                            </label>
+                            </div>
+                              
+                            <div class="form-check-inline">
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"  value="Owner Usage Overview"  name="Owner_Usage_Overview" formControlName="OwnerUsageOverview" [ngClass]="{ 'is-invalid': submitted && f.OwnerUsageOverview.errors }">Owner Usage Overview
+                            </label>
+                            </div> 
+                            <div class="form-check-inline">
+                            <label class="form-check-label">
+                            <input type="checkbox" class="form-check-input"  value="Owner Details Overview"  name="Owner_Details_Overview" formControlName="OwnerDetailsOverview" [ngClass]="{ 'is-invalid': submitted && f.OwnerDetailsOverview.errors }">Owner Details Overview
+                            </label>
+                            </div> 
+
+                            <div class="form-check-inline">
+                                <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input"  value="Maintenance Component"  name="Maintenance_Component" formControlName="MaintenanceComponent" [ngClass]="{ 'is-invalid': submitted && f.MaintenanceComponent.errors }">Maintenance Component
+                                </label>
+                            </div> 
+
+                            <div class="form-check-inline">
+                              <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input"  value="Report CleaningSchedule"  name="Report_CleaningSchedule" formControlName="ReportCleaningSchedule" [ngClass]="{ 'is-invalid': submitted && f.ReportCleaningSchedule.errors }">Cleaning Schedule
+                              </label>
+                          </div> 
+                            
+                            </div>    
+                        </div> 
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label style="font-weight: bold; text-transform: none; margin-right: 15px;">Smart Boating :</label>
+                                <div class="form-check-inline">
+                                <label class="form-check-label">
+                                <input type="checkbox" class="form-check-input"  value="Smart Boating" name="Smart_Boating" formControlName="SmartBoating" [ngClass]="{ 'is-invalid': submitted && f.SmartBoating.errors }">Smart Boating
+                                </label>
+                                </div>      
+                            </div> 
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-row">
+                            <div class="form-group col-md-12">
+                                <label style="font-weight: bold; text-transform: none; margin-right: 15px;">Sub Admin :</label>
+                                <div class="form-check-inline">
+                                <label class="form-check-label">
+                              <input type="checkbox" class="form-check-input"  value="Add Sub Admin" name="Add_Sub_Admin" formControlName="AddSubAdmin" [ngClass]="{ 'is-invalid': submitted && f.AddSubAdmin.errors }">Add Sub Admin
+                                
+                               
+                                </label>
+                                </div>      
+                            </div> 
+                        </div>
+                    </div>
+
+                    
+
+                    </div>
+
+
+                   
+            </div>
+
+
+        </form> 
+
+        <div class="col-md-12">
+           
+                <div id="id-table-databinding">
+        
+                        
+        
+                </div>
+            
+           
+
+
+        </div>
+        
+
+          <!-- ........................message.......... -->
+
+
+          <button style="display:none" type="button" id="btn-CommenMessage-admin-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#admin-Success-Modal">Open Modal</button>
+            
+              
+          <div class="modal fade" id="admin-Success-Modal" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Message</h4>
+                </div>
+                <div class="modal-body">
+                  <p>{{CommenMessages_Admin}}</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default"  data-dismiss="modal">OK</button>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          
+          <button style="display:none" type="button" id="btn-CommenMessage-admin-save-disp-btns" class="btn btn-info btn-lg" data-toggle="modal" data-target="#admin-CommenSave-Success-Modal">Open Modal</button>
+                      
+                        
+          <div class="modal fade" id="admin-CommenSave-Success-Modal" role="dialog">
+            <div class="modal-dialog">
+            
+              <!-- Modal content-->
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">Message</h4>
+                </div>
+                <div class="modal-body">
+                  <p>{{CommenMessages_Admin}}</p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default" (click)=pagereload() data-dismiss="modal">OK</button>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+          
+          
+
+          <button style="display:none" type="button" id="removeSub_AdminBoat" class="btn btn-info btn-lg" data-toggle="modal" data-target="#removeSub_AdminBoats">Open Modal</button>
+
+
+<div class="modal fade" id="removeSub_AdminBoats" role="dialog">
+  <div class="modal-dialog">
+  
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Message</h4>
+      </div>
+      <div class="modal-body">
+         
+     <span class="red">ARE YOU SURE ?</span>
+        <p>You Want To Delete Sub Admin!!!.</p>
+      </div>
+      <div class="modal-footer">
+    <span a href="#" (click)=deleteSub_Admin() class="confirm-bttn">CONFIRM</span>
+    <span a href="#" data-dismiss="modal" class="cancel-bttn">CANCEL</span>
+       </div>
+    </div>
+    
+  </div>
+</div>
+          
+ 
+
+
+<button style="display:none" type="button" id="delete-boat-type-popup-btn" class="btn btn-info btn-lg" data-toggle="modal" data-target="#deleteboattypemodal">Open Modal</button>
+          
+            
+            <div class="modal fade" id="deleteboattypemodal" role="dialog">
+              <div class="modal-dialog">
+              
+                
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Message</h4>
+                  </div>
+                  <div class="modal-body">
+                    <p>{{getResponce}}</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" (click)="pagereload()"  data-dismiss="modal">OK</button>
+                  </div>
+                </div>
+                
+              </div>
+            </div>  
+          
+          
+          
+          
+          
+          
+          
+                <!-- ...........................End................ -->
+        
+
+     
+
+
+
+
+
+    </div>  
+</div>
+          <!-- Create component for add admin   Done By Alagesan on 29.07.2021	-->
+<div class="dash-footer">
+    <app-footer-adminsession></app-footer-adminsession>   
+</div>

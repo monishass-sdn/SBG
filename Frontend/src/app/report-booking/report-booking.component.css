@@ -1,0 +1,10 @@
+
+
+/* .main-page {
+    margin: 0px 0px 0px -30px;
+} */
+
+.mobile-sidebar{
+    left: 0px !important;
+    transition: 0.5s;
+}

@@ -1,0 +1,69 @@
+<!--Create Component for available boat report Done By Alagesan on 21.05.2021	-->
+
+<div class="main-page">
+    <app-sidemenu></app-sidemenu>
+    <div class="contents-page col-lg-9">
+        <app-header></app-header>
+        <div class="headingz">
+            <h4> Boat Dates Overview </h4>
+        </div>
+        <div class="page contents">
+                  
+            <div class="row justify-content-end" style="margin-bottom: 25px;"> 
+            <div class="col-md-12">
+                <ul class="top-btn">   
+               <li (click)="exportexcel()" ><a  class="btn btn-primary"><i class="far fa-file-pdf" aria-hidden="true"></i> EXPORT</a></li>    
+                </ul>       
+            </div>
+            </div> 
+            
+            <form class="form-horizontal" [formGroup]="form" novalidate>
+                    
+               <div class="row date-filter" style="padding: 0 5px;">
+                <div class="form-group col-md-3">
+                  <label>From Date </label>
+                       
+                  <input style="height: 36px;" id="Latest-datepiker-all-boat-from-date" type="text" class="form-control"
+                    data-zdp_readonly_element="true" formControlName="Launch_Date1"                   
+              [ngClass]="{ 'is-invalid':  f.Launch_Date1.errors }">
+      
+      
+                </div>
+                <div class="form-group col-md-3">
+                  <label>To Date </label>
+                     
+                  <input style="height: 36px;" id="Latest-datepiker-all-boat-to-date" type="text" class="form-control"
+                    data-zdp_readonly_element="true" formControlName="Launch_Date2" 
+                    [ngClass]="{ 'is-invalid': f.Launch_Date2.errors }" >
+      
+                </div>
+                <div class="col-md-3" style="padding-top: 33px; text-align: right;">
+                  <button type="button" class="btn btn-primary" id="btn-id-search-table" style="width: 100%;">SEARCH</button>
+                </div>
+               </div> 
+
+            </form>
+                    
+            <div class="row" style="margin-top: 25px;">
+                    <div class="col-md-12 reports">
+        
+                    <div id="id-table-databinding">
+        
+                        
+        
+                    </div>
+                
+        
+                    
+                        </div>
+            </div> 
+            
+        </div>
+    </div>
+</div>
+<div class="dash-footer">
+<!-- <small>© Copyright SMART Boating 2021. All Rights Reserved.</small>   -->
+<app-footer-adminsession></app-footer-adminsession>  
+</div>
+
+<!--Create Component for available boat report Done By Alagesan on 21.05.2021	-->

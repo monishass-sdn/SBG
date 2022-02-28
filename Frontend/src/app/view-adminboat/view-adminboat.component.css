@@ -1,0 +1,35 @@
+
+/* .main-page {
+   
+    margin: 0px 0px 0px -30px;
+} */
+
+#calendar{
+    pointer-events: none;
+}
+
+.modal{
+    pointer-events: none !important;
+  } 
+
+@media screen and (max-width: 767px) {
+
+    .update-user > ul {
+        text-align: center !important;
+    }
+    .update-user > ul li{ width: auto; }
+
+
+}
+
+
+.mobile-sidebar{
+    left: 0px !important;
+    transition: 0.5s;
+}
+.span-file-not-fount{
+    color: red;    
+    font-size: 12px;
+    margin-left: 7px;
+    font-weight: 800;
+}

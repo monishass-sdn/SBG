@@ -1,0 +1,16 @@
+.table_headding{
+    vertical-align: top !important;
+    border-bottom: 2px solid #dee2e6 !important;;
+    font-weight: 500 !important;
+    background: #414fad !important;
+    color: #fff !important;
+}
+
+.mobile-sidebar{
+    left: 0px !important;
+    transition: 0.5s;
+}
+
+.modal{
+    pointer-events: none !important;
+  } 

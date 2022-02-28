@@ -1,0 +1,172 @@
+<!--Create Component for view boat owner Done By Alagesan	on 05.07.2021 -->
+
+<div class="main-page">
+  <app-owner-sidemenu></app-owner-sidemenu>
+  <div class="contents-page col-lg-9">
+    <app-owner-header></app-owner-header>
+
+        <div class="headingz">
+            <h4><a routerLink="/myprofile/"><i class="far fa-arrow-alt-circle-left"></i> </a> Boat Details</h4>
+        </div>       
+        
+        
+        <div class="page contents">            
+         <div class="row">
+              <div class="container boat-detail">
+
+              <h4>{{boat_name}} </h4>
+
+              <div class="row">
+
+                <!-- <div class="col-lg-12">
+                  <div class="calender-custom">
+
+
+                        <div class="code-html">
+                          <div id="menu">
+                              <span id="menu-navi">
+                                  <button type="button" class="btn btn-default btn-sm move-today" data-action="move-today">Today</button>
+                                  <button type="button" class="btn btn-default btn-sm move-day" data-action="move-prev">
+                                      <i class="calendar-icon ic-arrow-line-left" data-action="move-prev"></i>
+                                  </button>
+                                  <button type="button" class="btn btn-default btn-sm move-day" data-action="move-next">
+                                      <i class="calendar-icon ic-arrow-line-right" data-action="move-next"></i>
+                                  </button>
+                              </span>
+                              <span id="renderRange" class="render-range"></span>
+                          </div>
+
+                          <div id="calendar"></div>
+                      </div>  
+
+
+
+                  </div>
+
+              </div> -->
+
+              </div>
+
+
+
+              <div class="row">
+
+
+
+              <div class="col-md-6 boat-image-slider">
+              
+                <div class="container" id="id-sliderbinding-First" style="padding: 0;"> 
+
+                  <div class="container">
+                    
+                  <div class="row" id="id-sliderbinding-Second"> 
+
+                  </div>
+
+                  </div>
+
+                </div>
+
+                <div class="row">
+                    
+                  <ul class="col-md-6">
+                    <h4 class="summer_Duration mt-3" style="width:417px;padding-top: 10px;">Seasons Duration</h4> 
+                    <li><h6 style="min-width: 120px;">Summer From </h6> <span>{{Summer_From}}</span> </li> 
+                    <li><h6 style="min-width: 115px;">Summer To </h6> <span>{{Summer_To}}</span></li>
+                    <!-- <li><h6>Winter From </h6> <span>{{Winter_From}}</span></li>
+                    <li><h6>Winter To </h6> <span>{{Winter_To}}</span></li> -->
+                  </ul>
+                  <ul class="col-md-6">
+                    <h4 class="summer_Duration mt-3" style="visibility: hidden;">Seasons Duration</h4> 
+                    <li><h6 style="min-width: 115px;">Winter From </h6> <span>{{Winter_From}}</span></li>
+                    <li><h6 style="min-width: 110px;">Winter To </h6> <span>{{Winter_To}}</span></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <!-- <h3 class="boat_title">HandBook : <a href={{HandBookUrl}} target="_blank">download</a></h3>  -->
+                  <h3 class="boat_title">Boat Details</h3>
+                  <div class="row">
+                  <ul class="col-md-12">
+                    <div *ngIf="Boattype_Name">
+                      <li><h6 >Boat Type </h6> <span>{{Boattype_Name}}</span></li>
+                      </div>
+                  
+                        <!-- <li><h6>Owners Allowed </h6> <span>{{Owners_Allowed}}</span></li> -->
+                        <div *ngIf="Location_Name">
+                          <li><h6>Location </h6> <span>{{Location_Name}}</span></li>
+                          </div>
+                              <li><h6>Launch Date </h6> <span>{{Launch_Dates}}</span></li>
+                        <li><h6>Pre-Launch Date </h6> <span>{{preDates}}</span></li>
+                        <li><h6>Status </h6> <span>{{boatStatus}}</span></li>
+                        <li><h6 class="pt-2">Facilities </h6>
+                          <span><textarea class="facilities" readonly rows="3" placeholder="Enter Here Text">{{Boat_Facility}}
+                          </textarea></span>
+                        </li> 
+                        <li>
+                          <h6 class="descr-title mt-2">Description </h6>
+                          <textarea class="form-add-boat" rows="5" readonly placeholder="Enter Here Text">{{Boat_Description}}
+                          </textarea>
+                        </li>
+                  </ul>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                    <ul class="col-md-12 bg-win" style="float: left;background: #1f2c83;margin-top: 22px;">
+                    <li><h6 class="sum-title">SUMMER WEEKDAYS </h6> <span class="sum-second">{{ TotalDaysAssigned_Summer_WeekDays}} </span></li>
+                    <li><h6 class="sum-title">SUMMER WEEKENDS </h6> <span class="sum-second">{{TotalDaysAssigned_Summer_WeekEndDays}}</span></li>
+                    </ul>
+                  
+                </div>
+
+                <div class="col-md-12">
+                  <ul class="col-md-12 bg-win" style="float: left;background: #1f2c83;margin-top: 22px;">
+                  <li><h6 class="sum-title">WINTER WEEKDAYS </h6> <span class="sum-second">{{TotalDaysAssigned_Winter_WeekDays}} </span></li>
+                  <li><h6 class="sum-title">WINTER WEEKENDS </h6> <span class="sum-second">{{TotalDaysAssigned_Winter_WeekEndDays}}</span></li>
+                  </ul>
+              </div>
+              </div>
+
+              </div>
+
+
+              </div>
+                         
+        </div>
+           
+        </div>
+    </div>
+</div>
+
+
+<button style="display:none" type="button" id="btn-CommenMessage-disp-btns-angular" class="btn btn-info btn-lg" data-toggle="modal" data-target="#btn-CommenMessage-disp-Modal">Open Modal</button>
+             
+<div class="modal fade" id="btn-CommenMessage-disp-Modal" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title" id="h4-message-type">Message</h4>
+      </div>
+      <div class="modal-body">
+        <p id="p-message-content">{{CommenMessages}}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default"  data-dismiss="modal">OK</button>
+      </div>
+    </div>
+    
+  </div>
+</div>
+
+
+
+
+<div class="dash-footer">
+  <app-footer-adminsession></app-footer-adminsession>    
+</div>
+
+<!--Create Component for view boat owner Done By Alagesan	on 05.07.2021-->
